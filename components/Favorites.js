@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function Search() {
+export default function Favorites() {
 
   return (
     <View style={styles.container}>
-      <Text>Search</Text>
+      <Text>Favorites</Text>
     </View>
   );
 
