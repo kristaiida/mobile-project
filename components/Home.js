@@ -32,7 +32,7 @@ export default function Home() {
       <ScrollView>
         {recipes.map(recipe => (
             <View>
-                <Text>{recipe.type}</Text>
+                <Text>{recipe.name}</Text>
             </View>
         ))}
       </ScrollView>
