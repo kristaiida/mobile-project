@@ -31,9 +31,14 @@ export default function Home() {
     <View style={styles.container}>
       <ScrollView>
         {recipes.map(recipe => (
-            <View>
-                <Text>{recipe.type}</Text>
-            </View>
+            recipe.min_items > 1
+            ? (
+                <View>
+                    <Text>{recipe.type}</Text>
+                </View>
+            ) : (
+                <Text></Text>
+            )
         ))}
       </ScrollView>
     </View>
