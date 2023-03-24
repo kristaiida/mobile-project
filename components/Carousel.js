@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, ViewPropTypes } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import axios from 'axios';
+import { API_KEY } from '../Api_Key';
 
 const options = {
   method: 'GET',
   url: 'https://tasty.p.rapidapi.com/tags/list',
   headers: {
-    'X-RapidAPI-Key': 'e47a49d1a6mshb63530b1ef149edp13f3e3jsnefe9dffca327',
+    'X-RapidAPI-Key': API_KEY,
     'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
   }
 };
