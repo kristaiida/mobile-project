@@ -35,7 +35,7 @@ const Search = () => {
             console.log(error);
         }
     );
-}, []);
+}, [searchPhrase]);
 
   return (
     <SafeAreaView style={styles.root}>
