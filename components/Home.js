@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import { API_KEY } from '../Api_Key';
+import CarouselScreen from './Carousel';
 
 export default function Home() {
 
@@ -53,6 +54,7 @@ export default function Home() {
     return (
         <View style={styles.container}>
             <ScrollView>
+            <CarouselScreen/>
                 {categories.map(category => (
                 <View style={{padding: 6}} key={category.id}>
                     <Text>{category.name}</Text>
