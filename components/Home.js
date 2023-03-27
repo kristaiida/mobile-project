@@ -100,8 +100,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#ccc'
     },
     image: {
-        height: 50,
-        width: 50
+        height: '100%',
+        width: '100%'
     },
     hiddenImage: {
         height: 0,
