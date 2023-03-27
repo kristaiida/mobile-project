@@ -1,10 +1,11 @@
 import { StyleSheet, Text, View } from 'react-native';
+import CarouselScreen from './Carousel';
 
 export default function Favorites() {
 
   return (
     <View style={styles.container}>
-      <Text>Favorites</Text>
+      <CarouselScreen></CarouselScreen>
     </View>
   );
 
