@@ -1,13 +1,6 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  FlatList,
-  SafeAreaView,
-} from "react-native";
+import { StyleSheet, Text, View, FlatList, SafeAreaView } from "react-native";
 
-// definition of the Item, which will be rendered in the FlatList
 const Item = ({ name, details }) => (
   <View style={styles.item}>
     <Text style={styles.title}>{name}</Text>
@@ -15,21 +8,25 @@ const Item = ({ name, details }) => (
   </View>
 );
 
-// the filter
 const List = ({ searchPhrase, setClicked, data }) => {
+  const formattedSearchPhrase = searchPhrase.trim().replace(/\s/g, "").toUpperCase();
+
+  const filteredData = data.filter((item) => {
+    const formattedItemName = item.name?.trim().replace(/\s/g, "")?.toUpperCase();
+    const formattedItemDetails = item.details?.trim().replace(/\s/g, "")?.toUpperCase();
+
+    return formattedItemName?.includes(formattedSearchPhrase) || formattedItemDetails?.includes(formattedSearchPhrase);
+  });
+
   const renderItem = ({ item }) => {
-    // when no input, show all
-    if (searchPhrase === "") {
-      return <Item name={item.name} details={item.details} />;
+    const itemName = item.name?.trim();
+    const itemDetails = item.details?.trim();
+
+    if (!itemName && !itemDetails) {
+      return null;
     }
-    // filter of the name
-    if (item.name.toUpperCase().includes(searchPhrase.toUpperCase().trim().replace(/\s/g, ""))) {
-      return <Item name={item.name} details={item.details} />;
-    }
-    // filter of the description
-    if (item.details.toUpperCase().includes(searchPhrase.toUpperCase().trim().replace(/\s/g, ""))) {
-      return <Item name={item.name} details={item.details} />;
-    }
+
+    return <Item name={itemName} details={itemDetails} />;
   };
 
   return (
@@ -40,9 +37,10 @@ const List = ({ searchPhrase, setClicked, data }) => {
         }}
       >
         <FlatList
-          data={data}
+          data={filteredData}
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
+          extraData={searchPhrase}
         />
       </View>
     </SafeAreaView>
