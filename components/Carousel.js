@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, ViewPropTypes } from 'react-native';
+import { View, Text } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import axios from 'axios';
 import { API_KEY } from '../Api_Key';
@@ -13,12 +13,31 @@ const options = {
   }
 };
 
+const unwantedTypes = ['business_tags', 'cooking_style', 'feature_page', 'seo', 'occasion'];
+
+const transformType = (type) => {
+  return type.replace(/_/g, ' ')
+    .toLowerCase()
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+};
+
 const CarouselScreen = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     axios.request(options).then(function (response) {
-      setCategories(response.data.results);
+      const { results } = response.data;
+      const uniqueTypesSet = new Set();
+      results.forEach(result => {
+        const { type } = result;
+        if (!unwantedTypes.includes(type)) {
+          uniqueTypesSet.add(transformType(type));
+        }
+      });
+      const uniqueTypes = Array.from(uniqueTypesSet);
+      setCategories(uniqueTypes);
     }).catch(function (error) {
       console.error(error);
     });
@@ -26,7 +45,7 @@ const CarouselScreen = () => {
 
   const renderCategory = ({ item }) => (
     <View style={{ backgroundColor: '#fff', height: 100, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>{item.display_name}</Text>
+      <Text>{item}</Text>
     </View>
   );
 
