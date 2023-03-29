@@ -1,12 +1,25 @@
 import { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { API_KEY } from '../Api_Key';
 import CarouselScreen from './Carousel';
+import RecipeCard from './RecipeCard';
+import { useNavigation } from '@react-navigation/native';
+import RecipePage from './RecipePage';
 
 export default function Home() {
 
     const [categories, setCategories] = useState([]);
+
+    const [selectedRecipe, setSelectedRecipe] = useState(null);
+
+    const handleRecipeSelect = (recipe) => {
+    setSelectedRecipe(recipe);
+    };
+
+    const handleImagePress = (recipe) => {
+        navigation.navigate('RecipePage', { recipe });
+      };
 
     useEffect(() => {
         const options = {
@@ -53,36 +66,45 @@ export default function Home() {
 
     return (
         <View style={styles.container}>
-            <ScrollView>
-            <CarouselScreen/>
-                {categories.map(category => (
-                <View style={{padding: 6}} key={category.id}>
-                    <Text>{category.name}</Text>
-                    {category.recipes.map(recipe => (
-                        <View style={{padding: 4}} key={recipe.id}>
-                            <Text>{recipe.name}</Text>
-                            <View style={styles.imageContainer}>
-                                {loadedImages.includes(recipe.id) ? (
-                                    <Image
-                                        style={styles.image}
-                                        source={{uri: recipe.thumbnail_url}}
-                                    />
-                                ) : (
-                                    <Text>Loading image...</Text>
-                                )}
-                            </View>
-                            <Image
-                                onLoad={() => handleImageLoad(recipe.id)}
-                                style={styles.hiddenImage}
-                                source={{uri: recipe.thumbnail_url}}
-                            />
-                        </View>
-                    ))}
-                </View>
+          <ScrollView>
+            <CarouselScreen />
+            {categories.map((category) => (
+              <View style={{ padding: 6 }} key={category.id}>
+                <Text>{category.name}</Text>
+                {category.recipes.map((recipe) => (
+                  <TouchableOpacity
+                    key={recipe.id}
+                    onPress={() => handleRecipeSelect(recipe)}
+                  >
+                    <View style={{ padding: 4 }}>
+                      <Text>{recipe.name}</Text>
+                      <View style={styles.imageContainer}>
+                        {loadedImages.includes(recipe.id) ? (
+                          <Image
+                          style={styles.image}
+                          source={{uri: recipe.thumbnail_url}}
+                          onPress={() => handleImagePress(recipe)}
+                        />
+                        ) : (
+                          <Text>Loading image...</Text>
+                        )}
+                      </View>
+                      <Image
+                        onLoad={() => handleImageLoad(recipe.id)}
+                        style={styles.hiddenImage}
+                        source={{ uri: recipe.thumbnail_url }}
+                      />
+                    </View>
+                  </TouchableOpacity>
                 ))}
-            </ScrollView>
+              </View>
+            ))}
+          </ScrollView>
+          {selectedRecipe && (
+            <RecipeCard recipe={selectedRecipe} onClose={() => setSelectedRecipe(null)} />
+          )}
         </View>
-    );
+      );
 
 };
 
