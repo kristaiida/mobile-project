@@ -13,7 +13,7 @@ const options = {
   }
 };
 
-const unwantedTypes = ['business_tags', 'cooking_style', 'feature_page', 'seo', 'occasion'];
+const unwantedTypes = ['business_tags', 'cooking_style', 'feature_page', 'seo', 'occasion', 'equipment', 'difficulty', 'appliance'];
 
 const transformType = (type) => {
   return type.replace(/_/g, ' ')
