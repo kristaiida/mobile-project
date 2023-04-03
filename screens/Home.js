@@ -60,12 +60,6 @@ export default function Home() {
         );
     }, []);
 
-    const [loadedImages, setLoadedImages] = useState([]);
-
-    const handleImageLoad = (recipeId) => {
-        setLoadedImages([...loadedImages, recipeId]);
-    };
-
     return (
         <View>
           <Header />
@@ -83,21 +77,12 @@ export default function Home() {
                       <View style={{ padding: 4 }}>
                         <Text>{recipe.name}</Text>
                         <View style={styles.imageContainer}>
-                          {loadedImages.includes(recipe.id) ? (
-                            <Image
+                          <Image
                             style={styles.image}
                             source={{uri: recipe.thumbnail_url}}
                             onPress={() => handleImagePress(recipe)}
                           />
-                          ) : (
-                            <Text>Loading image...</Text>
-                          )}
                         </View>
-                        <Image
-                          onLoad={() => handleImageLoad(recipe.id)}
-                          style={styles.hiddenImage}
-                          source={{ uri: recipe.thumbnail_url }}
-                        />
                       </View>
                     </TouchableOpacity>
                   ))}
