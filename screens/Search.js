@@ -44,7 +44,6 @@ const Search = () => {
     <View>
       <Header />
       <SafeAreaView style={styles.root}>
-        {!clicked && <Text style={styles.title}>Recipes</Text>}
 
         <SearchBar
           searchPhrase={searchPhrase}
