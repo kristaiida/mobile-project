@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { API_KEY } from '../Api_Key';
-import CarouselScreen from './Carousel';
-import RecipeCard from './RecipeCard';
+import CarouselScreen from '../components/Carousel';
+import RecipeCard from '../components/RecipeCard';
 import { useNavigation } from '@react-navigation/native';
 import RecipePage from './RecipePage';
 

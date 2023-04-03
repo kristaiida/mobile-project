@@ -1,7 +1,7 @@
 import React from 'react';
-import Home from './components/Home';
-import Search from './components/Search';
-import Favorites from './components/Favorites';
+import Home from './screens/Home';
+import Search from './screens/Search';
+import Favorites from './screens/Favorites';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
