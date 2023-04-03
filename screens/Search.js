@@ -6,8 +6,8 @@ import {
   ActivityIndicator,
 } from "react-native";
 
-import List from "./List";
-import SearchBar from "./SearchBar";
+import List from "../components/List";
+import SearchBar from "../components/SearchBar";
 
 const Search = () => {
   const [searchPhrase, setSearchPhrase] = useState("");

@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import CarouselScreen from './Carousel';
+import CarouselScreen from '../components/Carousel';
 
 export default function Favorites() {
 
