@@ -8,6 +8,7 @@ import {
 
 import List from "../components/List";
 import SearchBar from "../components/SearchBar";
+import styles from "../styles/styles";
 
 const Search = () => {
   const [searchPhrase, setSearchPhrase] = useState("");
@@ -63,18 +64,3 @@ const Search = () => {
 };
 
 export default Search;
-
-const styles = StyleSheet.create({
-  root: {
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  title: {
-    width: "100%",
-    marginTop: 20,
-    fontSize: 25,
-    fontWeight: "bold",
-    marginLeft: "10%",
-    paddingTop: 25,
-  },
-});

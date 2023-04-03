@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native';
-import CarouselScreen from '../components/Carousel';
+import { Text, View } from 'react-native';
+import styles from '../styles/styles';
 
 export default function Favorites() {
 
@@ -9,12 +9,3 @@ export default function Favorites() {
   );
 
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

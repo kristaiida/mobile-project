@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { Text, View, Image } from 'react-native';
+import styles from '../styles/styles';
 
 export default function RecipeCard({ recipe }) {
   return (
@@ -11,32 +12,4 @@ export default function RecipeCard({ recipe }) {
       </View>
     </View>
   );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#fff',
-    borderRadius: 5,
-    elevation: 2,
-    flexDirection: 'row',
-    marginVertical: 8,
-    overflow: 'hidden',
-    width: '100%',
-  },
-  image: {
-    height: 150,
-    width: 120,
-  },
-  textContainer: {
-    flex: 1,
-    padding: 10,
-  },
-  title: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: 5,
-  },
-  description: {
-    fontSize: 14,
-  },
-});
+};
