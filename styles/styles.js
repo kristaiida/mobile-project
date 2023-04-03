@@ -116,5 +116,33 @@ export default StyleSheet.create({
     hiddenImage: {
         height: 0,
         width: 0
-    }
+    },
+    //Recipe Card
+    containerRC: {
+      backgroundColor: '#fff',
+      borderRadius: 5,
+      elevation: 2,
+      flexDirection: 'row',
+      marginVertical: 8,
+      overflow: 'hidden',
+      width: '100%',
+    },
+    imageRC: {
+      height: 150,
+      width: 120,
+    },
+    textContainerRC: {
+      flex: 1,
+      padding: 10,
+    },
+    titleRC: {
+      fontSize: 16,
+      fontWeight: 'bold',
+      marginBottom: 5,
+    },
+    descriptionRC: {
+      fontSize: 14,
+    },
+  
+  
   });
