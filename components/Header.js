@@ -1,6 +1,7 @@
 import { View, Text } from 'react-native';
 import { useFonts } from 'expo-font';
 import styles from '../styles/styles';
+import { Constants } from 'expo-constants';
 
 export default function Header() {
   const [fontLoaded] = useFonts({
@@ -12,7 +13,7 @@ export default function Header() {
   }
 
   return (
-    <View style={styles.header}>
+    <View style={[styles.header, {fontFamily: 'kaushanScript'}]}>
       <Text style={[styles.headerFont, {fontFamily: 'kaushanScript'}]}>RecipePal</Text>
     </View>
   );
