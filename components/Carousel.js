@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text } from 'react-native';
-import Carousel from 'react-native-snap-carousel';
+import { View, Text, StyleSheet } from 'react-native';
+import Carousel, { ParallaxImage, Pagination } from 'react-native-snap-carousel';
 import axios from 'axios';
 import { API_KEY } from '../Api_Key';
 
@@ -25,6 +25,7 @@ const transformType = (type) => {
 
 const CarouselScreen = () => {
   const [categories, setCategories] = useState([]);
+  const [activeSlide, setActiveSlide] = useState(0);
 
   useEffect(() => {
     axios.request(options).then(function (response) {
@@ -43,22 +44,43 @@ const CarouselScreen = () => {
     });
   }, []);
 
-  const renderCategory = ({ item }) => (
-    <View style={{ backgroundColor: '#fff', height: 100, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>{item}</Text>
-    </View>
-  );
+  const renderCategory = ({ item, index }, parallaxProps) => {
+    const isActive = index === activeSlide;
+    return (
+      <View style={styles.slide}>
+        <Text style={[styles.text, isActive && styles.activeText]}>{item}</Text>
+      </View>
+    );
+  };
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={styles.container}>
       <Carousel
         data={categories}
         renderItem={renderCategory}
         sliderWidth={400}
         itemWidth={200}
+        onSnapToItem={(index) => setActiveSlide(index)}
       />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  slide: {
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  text: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#a8a8a8',
+    
+  },
+  activeText: {
+    color: '#000',
+    textDecorationLine: 'underline',
+  },
+});
 
 export default CarouselScreen;
