@@ -6,7 +6,7 @@ import styles from '../styles/styles';
 export default function Favorites() {
 
   return (
-    <View style={styles.container}>
+    <View>
       <Header />
     </View>
   );

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { View } from "react-native";
 import {
   StyleSheet,
   Text,
@@ -40,28 +41,30 @@ const Search = () => {
 }, [searchPhrase]);
 
   return (
-    <SafeAreaView style={styles.root}>
+    <View>
       <Header />
-      {!clicked && <Text style={styles.title}>Recipes</Text>}
+      <SafeAreaView style={styles.root}>
+        {!clicked && <Text style={styles.title}>Recipes</Text>}
 
-      <SearchBar
-        searchPhrase={searchPhrase}
-        setSearchPhrase={setSearchPhrase}
-        clicked={clicked}
-        setClicked={setClicked}
-      />
-      {!fakeData ? (
-        <ActivityIndicator size="large" />
-      ) : (
-        
-          <List
-            searchPhrase={searchPhrase}
-            data={fakeData}
-            setClicked={setClicked}
-          />
-        
-      )}
-    </SafeAreaView>
+        <SearchBar
+          searchPhrase={searchPhrase}
+          setSearchPhrase={setSearchPhrase}
+          clicked={clicked}
+          setClicked={setClicked}
+        />
+        {!fakeData ? (
+          <ActivityIndicator size="large" />
+        ) : (
+          
+            <List
+              searchPhrase={searchPhrase}
+              data={fakeData}
+              setClicked={setClicked}
+            />
+          
+        )}
+      </SafeAreaView>
+    </View>
   );
 };
 

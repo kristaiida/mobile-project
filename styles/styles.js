@@ -1,6 +1,18 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
+    header: {
+      height: 120,
+      width: '100%',
+      marginLeft: 0,
+      marginRight: 0,
+      backgroundColor: '#94B49F',
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
+    headerFont: {
+      fontSize: 26
+    },
     slide: {
       alignItems: 'center',
       justifyContent: 'center'

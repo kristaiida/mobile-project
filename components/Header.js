@@ -12,8 +12,8 @@ export default function Header() {
   }
 
   return (
-    <View>
-      <Text style={{ fontFamily: 'kaushanScript' }}>RecipePal</Text>
+    <View style={styles.header}>
+      <Text style={[styles.headerFont, {fontFamily: 'kaushanScript'}]}>RecipePal</Text>
     </View>
   );
 }

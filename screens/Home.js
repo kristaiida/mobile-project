@@ -67,45 +67,47 @@ export default function Home() {
     };
 
     return (
-        <View style={styles.container}>
-          <ScrollView>
-            <Header />
-            <CarouselScreen />
-            {categories.map((category) => (
-              <View style={{ padding: 6 }} key={category.id}>
-                <Text>{category.name}</Text>
-                {category.recipes.map((recipe) => (
-                  <TouchableOpacity
-                    key={recipe.id}
-                    onPress={() => handleRecipeSelect(recipe)}
-                  >
-                    <View style={{ padding: 4 }}>
-                      <Text>{recipe.name}</Text>
-                      <View style={styles.imageContainer}>
-                        {loadedImages.includes(recipe.id) ? (
-                          <Image
-                          style={styles.image}
-                          source={{uri: recipe.thumbnail_url}}
-                          onPress={() => handleImagePress(recipe)}
+        <View>
+          <Header />
+          <View style={styles.container}>
+            <ScrollView>
+              <CarouselScreen />
+              {categories.map((category) => (
+                <View style={{ padding: 6 }} key={category.id}>
+                  <Text>{category.name}</Text>
+                  {category.recipes.map((recipe) => (
+                    <TouchableOpacity
+                      key={recipe.id}
+                      onPress={() => handleRecipeSelect(recipe)}
+                    >
+                      <View style={{ padding: 4 }}>
+                        <Text>{recipe.name}</Text>
+                        <View style={styles.imageContainer}>
+                          {loadedImages.includes(recipe.id) ? (
+                            <Image
+                            style={styles.image}
+                            source={{uri: recipe.thumbnail_url}}
+                            onPress={() => handleImagePress(recipe)}
+                          />
+                          ) : (
+                            <Text>Loading image...</Text>
+                          )}
+                        </View>
+                        <Image
+                          onLoad={() => handleImageLoad(recipe.id)}
+                          style={styles.hiddenImage}
+                          source={{ uri: recipe.thumbnail_url }}
                         />
-                        ) : (
-                          <Text>Loading image...</Text>
-                        )}
                       </View>
-                      <Image
-                        onLoad={() => handleImageLoad(recipe.id)}
-                        style={styles.hiddenImage}
-                        source={{ uri: recipe.thumbnail_url }}
-                      />
-                    </View>
-                  </TouchableOpacity>
-                ))}
-              </View>
-            ))}
-          </ScrollView>
-          {selectedRecipe && (
-            <RecipeCard recipe={selectedRecipe} onClose={() => setSelectedRecipe(null)} />
-          )}
+                    </TouchableOpacity>
+                  ))}
+                </View>
+              ))}
+            </ScrollView>
+            {selectedRecipe && (
+              <RecipeCard recipe={selectedRecipe} onClose={() => setSelectedRecipe(null)} />
+            )}
+          </View>
         </View>
       );
 
