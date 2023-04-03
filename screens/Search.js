@@ -5,6 +5,7 @@ import {
   SafeAreaView,
   ActivityIndicator,
 } from "react-native";
+import Header from '../components/Header';
 
 import List from "../components/List";
 import SearchBar from "../components/SearchBar";
@@ -39,6 +40,7 @@ const Search = () => {
 
   return (
     <SafeAreaView style={styles.root}>
+      <Header />
       {!clicked && <Text style={styles.title}>Recipes</Text>}
 
       <SearchBar

@@ -6,6 +6,7 @@ import CarouselScreen from '../components/Carousel';
 import RecipeCard from '../components/RecipeCard';
 import { useNavigation } from '@react-navigation/native';
 import RecipePage from './RecipePage';
+import Header from '../components/Header';
 
 export default function Home() {
 
@@ -67,6 +68,7 @@ export default function Home() {
     return (
         <View style={styles.container}>
           <ScrollView>
+            <Header />
             <CarouselScreen />
             {categories.map((category) => (
               <View style={{ padding: 6 }} key={category.id}>
