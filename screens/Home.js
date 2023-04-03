@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { API_KEY } from '../Api_Key';
 import CarouselScreen from '../components/Carousel';
 import RecipeCard from '../components/RecipeCard';
 import { useNavigation } from '@react-navigation/native';
 import RecipePage from './RecipePage';
 import Header from '../components/Header';
+import styles from '../styles/styles';
 
 export default function Home() {
 
@@ -109,28 +110,3 @@ export default function Home() {
       );
 
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#FCF8E8',
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingTop: 50
-    },
-    imageContainer: {
-        height: 200,
-        width: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#ccc'
-    },
-    image: {
-        height: '100%',
-        width: '100%'
-    },
-    hiddenImage: {
-        height: 0,
-        width: 0
-    }
-});

@@ -1,5 +1,6 @@
 import React from "react";
-import { StyleSheet, Text, View, FlatList, SafeAreaView } from "react-native";
+import { Text, View, FlatList, SafeAreaView } from "react-native";
+import styles from "../styles/styles";
 
 const Item = ({ name, details }) => (
   <View style={styles.item}>
@@ -48,22 +49,3 @@ const List = ({ searchPhrase, setClicked, data }) => {
 };
 
 export default List;
-
-const styles = StyleSheet.create({
-  list__container: {
-    margin: 10,
-    height: "85%",
-    width: "100%",
-  },
-  item: {
-    margin: 30,
-    borderBottomWidth: 2,
-    borderBottomColor: "lightgrey"
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-    marginBottom: 5,
-    fontStyle: "italic",
-  },
-});

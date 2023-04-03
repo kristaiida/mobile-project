@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
 import Carousel, { ParallaxImage, Pagination } from 'react-native-snap-carousel';
 import axios from 'axios';
 import { API_KEY } from '../Api_Key';
+import styles from '../styles/styles';
 
 const options = {
   method: 'GET',
@@ -65,22 +66,5 @@ const CarouselScreen = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  slide: {
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  text: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#a8a8a8',
-    
-  },
-  activeText: {
-    color: '#000',
-    textDecorationLine: 'underline',
-  },
-});
 
 export default CarouselScreen;
