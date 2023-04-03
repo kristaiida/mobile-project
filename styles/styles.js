@@ -3,7 +3,6 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
     header: {
       height: 120,
-      width: '100%',
       marginLeft: 0,
       marginRight: 0,
       backgroundColor: '#94B49F',
@@ -11,7 +10,9 @@ export default StyleSheet.create({
       justifyContent: 'center'
     },
     headerFont: {
-      fontSize: 26
+      fontSize: 38,
+      width: '100%',
+      textAlign: 'center'
     },
     slide: {
       alignItems: 'center',
