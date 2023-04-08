@@ -48,8 +48,8 @@ const CarouselScreen = () => {
   const renderCategory = ({ item, index }, parallaxProps) => {
     const isActive = index === activeSlide;
     return (
-      <View style={styles.slide}>
-        <Text style={[styles.text, isActive && styles.activeText]}>{item}</Text>
+      <View style={styles.slideC}>
+        <Text style={[styles.textC, isActive && styles.activeTextC]}>{item}</Text>
       </View>
     );
   };

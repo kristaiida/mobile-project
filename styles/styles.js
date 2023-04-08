@@ -14,20 +14,6 @@ export default StyleSheet.create({
       width: '100%',
       textAlign: 'center'
     },
-    slide: {
-      alignItems: 'center',
-      justifyContent: 'center'
-    },
-    text: {
-      fontSize: 20,
-      fontWeight: 'bold',
-      color: '#a8a8a8',
-      
-    },
-    activeText: {
-      color: '#000',
-      textDecorationLine: 'underline',
-    },
     list__container: {
         margin: 10,
         height: "85%",
@@ -158,5 +144,20 @@ export default StyleSheet.create({
   descriptionRC: {
     fontSize: 14,
     
+  },
+  // Carousel
+  slideC: {
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  textC: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#a8a8a8',
+    
+  },
+  activeTextC: {
+    color: '#000',
+    textDecorationLine: 'underline',
   },
 });
