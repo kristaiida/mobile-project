@@ -8,13 +8,16 @@ export default function RecipeCard({ recipe, onClose }) {
       <TouchableOpacity style={styles.closeButton} onPress={onClose}>
         <Text style={styles.closeButtonText}>Close</Text>
       </TouchableOpacity>
-      <Image style={styles.imageRC} source={{ uri: recipe.thumbnail_url }} />
-      <View style={styles.textContainerRC}>
-        <Text style={styles.titleRC}>{recipe.name}</Text>
-        <Text style={styles.descriptionRC}>{recipe.description}</Text>
+      <View style={styles.cardContainer}>
+        <View style={styles.imageContainer}>
+          <Image style={styles.imageRC} source={{ uri: recipe.thumbnail_url }} />
+        </View>
+        <View style={styles.textContainer}>
+          <Text style={styles.titleRC}>{recipe.name}</Text>
+          <Text style={styles.descriptionRC}>{recipe.description}</Text>
+        </View>
       </View>
     </View>
   );
 };
-
 

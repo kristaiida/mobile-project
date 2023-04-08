@@ -119,30 +119,44 @@ export default StyleSheet.create({
     },
     //Recipe Card
     containerRC: {
-      backgroundColor: '#fff',
-      borderRadius: 5,
-      elevation: 2,
-      flexDirection: 'row',
-      marginVertical: 8,
-      overflow: 'hidden',
-      width: '100%',
-    },
-    imageRC: {
-      height: 150,
-      width: 120,
-    },
-    textContainerRC: {
-      flex: 1,
-      padding: 10,
-    },
-    titleRC: {
-      fontSize: 16,
-      fontWeight: 'bold',
-      marginBottom: 5,
-    },
-    descriptionRC: {
-      fontSize: 14,
-    },
-  
-  
-  });
+    backgroundColor: '#fff',
+    borderRadius: 5,
+    elevation: 2,
+    flexDirection: 'column',
+    marginVertical: 8,
+    overflow: 'hidden',
+    width: '100%',
+    height: '100%',
+  },
+  cardContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  closeButton: {
+    padding: 20,
+  },
+  imageContainer: {
+    width: 120,
+    height: 150,
+    marginVertical: 10,
+  },
+  imageRC: {
+    height: '100%',
+    width: '100%',
+    resizeMode: 'cover',
+  },
+  textContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    padding: 10,
+  },
+  titleRC: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  descriptionRC: {
+    fontSize: 14,
+    
+  },
+});
