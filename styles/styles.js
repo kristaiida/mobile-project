@@ -7,7 +7,9 @@ export default StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
       flexDirection: 'row',
-      paddingLeft: 10
+      paddingLeft: 85,
+      paddingTop: 20,
+      alignContent: 'center'
     },
     headerFont: {
       fontSize: 38,

@@ -13,7 +13,7 @@ export default function Header() {
   }
 
   return (
-    <View style={[styles.header, {fontFamily: 'kaushanScript'}]}>
+    <View style={[styles.header]}>
         <Image
             style={styles.logo}
             source={require('../assets/logo.png')}
