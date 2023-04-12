@@ -5,7 +5,6 @@ import { API_KEY } from '../Api_Key';
 import CarouselScreen from '../components/Carousel';
 import RecipeCard from '../components/RecipeCard';
 import { useNavigation } from '@react-navigation/native';
-import RecipePage from './RecipePage';
 import Header from '../components/Header';
 import styles from '../styles/styles';
 
