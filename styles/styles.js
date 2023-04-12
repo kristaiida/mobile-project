@@ -3,16 +3,20 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
     header: {
       height: 120,
-      marginLeft: 0,
-      marginRight: 0,
       backgroundColor: '#94B49F',
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'center',
+      flexDirection: 'row',
+      paddingLeft: 10
     },
     headerFont: {
       fontSize: 38,
-      width: '100%',
-      textAlign: 'center'
+      width: '100%'
+    },
+    logo: {
+      width: 70,
+      height: 50,
+      resizeMode: 'contain'
     },
     list__container: {
         margin: 10,

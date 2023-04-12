@@ -23,6 +23,8 @@ export default function Home() {
         navigation.navigate('RecipePage', { recipe });
       };
 
+    const navigation = useNavigation();
+
     useEffect(() => {
         const options = {
             method: 'GET',
@@ -31,7 +33,7 @@ export default function Home() {
                 'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
             }
         };
-        fetch('https://tasty.p.rapidapi.com/feeds/list?size=2&timezone=%2B0700&vegetarian=false&from=0', options)
+        fetch('https://tasty.p.rapidapi.com/feeds/list?size=20&timezone=%2B0700&vegetarian=false&from=0', options)
         .then(response => {
             if (response.ok) {
                 return response.json();
