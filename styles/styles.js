@@ -121,16 +121,22 @@ export default StyleSheet.create({
     height: '100%',
   },
   cardContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "column",
+    flex: 1,
+    alignItems: "flex-start",
   },
   closeButton: {
     padding: 20,
+    alignItems: "flex-end"
+  },
+  closeButtonText: {
+    borderWidth: 1,
+    borderRadius: 5,
+    
   },
   imageContainer: {
-    width: 120,
-    height: 150,
-    marginVertical: 10,
+    width: 346,
+    height: 150
   },
   imageRC: {
     height: '100%',
@@ -141,6 +147,7 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     padding: 10,
+    alignItems: "center"
   },
   titleRC: {
     fontSize: 16,
