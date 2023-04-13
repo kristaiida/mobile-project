@@ -27,7 +27,7 @@ const transformType = (type) => {
 const CarouselScreen = () => {
   const [categories, setCategories] = useState([]);
   const [activeSlide, setActiveSlide] = useState(0);
-
+  
   useEffect(() => {
     axios.request(options).then(function (response) {
       const { results } = response.data;
