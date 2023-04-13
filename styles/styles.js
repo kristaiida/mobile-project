@@ -120,7 +120,7 @@ export default StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  cardContainer: {
+  recipePageContainer: {
     flexDirection: "column",
     flex: 1,
     alignItems: "flex-start",

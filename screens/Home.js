@@ -3,7 +3,7 @@ import { ScrollView } from 'react-native';
 import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { API_KEY } from '../Api_Key';
 import CarouselScreen from '../components/Carousel';
-import RecipeCard from '../components/RecipeCard';
+import RecipePage from '../components/RecipePage';
 import { useNavigation } from '@react-navigation/native';
 import Header from '../components/Header';
 import styles from '../styles/styles';
@@ -91,7 +91,7 @@ export default function Home() {
               ))}
             </ScrollView>
             {selectedRecipe && (
-              <RecipeCard recipe={selectedRecipe} onClose={() => setSelectedRecipe(null)} />
+              <RecipePage recipe={selectedRecipe} onClose={() => setSelectedRecipe(null)} />
             )}
           </View>
         </View>
