@@ -1,28 +1,13 @@
 import { useEffect, useState } from 'react';
-import { ScrollView } from 'react-native';
-import { Text, View, Image, TouchableOpacity } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { API_KEY } from '../Api_Key';
 import CarouselScreen from '../components/Carousel';
-import RecipePage from '../components/RecipePage';
-import { useNavigation } from '@react-navigation/native';
-import Header from '../components/Header';
 import styles from '../styles/styles';
+import RecipeCard from '../components/RecipeCard';
 
 export default function Home() {
 
     const [categories, setCategories] = useState([]);
-
-    const [selectedRecipe, setSelectedRecipe] = useState(null);
-
-    const handleRecipeSelect = (recipe) => {
-    setSelectedRecipe(recipe);
-    };
-
-    const handleImagePress = (recipe) => {
-        navigation.navigate('RecipePage', { recipe });
-      };
-
-    const navigation = useNavigation();
 
     useEffect(() => {
         const options = {
@@ -62,39 +47,20 @@ export default function Home() {
     }, []);
 
     return (
-        <View>
-          <Header />
-          <View style={styles.container}>
-            <ScrollView>
-              <CarouselScreen />
-              {categories.map((category) => (
-                <View style={{ padding: 6 }} key={category.id}>
-                  <Text>{category.name}</Text>
-                  {category.recipes.map((recipe) => (
-                    <TouchableOpacity
-                      key={recipe.id}
-                      onPress={() => handleRecipeSelect(recipe)}
-                    >
-                      <View style={{ padding: 4 }}>
-                        <Text>{recipe.name}</Text>
-                        <View style={styles.imageContainer}>
-                          <Image
-                            style={styles.image}
-                            source={{uri: recipe.thumbnail_url}}
-                            onPress={() => handleImagePress(recipe)}
-                          />
-                        </View>
-                      </View>
-                    </TouchableOpacity>
-                  ))}
-                </View>
+      <View style={styles.container}>
+        <ScrollView>
+          <CarouselScreen />
+          <Text>Trending</Text>
+          {categories.map((category) => (
+            <View key={category.id}>
+              <Text>{category.name}</Text>
+              {category.recipes.map((recipe) => (
+                <RecipeCard key={recipe.id} recipe={recipe} />
               ))}
-            </ScrollView>
-            {selectedRecipe && (
-              <RecipePage recipe={selectedRecipe} onClose={() => setSelectedRecipe(null)} />
-            )}
-          </View>
-        </View>
+            </View>
+          ))}
+        </ScrollView>
+      </View>
       );
 
 };
