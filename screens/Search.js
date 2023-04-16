@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View } from "react-native";
-import {
-  StyleSheet,
-  Text,
-  SafeAreaView,
-  ActivityIndicator,
-} from "react-native";
+import { SafeAreaView, ActivityIndicator } from "react-native";
 import Header from '../components/Header';
 
 import List from "../components/List";
@@ -42,7 +37,6 @@ const Search = () => {
 
   return (
     <View>
-      <Header />
       <SafeAreaView style={styles.root}>
 
         <SearchBar

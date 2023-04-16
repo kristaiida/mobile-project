@@ -1,9 +1,26 @@
-import { View, Text, Image } from 'react-native';
+import React from 'react';
+import { View, Text, Image, TouchableOpacity, SafeAreaView } from 'react-native';
+import Constants from 'expo-constants';
 import { useFonts } from 'expo-font';
+import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles/styles';
-import { Constants } from 'expo-constants';
+import { useState, useEffect } from 'react';
 
-export default function Header() {
+export default function Header({ navigation, route }) {
+  const [isRecipePage, setIsRecipePage] = useState(false);
+
+  useEffect(() => {
+    if (
+      route.name === 'HomeRecipePageScreen' ||
+      route.name === 'SearchRecipePageScreen' ||
+      route.name === 'FavoritesRecipePageScreen'
+    ) {
+      setIsRecipePage(true);
+    } else {
+      setIsRecipePage(false);
+    }
+  }, [route]);
+
   const [fontLoaded] = useFonts({
     kaushanScript: require('../assets/fonts/KaushanScript-Regular.ttf'),
   });
@@ -13,12 +30,31 @@ export default function Header() {
   }
 
   return (
-    <View style={[styles.header]}>
-        <Image
+    <SafeAreaView style={{ backgroundColor: '#94B49F' }}>
+      <View style={styles.header}>
+        {isRecipePage && (
+          <TouchableOpacity
+            style={styles.backButton}
+            onPress={() => navigation.goBack()}
+          >
+            <Ionicons name="arrow-back" size={24} color="black" />
+          </TouchableOpacity>
+        )}
+        <View style={styles.fontAndLogo}>
+          <Image
             style={styles.logo}
             source={require('../assets/logo.png')}
-        />
-      <Text style={[styles.headerFont, {fontFamily: 'kaushanScript'}]}>RecipePal</Text>
-    </View>
+          />
+          <Text
+            style={[
+              styles.headerFont,
+              { fontFamily: 'kaushanScript' },
+            ]}
+          >
+            RecipePal
+          </Text>
+        </View>
+      </View>
+    </SafeAreaView>
   );
 }
