@@ -1,25 +1,37 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-    header: {
-      height: 120,
-      backgroundColor: '#94B49F',
-      alignItems: 'center',
-      justifyContent: 'center',
-      flexDirection: 'row',
-      paddingLeft: 85,
-      paddingTop: 20,
-      alignContent: 'center'
-    },
-    headerFont: {
-      fontSize: 38,
-      width: '100%'
-    },
-    logo: {
-      width: 70,
-      height: 50,
-      resizeMode: 'contain'
-    },
+  header: {
+    backgroundColor: '#94B49F',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 70,
+    paddingBottom: 10
+  },
+  headerFont: {
+    fontSize: 30,
+    width: 132,
+    paddingLeft: 7
+  },
+  logo: {
+    width: 45,
+    height: 45,
+    resizeMode: 'contain',
+    paddingRight: 7
+  },
+  fontAndLogo: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginHorizontal: 20
+  },
+  backButton: {
+    position: 'absolute',
+    left: 20,
+    zIndex: 1,
+  },      
     list__container: {
         margin: 10,
         height: "85%",
@@ -124,15 +136,6 @@ export default StyleSheet.create({
     flexDirection: "column",
     flex: 1,
     alignItems: "flex-start",
-  },
-  closeButton: {
-    padding: 20,
-    alignItems: "flex-end"
-  },
-  closeButtonText: {
-    borderWidth: 1,
-    borderRadius: 5,
-    
   },
   imageContainer: {
     width: 346,
