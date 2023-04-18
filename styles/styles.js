@@ -131,12 +131,11 @@ export default StyleSheet.create({
 
     recipeCardTextFrontPage: {
       marginTop: 0,
-      verticalAlign: "middle",
       marginBottom: 15,
-      fontWeight: "bold"
-    },
-    heartIcon : {
-      color: "red",
+      marginEnd: 10,
+      verticalAlign: "middle",
+      fontWeight: "bold",
+      fontSize: 18
     },
 
     //Recipe Page
