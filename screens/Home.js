@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { API_KEY } from '../Api_Key';
-import CarouselScreen from '../components/Carousel';
 import styles from '../styles/styles';
 import RecipeCard from '../components/RecipeCard';
 
@@ -49,7 +48,6 @@ export default function Home() {
     return (
       <View style={styles.container}>
         <ScrollView>
-          <CarouselScreen />
           <Text>Trending</Text>
           {categories.map((category) => (
             <View key={category.id}>
