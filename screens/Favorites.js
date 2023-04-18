@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import RecipeCard from '../components/RecipeCard';
 import styles from '../styles/styles';
 
-export default function Favorites() {
+export default function Favorites({ navigation }) {
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
 
   useEffect(() => {
@@ -18,8 +18,9 @@ export default function Favorites() {
         console.log(e);
       }
     };
-    loadFavoriteRecipes();
-  }, []);
+    const unsubscribe = navigation.addListener('focus', loadFavoriteRecipes);
+    return unsubscribe;
+  }, [navigation]);
 
   const handleDelete = async (id) => {
     const newRecipes = favoriteRecipes.filter((recipe) => recipe.id !== id);
