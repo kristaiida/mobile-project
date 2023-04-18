@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View } from "react-native";
 import { SafeAreaView, ActivityIndicator } from "react-native";
-import Header from '../components/Header';
 
 import List from "../components/List";
 import SearchBar from "../components/SearchBar";
@@ -12,7 +11,6 @@ const Search = () => {
   const [clicked, setClicked] = useState(false);
   const [fakeData, setFakeData] = useState();
 
-  // get data from the fake api
   useEffect(() => {
     const criteria = 'https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&q='
     const options = {
