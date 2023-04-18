@@ -46,12 +46,13 @@ export default function Home() {
     }, []);
 
     return (
-      <View style={styles.container}>
+        <View style={styles.container}>
         <ScrollView>
-          <Text>Trending</Text>
-          {categories.map((category) => (
+          <Text style={styles.titletext}>Trending{'\u{1F525}'}</Text>
+          {categories.map((category, index) => (
             <View key={category.id}>
-              <Text>{category.name}</Text>
+              {index > 0 && <View style={styles.categoryline}></View>}
+              <Text style={styles.categoryname}>{category.name}</Text>
               {category.recipes.map((recipe) => (
                 <RecipeCard key={recipe.id} recipe={recipe} screen={'HomeScreen'} />
               ))}

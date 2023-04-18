@@ -172,19 +172,22 @@ export default StyleSheet.create({
     fontSize: 14,
     
   },
-  // Carousel
-  slideC: {
-    alignItems: 'center',
-    justifyContent: 'center'
+  titletext: {
+    fontSize: 26,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginVertical: 10,
   },
-  textC: {
+  categoryname: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#a8a8a8',
-    
+    textAlign: 'center',
+    marginVertical: 10,
   },
-  activeTextC: {
-    color: '#000',
-    textDecorationLine: 'underline',
+  categoryline: {
+    backgroundColor: '#94B49F',
+    height: 5,
+    width: 500,
+    marginBottom: 10,
   },
 });
