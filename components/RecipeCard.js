@@ -1,15 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import styles from "../styles/styles";
+import styles from '../styles/styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function RecipeCard({ recipe, screen }) {
   const navigation = useNavigation();
   const [isFavorite, setIsFavorite] = useState(false);
 
-  const openRecipePage = (recipe) => {      
+  useEffect(() => {
+    const checkFavorite = async () => {
+      try {
+        const storedFavorites = await AsyncStorage.getItem('favoriteRecipes');
+        if (storedFavorites !== null) {
+          const parsedFavorites = JSON.parse(storedFavorites);
+          const found = parsedFavorites.some((favRecipe) => favRecipe.id === recipe.id);
+          setIsFavorite(found);
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    checkFavorite();
+  }, [recipe.id]);
+
+  const openRecipePage = () => {
     if (screen === 'HomeScreen') {
       navigation.navigate('HomeRecipePageScreen', { recipe: recipe });
     } else if (screen === 'SearchScreen') {
@@ -43,35 +59,22 @@ export default function RecipeCard({ recipe, screen }) {
 
   return (
     <View>
-      <TouchableOpacity
-        key={recipe.id}
-        onPress={() => openRecipePage(recipe)}
-      >
-        <View>
-            <TouchableOpacity
-                key={recipe.id}
-                onPress={() => openRecipePage(recipe)}
-            >
-                <View style={styles.recipeCardContainer}>
-                        <View style={styles.imageContainer}>
-                            <Image
-                                style={styles.image}
-                                source={{uri: recipe.thumbnail_url}}
-                            />
-                        </View>
-                        <Text style={styles.recipeCardTextFrontPage}>{recipe.name}</Text>
-                        <TouchableOpacity onPress={handlePress}>
-                            <Icon
-                                name={isFavorite ? 'heart' : 'heart-outline'}
-                                size={24}
-                                color={isFavorite ? 'red' : 'black'}
-                                style={styles.heartIcon}
-                            />
-                        </TouchableOpacity>
-                </View>
-            </TouchableOpacity>
+      <TouchableOpacity onPress={openRecipePage}>
+        <View style={styles.recipeCardContainer}>
+          <View style={styles.imageContainer}>
+            <Image style={styles.image} source={{ uri: recipe.thumbnail_url }} />
+          </View>
+          <Text style={styles.recipeCardTextFrontPage}>{recipe.name}</Text>
+          <TouchableOpacity onPress={handlePress}>
+            <Icon
+              name={isFavorite ? 'heart' : 'heart-outline'}
+              size={24}
+              color={isFavorite ? 'red' : 'black'}
+              style={styles.heartIcon}
+            />
+          </TouchableOpacity>
         </View>
       </TouchableOpacity>
     </View>
   );
-};
+}

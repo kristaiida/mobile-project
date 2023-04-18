@@ -35,4 +35,5 @@ export default function RecipePage({ route }) {
       </View>
     </ScrollView>
   );
+  
 };
