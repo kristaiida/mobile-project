@@ -182,13 +182,11 @@ export default StyleSheet.create({
   titletext: {
     fontSize: 26,
     fontWeight: 'bold',
-    textAlign: 'center',
     marginVertical: 10,
   },
   categoryname: {
     fontSize: 20,
     fontWeight: 'bold',
-    textAlign: 'center',
     marginVertical: 10,
   },
   categoryline: {
