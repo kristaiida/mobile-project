@@ -36,7 +36,14 @@ export default StyleSheet.create({
   },      
     list__container: {
         margin: 10,
-        height: "85%"
+        height: "90%",
+        backgroundColor: '#fff',
+        borderRadius: 0,
+        elevation: 2,
+        flexDirection: 'column',
+        marginVertical: 0,
+        overflow: 'hidden',
+        width: '100%',
       },
       title: {
         fontSize: 20,
