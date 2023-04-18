@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 
 export default StyleSheet.create({
   header: {
@@ -6,7 +6,8 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    height: 80
+    height: Platform.OS === 'android' ? 80 : 45,
+    paddingTop: Platform.OS === 'ios' ? 10 : 0
   },
   headerFont: {
     fontSize: 30,
@@ -31,6 +32,7 @@ export default StyleSheet.create({
     position: 'absolute',
     left: 20,
     zIndex: 1,
+    paddingTop: Platform.OS === 'ios' ? 10 : 0
   },      
     list__container: {
         margin: 10,
