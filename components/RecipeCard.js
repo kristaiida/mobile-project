@@ -21,14 +21,14 @@ export default function RecipeCard({ recipe, screen }) {
                 key={recipe.id}
                 onPress={() => openRecipePage(recipe)}
             >
-                <View>
-                    <Text>{recipe.name}</Text>
+                <View style={styles.recipeCardContainer}>
                     <View style={styles.imageContainer}>
                         <Image
                             style={styles.image}
                             source={{uri: recipe.thumbnail_url}}
                         />
                     </View>
+                    <Text style={styles.recipeCardTextFrontPage}>{recipe.name}</Text>
                 </View>
             </TouchableOpacity>
         </View>

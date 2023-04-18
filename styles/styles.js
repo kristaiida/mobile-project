@@ -11,7 +11,7 @@ export default StyleSheet.create({
   },
   headerFont: {
     fontSize: 30,
-    width: 132,
+    width: 150,
     height: 45,
     paddingLeft: 7
   },
@@ -123,7 +123,19 @@ export default StyleSheet.create({
         height: 0,
         width: 0
     },
-    //Recipe Card
+    recipeCardContainer: {
+      flexDirection: "row",
+      width: 150,
+    },  
+
+    recipeCardTextFrontPage: {
+      marginTop: 0,
+      verticalAlign: "middle",
+      marginBottom: 15,
+      fontWeight: "bold"
+    },
+
+    //Recipe Page
     containerRC: {
     backgroundColor: '#fff',
     borderRadius: 0,
