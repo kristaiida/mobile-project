@@ -13,6 +13,16 @@ const List = ({ searchPhrase, setClicked, data }) => {
     return formattedItemName?.includes(formattedSearchPhrase) || formattedItemDetails?.includes(formattedSearchPhrase);
   });
 
+  const openRecipePage = (recipe) => {      
+    if (screen === 'ListScreen') {
+      navigation.navigate('ListRecipePageScreen', { recipe: recipe });
+    } else if (screen === 'SearchScreen') {
+      navigation.navigate('SearchRecipePageScreen', { recipe: recipe });
+    } else if (screen === 'FavoritesScreen') {
+      navigation.navigate('FavoritesRecipePageScreen', { recipe: recipe });
+    }
+};
+
   const renderItem = ({ item }) => {
     const itemName = item.name?.trim();
     const itemDetails = item.details?.trim();
@@ -26,6 +36,7 @@ const List = ({ searchPhrase, setClicked, data }) => {
         key={item.id}
         recipe={{ name: itemName, details: itemDetails, thumbnail_url: item.thumbnail_url }}
         screen={'ListScreen'}
+        onPress={() => openRecipePage(item)}
       />
     );
   };
