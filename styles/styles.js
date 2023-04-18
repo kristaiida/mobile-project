@@ -11,7 +11,7 @@ export default StyleSheet.create({
   },
   headerFont: {
     fontSize: 30,
-    width: 132,
+    width: 150,
     height: 45,
     paddingLeft: 7
   },
@@ -36,13 +36,7 @@ export default StyleSheet.create({
   },      
     list__container: {
         margin: 10,
-        height: "85%",
-        width: "100%",
-      },
-      item: {
-        margin: 30,
-        borderBottomWidth: 2,
-        borderBottomColor: "lightgrey"
+        height: "85%"
       },
       title: {
         fontSize: 20,
