@@ -126,10 +126,10 @@ export default StyleSheet.create({
     //Recipe Card
     containerRC: {
     backgroundColor: '#fff',
-    borderRadius: 5,
+    borderRadius: 0,
     elevation: 2,
     flexDirection: 'column',
-    marginVertical: 8,
+    marginVertical: 0,
     overflow: 'hidden',
     width: '100%',
     height: '100%',
@@ -140,8 +140,8 @@ export default StyleSheet.create({
     alignItems: "flex-start",
   },
   imageContainer: {
-    width: 346,
-    height: 150
+    width: "100%",
+    height: 170
   },
   imageRC: {
     height: '100%',
