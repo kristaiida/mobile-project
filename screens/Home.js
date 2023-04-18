@@ -55,7 +55,7 @@ export default function Home() {
             <View key={category.id}>
               <Text>{category.name}</Text>
               {category.recipes.map((recipe) => (
-                <RecipeCard key={recipe.id} recipe={recipe} />
+                <RecipeCard key={recipe.id} recipe={recipe} screen={'HomeScreen'} />
               ))}
             </View>
           ))}

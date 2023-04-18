@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity, SafeAreaView } from 'react-native';
-import Constants from 'expo-constants';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles/styles';
