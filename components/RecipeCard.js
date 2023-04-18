@@ -48,20 +48,28 @@ export default function RecipeCard({ recipe, screen }) {
         onPress={() => openRecipePage(recipe)}
       >
         <View>
-          <Text>{recipe.name}</Text>
-          <TouchableOpacity onPress={handlePress}>
-            <Icon
-              name={isFavorite ? 'heart' : 'heart-outline'}
-              size={24}
-              color={isFavorite ? 'red' : 'black'}
-            />
-          </TouchableOpacity>
-          <View style={styles.imageContainer}>
-            <Image
-              style={styles.image}
-              source={{uri: recipe.thumbnail_url}}
-            />
-          </View>
+            <TouchableOpacity
+                key={recipe.id}
+                onPress={() => openRecipePage(recipe)}
+            >
+                <View style={styles.recipeCardContainer}>
+                        <View style={styles.imageContainer}>
+                            <Image
+                                style={styles.image}
+                                source={{uri: recipe.thumbnail_url}}
+                            />
+                        </View>
+                        <Text style={styles.recipeCardTextFrontPage}>{recipe.name}</Text>
+                        <TouchableOpacity onPress={handlePress}>
+                            <Icon
+                                name={isFavorite ? 'heart' : 'heart-outline'}
+                                size={24}
+                                color={isFavorite ? 'red' : 'black'}
+                                style={styles.heartIcon}
+                            />
+                        </TouchableOpacity>
+                </View>
+            </TouchableOpacity>
         </View>
       </TouchableOpacity>
     </View>
