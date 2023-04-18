@@ -126,7 +126,7 @@ export default StyleSheet.create({
     },
     recipeCardContainer: {
       flexDirection: "row",
-      width: 150,
+      width: "45%",
     },  
 
     recipeCardTextFrontPage: {
