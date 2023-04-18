@@ -36,13 +36,7 @@ export default StyleSheet.create({
   },      
     list__container: {
         margin: 10,
-        height: "85%",
-        width: "100%",
-      },
-      item: {
-        margin: 30,
-        borderBottomWidth: 2,
-        borderBottomColor: "lightgrey"
+        height: "85%"
       },
       title: {
         fontSize: 20,
@@ -133,6 +127,9 @@ export default StyleSheet.create({
       verticalAlign: "middle",
       marginBottom: 15,
       fontWeight: "bold"
+    },
+    heartIcon : {
+      color: "red",
     },
 
     //Recipe Page
