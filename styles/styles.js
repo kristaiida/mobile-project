@@ -11,7 +11,7 @@ export default StyleSheet.create({
   },
   headerFont: {
     fontSize: 30,
-    width: 132,
+    width: 150,
     height: 45,
     paddingLeft: 7
   },
