@@ -2,12 +2,17 @@ import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import styles from "../styles/styles";
 
-export default function RecipeCard({ recipe }) {
-
+export default function RecipeCard({ recipe, screen }) {
     const navigation = useNavigation();
 
-    const openRecipePage = (recipe) => {
-        navigation.navigate('RecipePage', { recipe: recipe });
+    const openRecipePage = (recipe) => {      
+        if (screen === 'HomeScreen') {
+          navigation.navigate('HomeRecipePageScreen', { recipe: recipe });
+        } else if (screen === 'SearchScreen') {
+          navigation.navigate('SearchRecipePageScreen', { recipe: recipe });
+        } else if (screen === 'FavoritesScreen') {
+          navigation.navigate('FavoritesRecipePageScreen', { recipe: recipe });
+        }
     };
 
     return (
@@ -28,5 +33,4 @@ export default function RecipeCard({ recipe }) {
             </TouchableOpacity>
         </View>
     );
-
 };

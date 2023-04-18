@@ -6,12 +6,13 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    height: 70,
-    paddingBottom: 10
+    paddingTop: 10,
+    height: 40
   },
   headerFont: {
     fontSize: 30,
     width: 132,
+    height: 45,
     paddingLeft: 7
   },
   logo: {
