@@ -126,7 +126,7 @@ export default StyleSheet.create({
     },
     recipeCardContainer: {
       flexDirection: "row",
-      width: 150,
+      width: "45%",
     },  
 
     recipeCardTextFrontPage: {
@@ -196,5 +196,10 @@ export default StyleSheet.create({
     height: 5,
     width: 500,
     marginBottom: 10,
+  },
+  heartIcon: {
+    position: 'absolute',
+    bottom: 120,
+    left: 300,
   },
 });
