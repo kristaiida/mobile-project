@@ -1,13 +1,7 @@
 import React from "react";
 import { Text, View, FlatList, SafeAreaView } from "react-native";
 import styles from "../styles/styles";
-
-const Item = ({ name, details }) => (
-  <View style={styles.item}>
-    <Text style={styles.title}>{name}</Text>
-    <Text style={styles.details}>{details}</Text>
-  </View>
-);
+import RecipeCard from "./RecipeCard";
 
 const List = ({ searchPhrase, setClicked, data }) => {
   const formattedSearchPhrase = searchPhrase.trim().replace(/\s/g, "").toUpperCase();
@@ -27,7 +21,13 @@ const List = ({ searchPhrase, setClicked, data }) => {
       return null;
     }
 
-    return <Item name={itemName} details={itemDetails} />;
+    return (
+      <RecipeCard
+        key={item.id}
+        recipe={{ name: itemName, details: itemDetails, thumbnail_url: item.thumbnail_url }}
+        screen={'ListScreen'}
+      />
+    );
   };
 
   return (
