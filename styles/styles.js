@@ -35,15 +35,10 @@ export default StyleSheet.create({
     paddingTop: Platform.OS === 'ios' ? 10 : 0
   },      
     list__container: {
-        margin: 10,
         height: "90%",
         backgroundColor: '#fff',
-        borderRadius: 0,
-        elevation: 2,
         flexDirection: 'column',
-        marginVertical: 0,
-        overflow: 'hidden',
-        width: '100%',
+        width: '90%'
       },
       title: {
         fontSize: 20,
