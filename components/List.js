@@ -37,18 +37,16 @@ const List = ({ searchPhrase, setClicked, data, navigation }) => {
         recipe={{ name: itemName, details: itemDetails, thumbnail_url: item.thumbnail_url }}
         screen={'SearchScreen'}
         onPress={() => openRecipePageFromList(item)}
-        style={styles.recipeCardContainer}
       />
     );
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.list__container}>
       <View
         onStartShouldSetResponder={() => {
           setClicked(false);
         }}
-        style={styles.recipeCardContainer}
       >
         <FlatList
           data={filteredData}
