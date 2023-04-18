@@ -13,10 +13,8 @@ const List = ({ searchPhrase, setClicked, data, navigation }) => {
     return formattedItemName?.includes(formattedSearchPhrase) || formattedItemDetails?.includes(formattedSearchPhrase);
   });
 
-  const openRecipePageFromList = (recipe) => {      
+  const openRecipePageFromList = (recipe, screen) => {      
     if (screen === 'SearchScreen') {
-      navigation.navigate('SearchRecipePageScreen', { recipe: recipe });
-    } else if (screen === 'SearchScreen') {
       navigation.navigate('SearchRecipePageScreen', { recipe: recipe });
     } else if (screen === 'FavoritesScreen') {
       navigation.navigate('FavoritesRecipePageScreen', { recipe: recipe });
