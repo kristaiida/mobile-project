@@ -43,7 +43,7 @@ export default StyleSheet.create({
         flexDirection: 'column',
         marginVertical: 0,
         overflow: 'hidden',
-        width: '100%',
+        width: '90%',
       },
       title: {
         fontSize: 20,
@@ -182,13 +182,11 @@ export default StyleSheet.create({
   titletext: {
     fontSize: 26,
     fontWeight: 'bold',
-    textAlign: 'center',
     marginVertical: 10,
   },
   categoryname: {
     fontSize: 20,
     fontWeight: 'bold',
-    textAlign: 'center',
     marginVertical: 10,
   },
   categoryline: {
