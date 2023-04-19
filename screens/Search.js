@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View } from "react-native";
 import { SafeAreaView, ActivityIndicator } from "react-native";
-
+import { API_KEY } from '../Api_Key';
 import List from "../components/List";
 import SearchBar from "../components/SearchBar";
 import styles from "../styles/styles";
@@ -9,14 +9,14 @@ import styles from "../styles/styles";
 const Search = () => {
   const [searchPhrase, setSearchPhrase] = useState("");
   const [clicked, setClicked] = useState(false);
-  const [fakeData, setFakeData] = useState();
+  const [stillData, setStillData] = useState();
 
   useEffect(() => {
     const criteria = 'https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&q='
     const options = {
       method: 'GET',
       headers: {
-        'X-RapidAPI-Key': '768eaa66acmsh8f3f429f4e24c03p171066jsnfe12c7be9e03',
+        'X-RapidAPI-Key': API_KEY,
         'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
       }
     };
@@ -25,7 +25,7 @@ const Search = () => {
       .then(response => response.json())
       .then(
         (result) => {
-            setFakeData(result.results)
+            setStillData(result.results)
         },
         (error) => {
             console.log(error);
@@ -43,13 +43,13 @@ const Search = () => {
           clicked={clicked}
           setClicked={setClicked}
         />
-        {!fakeData ? (
+        {!stillData ? (
           <ActivityIndicator size="large" />
         ) : (
           
             <List
               searchPhrase={searchPhrase}
-              data={fakeData}
+              data={stillData}
               setClicked={setClicked}
             />
           
