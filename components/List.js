@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, FlatList, SafeAreaView } from "react-native";
+import { View, FlatList, SafeAreaView } from "react-native";
 import styles from "../styles/styles";
 import RecipeCard from "./RecipeCard";
 
@@ -13,15 +13,15 @@ const List = ({ searchPhrase, setClicked, data, navigation, screen }) => {
     return formattedItemName?.includes(formattedSearchPhrase) || formattedItemDetails?.includes(formattedSearchPhrase);
   });
 
-  const openRecipePageFromList = (recipe) => {     
-    console.log('Navigating to screen:', recipe.screen); // Add this line to print the screen name to console
-  
-    if (screen === 'SearchScreen') {
-      navigation.navigate('SearchRecipePageScreen', { recipe: recipe });
-    } else if (screen === 'FavoritesScreen') {
-      navigation.navigate('FavoritesRecipePageScreen', { recipe: recipe });
-    }
-};
+  const openRecipePage = () => {
+      if (screen === 'SearchScreen') {
+          navigation.navigate('SearchRecipePageScreen', { recipe: recipe });
+      } else if (screen === 'SearchScreen') {
+          navigation.navigate('SearchRecipePageScreen', { recipe: recipe });
+      } else if (screen === 'FavoritesScreen') {
+          navigation.navigate('FavoritesRecipePageScreen', { recipe: recipe });
+      }
+  };
 
   const renderItem = ({ item }) => {
     const itemName = item.name?.trim();
@@ -36,7 +36,7 @@ const List = ({ searchPhrase, setClicked, data, navigation, screen }) => {
         key={item.id}
         recipe={{ name: itemName, details: itemDetails, thumbnail_url: item.thumbnail_url }}
         screen={'SearchScreen'}
-        onPress={() => openRecipePageFromList(item)}
+        onPress={() => openRecipePage(item)}
       />
     );
   };
