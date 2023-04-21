@@ -199,4 +199,18 @@ export default StyleSheet.create({
     bottom: 120,
     left: 300,
   },
+  //Favorite.js
+  deleteAllButton: {
+    backgroundColor: '#f44336',
+    padding: 10,
+    borderRadius: 5,
+    marginVertical: 10,
+    alignSelf: 'center',
+  },
+deleteAllButtonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
 });
+
