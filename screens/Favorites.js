@@ -37,7 +37,7 @@ export default function Favorites({ navigation }) {
 
   // Render each recipe card in the flat list
   const renderItem = ({ item }) => (
-    <View style={styles.recipeCardContainer}>
+    <View style={styles.recipeCardContainerF}>
       <TouchableOpacity onPress={() => handleDelete(item.id)}>
         <Icon name="delete" size={24} color="red" />
       </TouchableOpacity>
