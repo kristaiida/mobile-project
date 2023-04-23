@@ -1,29 +1,36 @@
-//these styles are used in favorites.js, when favorites site are empty
-
 import { StyleSheet } from "react-native";
 
 const customStyles = StyleSheet.create({
-    noFavoritesContainer: {
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center'
-    },
-    logo: {
-      width: 200,
-      height: 200,
-      marginBottom: 20
-    },
-    noFavoritesText: {
-      fontSize: 24,
-      fontWeight: 'bold',
-      color: '#555',
-      textAlign: 'center'
-    },
-    favoritesContainer: {
-      paddingTop: 20,
-      paddingBottom: 20,
-      flex: 1,
-    },
-  });
-  
-  export default customStyles;
+  noFavoritesContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center', 
+  },
+  logo: {
+    width: 200,
+    height: 200,
+    marginTop: 20
+  },
+  noFavoritesText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#555',
+    textAlign: 'center',
+    marginHorizontal: 20,
+    marginBottom: 10,
+  },
+  noFavoritesTextSmall: {
+    fontSize: 16,
+    color: '#555',
+    textAlign: 'center',
+    marginHorizontal: 20,
+    marginTop: 10,
+  },
+  favoritesContainer: {
+    paddingTop: 20,
+    paddingBottom: 20,
+    flex: 1,
+  },
+});
+
+export default customStyles;

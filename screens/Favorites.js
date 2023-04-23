@@ -77,8 +77,13 @@ export default function Favorites({ navigation }) {
         </>
       ) : (
         <View style={customStyles.noFavoritesContainer}>
-          <Image source={logo} style={customStyles.logo} />
-          <Text style={customStyles.noFavoritesText}>You have no favorite recipes</Text>
+          <View>
+            <Text style={customStyles.noFavoritesText}>You have no favorite recipes</Text>
+            <Text style={customStyles.noFavoritesTextSmall}>To add a recipe to your favorites, simply click the ❤️ next to the recipe.</Text>
+          </View>
+          <View>
+            <Image source={logo} style={customStyles.logo} />
+          </View>
         </View>
       )}
     </View>

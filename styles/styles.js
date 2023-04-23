@@ -149,12 +149,7 @@ export default StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-    recipePageContainer: {
-      flex: 1,
-      width: '100%',
-      alignItems: 'center',
-      justifyContent: 'flex-start',
-    },
+
   imageContainer: {
     width: "100%",
     height: 170
@@ -163,6 +158,14 @@ export default StyleSheet.create({
     height: '100%',
     width: '100%',
     resizeMode: 'cover',
+  },
+  lineRC: {
+  backgroundColor: '#94B49F',
+  height: 5,
+  width: '93%',
+  marginBottom: 10,
+  marginTop: 10,
+  alignSelf: 'center',
   },
   textContainer: {
     flex: 1,
@@ -179,20 +182,16 @@ export default StyleSheet.create({
     fontSize: 16,
     fontStyle: 'italic',
   },
-  ingredientRC: {
-    fontSize: 16,
-    marginBottom: 5,
-    width: 350
-  },
-  instructionRC: {
-    fontSize: 16,
-    marginBottom: 5,
-    left: 5,
-    width: 350
-  },
   ingTitle: {
    fontSize: 20,
    fontWeight: 'bold',
+   marginBottom: 10,
+   marginLeft: 10,
+  },
+  ingText: {
+    fontSize: 16,
+    marginLeft: 10,
+    marginBottom: 10,
   },
   titletext: {
     fontSize: 26,
@@ -207,7 +206,7 @@ export default StyleSheet.create({
   categoryline: {
     backgroundColor: '#94B49F',
     height: 5,
-    width: 500,
+    width: '100%',
     marginBottom: 10,
   },
   heartIcon: {
@@ -215,7 +214,7 @@ export default StyleSheet.create({
     bottom: 120,
     left: 300,
   },
-  //Favorite.js
+  //Favorite.js, more in favStyles.js as those can't be in this file
   deleteAllButton: {
     backgroundColor: '#f44336',
     padding: 10,
@@ -259,11 +258,4 @@ deleteAllButtonText: {
     padding: 10,
     width: '95%',
   },
-  noFavoritesText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#555',
-    textAlign: 'center',
-    marginTop: 50
-  }
 });

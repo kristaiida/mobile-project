@@ -64,7 +64,7 @@ export default function RecipeCard({ recipe, screen }) {
       console.log(e);
     }
   };
-
+  
   return (
     <View>
       <TouchableOpacity onPress={openRecipePage}>
