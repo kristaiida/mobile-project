@@ -11,7 +11,7 @@ export default StyleSheet.create({
   },
   headerFont: {
     fontSize: 30,
-    width: 150,
+    width: Platform.OS === 'android' ? 150 : 132,
     height: 45,
     paddingLeft: 7
   },
@@ -244,4 +244,3 @@ deleteAllButtonText: {
     width: '95%',
   },
 });
-
