@@ -3,7 +3,7 @@ import { View, FlatList, SafeAreaView } from "react-native";
 import styles from "../styles/styles";
 import RecipeCard from "./RecipeCard";
 
-const List = ({ searchPhrase, setClicked, data, navigation, screen }) => {
+const List = ({ searchPhrase, setClicked, data }) => {
   const formattedSearchPhrase = searchPhrase.trim().replace(/\s/g, "").toUpperCase();
 
   const filteredData = data.filter((item) => {
@@ -12,16 +12,6 @@ const List = ({ searchPhrase, setClicked, data, navigation, screen }) => {
 
     return formattedItemName?.includes(formattedSearchPhrase) || formattedItemDetails?.includes(formattedSearchPhrase);
   });
-
-  const openRecipePage = () => {
-      if (screen === 'SearchScreen') {
-          navigation.navigate('SearchRecipePageScreen', { recipe: recipe });
-      } else if (screen === 'SearchScreen') {
-          navigation.navigate('SearchRecipePageScreen', { recipe: recipe });
-      } else if (screen === 'FavoritesScreen') {
-          navigation.navigate('FavoritesRecipePageScreen', { recipe: recipe });
-      }
-  };
 
   const renderItem = ({ item }) => {
     const itemName = item.name?.trim();
@@ -34,9 +24,8 @@ const List = ({ searchPhrase, setClicked, data, navigation, screen }) => {
     return (
       <RecipeCard
         key={item.id}
-        recipe={{ name: itemName, details: itemDetails, thumbnail_url: item.thumbnail_url }}
+        recipe={item}
         screen={'SearchScreen'}
-        onPress={() => openRecipePage(item)}
       />
     );
   };
@@ -48,15 +37,18 @@ const List = ({ searchPhrase, setClicked, data, navigation, screen }) => {
           setClicked(false);
         }}
       >
-        <FlatList
-          data={filteredData}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-          extraData={searchPhrase}
-        />
+        {filteredData ? (
+          <FlatList
+            data={filteredData}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+            extraData={searchPhrase}
+          />
+        ) : null}
       </View>
     </SafeAreaView>
   );
+  
 };
 
 export default List;
