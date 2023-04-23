@@ -1,3 +1,5 @@
+//these styles are used in favorites.js, when favorites site are empty
+
 import { StyleSheet } from "react-native";
 
 const customStyles = StyleSheet.create({
