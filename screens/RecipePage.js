@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Text, View, Image } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -18,22 +19,23 @@ export default function RecipePage({ route }) {
             <Text style={styles.descriptionRC}>{recipe.description}</Text>
           </View>
           <View>
+            <Text style={styles.ingTitle}>Ingredients</Text>
             {recipe.sections.map((section) => (
               section.components.map((ingredient) => (
-                <Text key={ingredient.id}>
+                <Text key={ingredient.id} style={styles.ingredientRC}>
                   {ingredient.raw_text === "n/a" ? ingredient.measurements[0].quantity + ' ' + ingredient.ingredient.name + ' ' + ingredient.extra_comment : ingredient.raw_text}
                 </Text>
               ))
             ))}
           </View>
-          <View>
+          <View style={styles.instructionsContainer}>
+            <Text style={styles.ingTitle}>Instructions</Text>
             {recipe.instructions.map((instruction) => (
-              <Text key={instruction.id}>{ instruction.position + '. ' + instruction.display_text}</Text>
+              <Text key={instruction.id} style={styles.instructionRC}>{instruction.position + '. ' + instruction.display_text}</Text>
             ))}
           </View>
         </View>
       </View>
     </ScrollView>
   );
-  
 };

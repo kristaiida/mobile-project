@@ -149,11 +149,12 @@ export default StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  recipePageContainer: {
-    flexDirection: "column",
-    flex: 1,
-    alignItems: "flex-start",
-  },
+    recipePageContainer: {
+      flex: 1,
+      width: '100%',
+      alignItems: 'center',
+      justifyContent: 'flex-start',
+    },
   imageContainer: {
     width: "100%",
     height: 170
@@ -170,13 +171,28 @@ export default StyleSheet.create({
     alignItems: "center"
   },
   titleRC: {
-    fontSize: 16,
+    fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 5,
+    marginBottom: 10,
   },
   descriptionRC: {
-    fontSize: 14,
-    
+    fontSize: 16,
+    fontStyle: 'italic',
+  },
+  ingredientRC: {
+    fontSize: 16,
+    marginBottom: 5,
+    width: 350
+  },
+  instructionRC: {
+    fontSize: 16,
+    marginBottom: 5,
+    left: 5,
+    width: 350
+  },
+  ingTitle: {
+   fontSize: 20,
+   fontWeight: 'bold',
   },
   titletext: {
     fontSize: 26,
@@ -244,4 +260,3 @@ deleteAllButtonText: {
     width: '95%',
   },
 });
-
