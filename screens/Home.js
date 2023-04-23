@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { ScrollView, Text, View, Share } from 'react-native';
 import { API_KEY } from '../Api_Key';
 import styles from '../styles/styles';
 import RecipeCard from '../components/RecipeCard';

@@ -214,6 +214,11 @@ export default StyleSheet.create({
     bottom: 120,
     left: 300,
   },
+  shareIcon: {
+    position: 'absolute',
+    bottom: 80,
+    left: 300,
+  },
   //Favorite.js, more in favStyles.js as those can't be in this file
   deleteAllButton: {
     backgroundColor: '#f44336',

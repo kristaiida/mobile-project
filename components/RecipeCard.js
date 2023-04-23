@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, Image, TouchableOpacity, Alert } from 'react-native';
+import { Text, View, Image, TouchableOpacity, Alert, Share } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from '../styles/styles';
@@ -8,6 +8,26 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function RecipeCard({ recipe, screen }) {
   const navigation = useNavigation();
   const [isFavorite, setIsFavorite] = useState(false);
+
+  const onShare = async (recipe) => {
+    try {
+      const result = await Share.share({
+        message: `Check out this recipe I found from RecipePal: ${recipe.name}`,
+        url: recipe.url,
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
     const checkFavorite = async () => {
@@ -64,7 +84,7 @@ export default function RecipeCard({ recipe, screen }) {
       console.log(e);
     }
   };
-  
+
   return (
     <View>
       <TouchableOpacity onPress={openRecipePage}>
@@ -77,6 +97,14 @@ export default function RecipeCard({ recipe, screen }) {
                 size={24}
                 color={isFavorite ? 'red' : 'black'}
                 style={styles.heartIcon}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => onShare(recipe)}>
+              <Icon
+                name="share-variant"
+                size={24}
+                color="black"
+                style={styles.shareIcon}
               />
             </TouchableOpacity>
           </View>
