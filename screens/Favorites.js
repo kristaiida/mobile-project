@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, TouchableOpacity, Alert, Button } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, Alert, Button, StyleSheet, Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import RecipeCard from '../components/RecipeCard';
 import styles from '../styles/styles';
+import customStyles from '../styles/favStyles';
+import logo from '../assets/logo.png';
+
 
 export default function Favorites({ navigation }) {
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
@@ -57,7 +60,7 @@ export default function Favorites({ navigation }) {
   };
 
   return (
-    <View>
+    <View style={[customStyles.favoritesContainer, { flex: 1 }]}>
       {favoriteRecipes.length > 0 ? (
         <>
           <FlatList
@@ -73,9 +76,11 @@ export default function Favorites({ navigation }) {
           </TouchableOpacity>
         </>
       ) : (
-        <Text style={styles.noFavoritesText}>You have no favorite recipes.</Text>
+        <View style={customStyles.noFavoritesContainer}>
+          <Image source={logo} style={customStyles.logo} />
+          <Text style={customStyles.noFavoritesText}>You have no favorite recipes</Text>
+        </View>
       )}
     </View>
   );
-
 }

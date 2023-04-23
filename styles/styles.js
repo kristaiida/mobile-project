@@ -259,4 +259,11 @@ deleteAllButtonText: {
     padding: 10,
     width: '95%',
   },
+  noFavoritesText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#555',
+    textAlign: 'center',
+    marginTop: 50
+  }
 });
