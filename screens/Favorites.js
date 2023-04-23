@@ -42,7 +42,7 @@ export default function Favorites({ navigation }) {
   const renderItem = ({ item }) => (
     <View style={styles.recipeCardContainerF}>
       <TouchableOpacity onPress={() => handleDelete(item.id)}>
-        <Icon name="delete" size={24} color="red" />
+        <Icon style={styles.trashIcon} name="delete" size={24} color="black" />
       </TouchableOpacity>
       <RecipeCard recipe={item} screen={'FavoritesScreen'} />
     </View>

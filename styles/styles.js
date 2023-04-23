@@ -219,6 +219,11 @@ export default StyleSheet.create({
     bottom: 80,
     left: 300,
   },
+  trashIcon: {
+    position: 'absolute',
+    bottom: 60,
+    left: 300,
+  },
   //Favorite.js, more in favStyles.js as those can't be in this file
   deleteAllButton: {
     backgroundColor: '#f44336',
