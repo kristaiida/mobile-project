@@ -196,4 +196,58 @@ export default StyleSheet.create({
     bottom: 120,
     left: 300,
   },
+  shareIcon: {
+    position: 'absolute',
+    bottom: 80,
+    left: 300,
+  },
+  trashIcon: {
+    position: 'absolute',
+    bottom: 60,
+    left: 300,
+  },
+  //Favorite.js, more in favStyles.js as those can't be in this file
+  deleteAllButton: {
+    backgroundColor: '#f44336',
+    padding: 10,
+    borderRadius: 5,
+    marginVertical: 10,
+    alignSelf: 'center',
+  },
+deleteAllButtonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  recipeDescription: {
+    fontSize: 14,
+  },
+  recipeTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  recipeTextContainer: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  recipeImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 10,
+    marginRight: 10,
+  },
+  recipeCardContainerF: {
+    flexDirection: 'row',
+    margin: 10,
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.2,
+    shadowRadius: 1,
+    padding: 10,
+    width: '95%',
+  },
 });
