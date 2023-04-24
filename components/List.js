@@ -31,7 +31,7 @@ const List = ({ searchPhrase, setClicked, data }) => {
   };
 
   return (
-    <SafeAreaView style={styles.list__container}>
+    <SafeAreaView style={styles.listC}>
       <View
         onStartShouldSetResponder={() => {
           setClicked(false);

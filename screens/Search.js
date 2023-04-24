@@ -89,7 +89,7 @@ const Search = () => {
 
     return (
       <View>
-        <SafeAreaView style={styles.root}>
+        <SafeAreaView style={styles.searchC}>
           <View style={styles.searchContainer}>
               <SearchBar
                 searchPhrase={searchPhrase}
@@ -155,18 +155,18 @@ const Search = () => {
               </View>
             </View>
           </Modal>
-          { !stillData ? (
-            <ActivityIndicator size="large" />
-            ) : (
-              <List
-                searchPhrase={searchPhrase}
-                data={stillData}
-                setClicked={setClicked}
-              />
-            ) }
+          { stillData.length === 0 ? (
+            <ActivityIndicator size="large" color="#000" />
+          ) : (
+            <List
+              searchPhrase={searchPhrase}
+              data={stillData}
+              setClicked={setClicked}
+            />
+          ) }
         </SafeAreaView>
       </View>
     );
-};
+}
 
 export default Search;

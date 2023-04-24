@@ -1,6 +1,8 @@
 import { StyleSheet, Platform } from 'react-native';
 
 export default StyleSheet.create({
+
+// Header and overall
   header: {
     backgroundColor: '#94B49F',
     flexDirection: 'row',
@@ -11,7 +13,7 @@ export default StyleSheet.create({
   },
   headerFont: {
     fontSize: 30,
-    width: Platform.OS === 'android' ? 150 : 132,
+    width: 150,
     height: 45,
     paddingLeft: 7
   },
@@ -33,197 +35,180 @@ export default StyleSheet.create({
     left: 20,
     zIndex: 1,
     paddingTop: Platform.OS === 'ios' ? 10 : 0
-  },      
-    list__container: {
-        margin: 10,
-        height: "90%",
-        backgroundColor: '#fff',
-        borderRadius: 0,
-        elevation: 2,
-        flexDirection: 'column',
-        marginVertical: 0,
-        overflow: 'hidden',
-        width: '90%',
-      },
-      title: {
-        fontSize: 20,
-        fontWeight: "bold",
-        marginBottom: 5,
-        fontStyle: "italic",
-        width: "100%",
-        marginTop: 20,
-        marginLeft: "10%",
-        paddingTop: 25,
-      },
-      root: {
-        justifyContent: "center",
-        alignItems: "center",
-      },
-      container: {
-        backgroundColor: '#fff',
-        borderRadius: 5,
-        elevation: 2,
-        flexDirection: 'row',
-        marginVertical: 8,
-        overflow: 'hidden',
-        width: '100%',
-        margin: 15,
-        justifyContent: "flex-start",
-        alignItems: "center",
-        width: "90%",
-      },
-      image: {
-        height: 150,
-        width: 120,
-      },
-      textContainer: {
-        flex: 1,
-        padding: 10,
-      },
-      description: {
-        fontSize: 14,
-      },
-      container: {
-        margin: 15,
-        justifyContent: "flex-start",
-        alignItems: "center",
-        flexDirection: "row",
-        width: "90%",
-      },
-      searchBar__unclicked: {
-        padding: 10,
-        flexDirection: "row",
-        backgroundColor: "#d9dbda",
-        borderRadius: 15,
-        alignItems: "center",
-        width: '99%'
-      },
-      searchBar__clicked: {
-        padding: 10,
-        flexDirection: "row",
-        width: "80%",
-        backgroundColor: "#d9dbda",
-        borderRadius: 15,
-        alignItems: "center",
-        justifyContent: "space-evenly",
-      },
-      input: {
-        fontSize: 20,
-        paddingLeft: 10,
-        width: "90%",
-      },
-    imageContainer: {
-        height: 200,
-        width: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#ccc'
-    },
-    hiddenImage: {
-        height: 0,
-        width: 0
-    },
-    recipeCardContainer: {
-      flexDirection: "row",
-      width: "45%",
-    },  
+  },
+  container: {
+    borderRadius: 5,
+    flexDirection: 'row',
+    marginVertical: 8,
+    overflow: 'hidden',
+    margin: 15,
+    justifyContent: "center",
+    alignItems: "center",
+    width: "90%",
+  },
 
-    recipeCardTextFrontPage: {
-      marginTop: 0,
-      marginBottom: 15,
-      marginEnd: 10,
-      verticalAlign: "middle",
-      fontWeight: "bold",
-      fontSize: 18
-    },
-
-    //Recipe Page
-    containerRC: {
-    backgroundColor: '#fff',
-    borderRadius: 0,
-    elevation: 2,
+// Search
+  listC: {
+    margin: 10,
+    height: "90%",
     flexDirection: 'column',
     marginVertical: 0,
-    overflow: 'hidden',
-    width: '100%',
-    height: '100%',
+    width: '90%'
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 5,
+    fontStyle: "italic",
+    width: "100%",
+    marginTop: 20,
+    marginLeft: "10%",
+    paddingTop: 25,
+  },
+  searchC: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  searchBar_unclicked: {
+    padding: 10,
+    flexDirection: "row",
+    width: "95%",
+    backgroundColor: "#d9dbda",
+    borderRadius: 15,
+    alignItems: "center",
+  },
+  searchBar_clicked: {
+    padding: 10,
+    flexDirection: "row",
+    width: "80%",
+    backgroundColor: "#d9dbda",
+    borderRadius: 15,
+    alignItems: "center",
+    justifyContent: "space-evenly",
+  },
+  input: {
+    fontSize: 20,
+    marginLeft: 10,
+    width: "90%",
   },
 
-  imageContainer: {
-    width: "100%",
-    height: 170
+// Recipe card
+  image: {
+    height: 150,
+    width: 120,
   },
-  imageRC: {
-    height: '100%',
-    width: '100%',
-    resizeMode: 'cover',
+  textContainer: {
+    flex: 1,
+    padding: 10,
   },
-  lineRC: {
+  description: {
+    fontSize: 14,
+  },
+  hiddenImage: {
+    height: 0,
+    width: 0
+  },
+  recipeCardContainer: {
+    flexDirection: "row",
+    width: "45%",
+  },
+  recipeCardTextFrontPage: {
+    marginTop: 0,
+    verticalAlign: "middle",
+    marginBottom: 15,
+    fontWeight: "bold"
+  },
+  heartIcon : {
+    color: "red",
+  },
+
+//Recipe Page
+containerRC: {
+  backgroundColor: '#fff',
+  borderRadius: 0,
+  elevation: 2,
+  flexDirection: 'column',
+  marginVertical: 0,
+  overflow: 'hidden',
+  width: '100%',
+  height: '100%',
+},
+imageContainer: {
+  width: "100%",
+  height: 170
+},
+imageRC: {
+  height: '100%',
+  width: '100%',
+  resizeMode: 'cover',
+},
+lineRC: {
   backgroundColor: '#94B49F',
   height: 5,
   width: '93%',
   marginBottom: 10,
   marginTop: 10,
   alignSelf: 'center',
-  },
-  textContainer: {
-    flex: 1,
-    flexDirection: 'column',
-    padding: 10,
-    alignItems: "center"
-  },
-  titleRC: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  descriptionRC: {
-    fontSize: 16,
-    fontStyle: 'italic',
-  },
-  ingTitle: {
-   fontSize: 20,
-   fontWeight: 'bold',
-   marginBottom: 10,
-   marginLeft: 10,
-  },
-  ingText: {
-    fontSize: 16,
-    marginLeft: 10,
-    marginBottom: 10,
-  },
-  titletext: {
-    fontSize: 26,
-    fontWeight: 'bold',
-    marginVertical: 10,
-  },
-  categoryname: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginVertical: 10,
-  },
-  categoryline: {
-    backgroundColor: '#94B49F',
-    height: 5,
-    width: '100%',
-    marginBottom: 10,
-  },
-  heartIcon: {
-    position: 'absolute',
-    bottom: 120,
-    left: 300,
-  },
-  shareIcon: {
-    position: 'absolute',
-    bottom: 80,
-    left: 300,
-  },
-  trashIcon: {
-    position: 'absolute',
-    bottom: 60,
-    left: 300,
-  },
-  //Favorite.js, more in favStyles.js as those can't be in this file
+},
+textContainer: {
+  flex: 1,
+  flexDirection: 'column',
+  padding: 10,
+  alignItems: "center"
+},
+titleRC: {
+  fontSize: 24,
+  fontWeight: 'bold',
+  marginBottom: 10,
+},
+descriptionRC: {
+  fontSize: 16,
+  fontStyle: 'italic',
+},
+ingTitle: {
+ fontSize: 20,
+ fontWeight: 'bold',
+ marginBottom: 10,
+ marginLeft: 10,
+},
+ingText: {
+  fontSize: 16,
+  marginLeft: 10,
+  marginBottom: 10,
+},
+titletext: {
+  fontSize: 26,
+  fontWeight: 'bold',
+  marginVertical: 10,
+},
+categoryname: {
+  fontSize: 20,
+  fontWeight: 'bold',
+  marginVertical: 10,
+},
+categoryline: {
+  backgroundColor: '#94B49F',
+  height: 5,
+  width: 500,
+  marginBottom: 10,
+},
+heartIcon: {
+  position: 'absolute',
+  bottom: 120,
+  left: 300,
+},
+shareIcon: {
+  position: 'absolute',
+  bottom: 80,
+  left: 300,
+},
+trashIcon: {
+  position: 'absolute',
+  bottom: 60,
+  left: 300,
+},
+
+//Favorite.js, more in favStyles.js as those can't be in this file
   deleteAllButton: {
     backgroundColor: '#f44336',
     padding: 10,
@@ -231,7 +216,7 @@ export default StyleSheet.create({
     marginVertical: 10,
     alignSelf: 'center',
   },
-deleteAllButtonText: {
+  deleteAllButtonText: {
     color: '#fff',
     fontWeight: 'bold',
     textAlign: 'center',
