@@ -3,12 +3,14 @@ import { ScrollView, Text, View, Share, ActivityIndicator, Animated } from 'reac
 import { API_KEY } from '../Api_Key';
 import styles from '../styles/styles';
 import RecipeCard from '../components/RecipeCard';
+import { UseGreeting } from '../components/Greeting';
 
 export default function Home() {
 
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const fadeAnim = useRef(new Animated.Value(0)).current;
+  const greeting = UseGreeting();
 
   useEffect(() => {
     const options = {
@@ -62,6 +64,10 @@ export default function Home() {
       {!loading && (
         <Animated.View style={{ opacity: fadeAnim }}>
           <ScrollView>
+            <View>
+          <Text style={styles.greetingText}>{greeting}</Text>
+          <Text style={styles.greetingText}>Would you like to try some of these recepies?</Text>
+            </View>
             <Text style={styles.titletext}>Trending{'\u{1F525}'}</Text>
             {categories.map((category, index) => (
               <View key={category.id}>

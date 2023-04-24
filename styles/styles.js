@@ -311,5 +311,11 @@ trashIcon: {
   tagContainer: {
     padding: 10,
     flexDirection: 'row'
+  },
+  // Greeting
+  greetingText: {
+    fontWeight: "bold",
+    textAlign: "center",
+
   }
 });
