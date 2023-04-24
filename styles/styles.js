@@ -11,7 +11,7 @@ export default StyleSheet.create({
   },
   headerFont: {
     fontSize: 30,
-    width: Platform.OS === 'android' ? 150 : 132,
+    width: 150,
     height: 45,
     paddingLeft: 7
   },
@@ -37,13 +37,9 @@ export default StyleSheet.create({
     list__container: {
         margin: 10,
         height: "90%",
-        backgroundColor: '#fff',
-        borderRadius: 0,
-        elevation: 2,
         flexDirection: 'column',
         marginVertical: 0,
-        overflow: 'hidden',
-        width: '90%',
+        width: '90%'
       },
       title: {
         fontSize: 20,
@@ -131,11 +127,12 @@ export default StyleSheet.create({
 
     recipeCardTextFrontPage: {
       marginTop: 0,
-      marginBottom: 15,
-      marginEnd: 10,
       verticalAlign: "middle",
-      fontWeight: "bold",
-      fontSize: 18
+      marginBottom: 15,
+      fontWeight: "bold"
+    },
+    heartIcon : {
+      color: "red",
     },
 
     //Recipe Page
@@ -149,7 +146,11 @@ export default StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-
+  recipePageContainer: {
+    flexDirection: "column",
+    flex: 1,
+    alignItems: "flex-start",
+  },
   imageContainer: {
     width: "100%",
     height: 170
@@ -159,14 +160,6 @@ export default StyleSheet.create({
     width: '100%',
     resizeMode: 'cover',
   },
-  lineRC: {
-  backgroundColor: '#94B49F',
-  height: 5,
-  width: '93%',
-  marginBottom: 10,
-  marginTop: 10,
-  alignSelf: 'center',
-  },
   textContainer: {
     flex: 1,
     flexDirection: 'column',
@@ -174,24 +167,13 @@ export default StyleSheet.create({
     alignItems: "center"
   },
   titleRC: {
-    fontSize: 24,
+    fontSize: 16,
     fontWeight: 'bold',
-    marginBottom: 10,
+    marginBottom: 5,
   },
   descriptionRC: {
-    fontSize: 16,
-    fontStyle: 'italic',
-  },
-  ingTitle: {
-   fontSize: 20,
-   fontWeight: 'bold',
-   marginBottom: 10,
-   marginLeft: 10,
-  },
-  ingText: {
-    fontSize: 16,
-    marginLeft: 10,
-    marginBottom: 10,
+    fontSize: 14,
+    
   },
   titletext: {
     fontSize: 26,
@@ -206,66 +188,12 @@ export default StyleSheet.create({
   categoryline: {
     backgroundColor: '#94B49F',
     height: 5,
-    width: '100%',
+    width: 500,
     marginBottom: 10,
   },
   heartIcon: {
     position: 'absolute',
     bottom: 120,
     left: 300,
-  },
-  shareIcon: {
-    position: 'absolute',
-    bottom: 80,
-    left: 300,
-  },
-  trashIcon: {
-    position: 'absolute',
-    bottom: 60,
-    left: 300,
-  },
-  //Favorite.js, more in favStyles.js as those can't be in this file
-  deleteAllButton: {
-    backgroundColor: '#f44336',
-    padding: 10,
-    borderRadius: 5,
-    marginVertical: 10,
-    alignSelf: 'center',
-  },
-deleteAllButtonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  recipeDescription: {
-    fontSize: 14,
-  },
-  recipeTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 5,
-  },
-  recipeTextContainer: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  recipeImage: {
-    width: 100,
-    height: 100,
-    borderRadius: 10,
-    marginRight: 10,
-  },
-  recipeCardContainerF: {
-    flexDirection: 'row',
-    margin: 10,
-    backgroundColor: '#fff',
-    borderRadius: 10,
-    elevation: 2,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.2,
-    shadowRadius: 1,
-    padding: 10,
-    width: '95%',
   },
 });

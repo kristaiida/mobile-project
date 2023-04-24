@@ -47,18 +47,18 @@ const Search = () => {
             clicked={clicked}
             setClicked={setClicked}
           />
-          { !stillData ? (
-            <ActivityIndicator size="large" />
-            ) : (
-              <List
-                searchPhrase={searchPhrase}
-                data={stillData}
-                setClicked={setClicked}
-              />
-            ) }
+          { stillData.length === 0 ? (
+            <ActivityIndicator size="large" color="#000" />
+          ) : (
+            <List
+              searchPhrase={searchPhrase}
+              data={stillData}
+              setClicked={setClicked}
+            />
+          ) }
         </SafeAreaView>
       </View>
     );
-};
+}
 
 export default Search;
