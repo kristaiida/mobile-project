@@ -226,7 +226,7 @@ export default StyleSheet.create({
   },
   //Favorite.js, more in favStyles.js as those can't be in this file
   deleteAllButton: {
-    backgroundColor: '#f44336',
+    backgroundColor: '#94B49F',
     padding: 10,
     borderRadius: 5,
     marginVertical: 10,
