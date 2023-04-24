@@ -64,7 +64,7 @@ export default StyleSheet.create({
         overflow: 'hidden',
         width: '100%',
         margin: 15,
-        justifyContent: "flex-start",
+        justifyContent: "center",
         alignItems: "center",
         width: "90%",
       },
@@ -81,7 +81,7 @@ export default StyleSheet.create({
       },
       container: {
         margin: 15,
-        justifyContent: "flex-start",
+        justifyContent: "center",
         alignItems: "center",
         flexDirection: "row",
         width: "90%",
