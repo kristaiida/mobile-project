@@ -89,15 +89,14 @@ export default StyleSheet.create({
         alignItems: "center",
         flexDirection: "row",
         width: "90%",
-        
       },
       searchBar__unclicked: {
         padding: 10,
         flexDirection: "row",
-        width: "95%",
         backgroundColor: "#d9dbda",
         borderRadius: 15,
         alignItems: "center",
+        width: '99%'
       },
       searchBar__clicked: {
         padding: 10,
@@ -110,7 +109,7 @@ export default StyleSheet.create({
       },
       input: {
         fontSize: 20,
-        marginLeft: 10,
+        paddingLeft: 10,
         width: "90%",
       },
     imageContainer: {
@@ -268,4 +267,64 @@ deleteAllButtonText: {
     padding: 10,
     width: '95%',
   },
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: 15,
+    marginRight: 30
+  },
+  modalBackground: {
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  modalContainer: {
+    width: "80%",
+    backgroundColor: "white",
+    borderRadius: 20,
+    paddingHorizontal: 25,
+    paddingVertical: 50,
+    height: '80%'
+  },
+  modalContent: {
+    justifyContent: 'space-evenly'
+  },  
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 10,
+    marginLeft: 5
+  },
+  modalButton: {
+    backgroundColor: "red",
+    borderRadius: 10,
+    padding: 10
+  },
+  modalButtonText: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+  tagType: {
+    padding: 5
+  },
+  tagTypesContainer: {
+    marginTop: 15,
+    marginBottom: 15,
+    height: '90%'
+  },
+  tagTypeContainer: {
+    flexDirection: "row",
+    alignItems: "center"
+  },
+  filterTitle: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  tagContainer: {
+    padding: 10,
+    flexDirection: 'row'
+  }
 });
