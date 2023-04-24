@@ -10,8 +10,8 @@ const SearchBar = (props) => {
       <View
         style={
           !props.clicked
-            ? styles.searchBar__unclicked
-            : styles.searchBar__clicked
+            ? styles.searchBar_unclicked
+            : styles.searchBar_clicked
         }
       >
         <Feather

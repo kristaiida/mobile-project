@@ -40,7 +40,7 @@ const Search = () => {
 
     return (
       <View>
-        <SafeAreaView style={styles.root}>
+        <SafeAreaView style={styles.searchC}>
           <SearchBar
             searchPhrase={searchPhrase}
             setSearchPhrase={setSearchPhrase}
