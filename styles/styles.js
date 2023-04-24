@@ -143,12 +143,12 @@ imageRC: {
   resizeMode: 'cover',
 },
 lineRC: {
-backgroundColor: '#94B49F',
-height: 5,
-width: '93%',
-marginBottom: 10,
-marginTop: 10,
-alignSelf: 'center',
+  backgroundColor: '#94B49F',
+  height: 5,
+  width: '93%',
+  marginBottom: 10,
+  marginTop: 10,
+  alignSelf: 'center',
 },
 textContainer: {
   flex: 1,
@@ -189,7 +189,7 @@ categoryname: {
 categoryline: {
   backgroundColor: '#94B49F',
   height: 5,
-  width: '100%',
+  width: 500,
   marginBottom: 10,
 },
 heartIcon: {
