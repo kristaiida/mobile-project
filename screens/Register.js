@@ -4,10 +4,18 @@ import { child, push, ref, update, query, equalTo, off } from 'firebase/database
 import { db, USERS_REF } from '../firebase/Config';
 import styles from '../styles/styles';
 import { onValue } from 'firebase/database';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Register() {
     const [newUsername, setNewUsername] = useState('');
     const [newPassword, setNewPassword] = useState('');
+    const navigation = useNavigation();
+
+    const handleRegisterAndNavigate = () => {
+        addNewUser();
+        navigation.navigate('Main');
+        
+   }
 
     const addNewUser = () => {
         if (newUsername.trim() === "" || newPassword.trim() === "") {
@@ -69,7 +77,7 @@ export default function Register() {
                 />
             </View>
             <View>
-                <TouchableOpacity onPress={() => addNewUser()}>
+                <TouchableOpacity onPress={handleRegisterAndNavigate}>
                     <Text>Register</Text>
                 </TouchableOpacity>
             </View>
