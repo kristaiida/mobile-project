@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Alert, Image } from 'react-native';
 import { ref, get } from 'firebase/database';
 import { db, USERS_REF } from '../firebase/Config';
 import styles from '../styles/styles';
@@ -43,21 +43,28 @@ export default function Login({ navigation }) {
 
   return (
     <View style={styles.loginContainer}>
-      <Text>Login</Text>
-      <View>
-        <TextInput placeholder='Username' value={username} onChangeText={setUsername} />
+      <Image
+        source={require('../assets/logo.png')}
+        style={styles.loginLogo}
+      />
+      <Text style={styles.loginTitle}>Log in</Text>
+      <View style={styles.loginInputContainer}>
+        <Text style={styles.loginInputLabel}>Username</Text>
+        <TextInput style={styles.loginInput} placeholder='Username' value={username} onChangeText={setUsername} />
       </View>
-      <View>
-        <TextInput placeholder='Password' value={password} onChangeText={setPassword} secureTextEntry={true} />
+      <View style={styles.loginInputContainer}>
+        <Text style={styles.loginInputLabel}>Password</Text>
+        <TextInput style={styles.loginInput} placeholder='Password' value={password} onChangeText={setPassword} secureTextEntry={true} />
       </View>
-      <View>
-        <TouchableOpacity onPress={handleLogin}>
-          <Text>Login</Text>
+      <View style={styles.loginButtonContainer}>
+        <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+          <Text style={styles.loginButtonText}>Login</Text>
         </TouchableOpacity>
       </View>
-      <View>
+      <View style={styles.loginRegisterContainer}>
+        <Text style={styles.loginRegisterText}>New to RecipePal? </Text>
         <TouchableOpacity onPress={handleRegisterPress}>
-          <Text>New to RecipePal? Register here</Text>
+          <Text style={styles.loginRegisterLink}>Sign up</Text>
         </TouchableOpacity>
       </View>
     </View>

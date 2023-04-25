@@ -320,8 +320,62 @@ trashIcon: {
   },
   loginContainer: {
     flex: 1,
+    backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+  },
+  loginLogo: {
+    height: 125,
+    width: 125,
+    marginBottom: 20
+  },
+  loginTitle: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    marginBottom: 24,
+  },
+  loginInputContainer: {
+    width: '80%',
+    marginBottom: 16,
+  },
+  loginInputLabel: {
+    fontWeight: 'bold',
+    marginBottom: 8,
+  },
+  loginInput: {
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 8,
+    padding: 8,
+    fontSize: 16,
+    height: 48,
+  },
+  loginButtonContainer: {
+    width: '80%',
+    marginTop: 16,
+  },
+  loginButton: {
+    backgroundColor: '#94B49F',
+    padding: 16,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  loginButtonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  loginRegisterContainer: {
+    flexDirection: 'row',
+    marginTop: 16,
+  },
+  loginRegisterText: {
+    fontSize: 16,
+  },
+  loginRegisterLink: {
+    color: '#94B49F',
+    fontWeight: 'bold',
+    fontSize: 16,
   },
   registerContainer: {
     flex: 1,
