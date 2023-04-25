@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
-import { child, push, ref, update, query, equalTo } from 'firebase/database';
+import { child, push, ref, update, query, equalTo, off } from 'firebase/database';
 import { db, USERS_REF } from '../firebase/Config';
 import styles from '../styles/styles';
+import { onValue } from 'firebase/database';
 
 export default function Register() {
-
     const [newUsername, setNewUsername] = useState('');
     const [newPassword, setNewPassword] = useState('');
 
@@ -14,8 +14,10 @@ export default function Register() {
             Alert.alert('Error', 'Please enter a valid username and password');
             return;
         }
+
         const usersRef = ref(db, USERS_REF);
         const usernameQuery = query(usersRef, equalTo('username', newUsername.trim()));
+        
         return new Promise((resolve, reject) => {
             const handleSnapshot = (snapshot) => {
                 if (snapshot.exists()) {
@@ -26,7 +28,7 @@ export default function Register() {
                         username: newUsername.trim(),
                         password: newPassword.trim()
                     };
-                    const newUserAccountKey = push(child(usersRef)).key;
+                    const newUserAccountKey = push(usersRef).key;
                     const updates = {};
                     updates[USERS_REF + newUserAccountKey] = newUserAccount;
                     setNewUsername('');
@@ -73,5 +75,4 @@ export default function Register() {
             </View>
         </View>
     );
-
 };
