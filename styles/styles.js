@@ -317,5 +317,15 @@ trashIcon: {
     fontWeight: "bold",
     textAlign: "center",
 
+  },
+  loginContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  registerContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });

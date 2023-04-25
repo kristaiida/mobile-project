@@ -1,4 +1,6 @@
 import React from 'react';
+import Login from './screens/Login';
+import Register from './screens/Register';
 import Home from './screens/Home';
 import Search from './screens/Search';
 import Favorites from './screens/Favorites';
@@ -114,31 +116,39 @@ const FavoritesStack = () => {
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
-            let iconName;
-            if (route.name === 'Home') {
-              iconName = focused ? 'home' : 'home-outline';
-            } else if (route.name === 'Search') {
-              iconName = focused
-                ? 'search-circle'
-                : 'search-circle-outline';
-            } else if (route.name === 'Favorites') {
-              iconName = focused ? 'heart' : 'heart-outline';
-            }
-            return <Ionicons name={iconName} size={size} color={color} />;
-          },
-          headerShown: false,
-          tabBarStyle: { backgroundColor: '#94B49F' },
-          tabBarActiveTintColor: 'black',
-          tabBarInactiveTintColor: '#474747c0',
-        })}
-      >
-        <Tab.Screen name="Home" component={HomeStack} />
-        <Tab.Screen name="Search" component={SearchStack} />
-        <Tab.Screen name="Favorites" component={FavoritesStack} />
-      </Tab.Navigator>
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+        <Stack.Screen name="Register" component={Register} options={{ headerShown: false }} />
+        <Stack.Screen name="Main" options={{ headerShown: false }}>
+          {() => (
+            <Tab.Navigator
+              screenOptions={({ route }) => ({
+                tabBarIcon: ({ focused, color, size }) => {
+                  let iconName;
+                  if (route.name === 'Home') {
+                    iconName = focused ? 'home' : 'home-outline';
+                  } else if (route.name === 'Search') {
+                    iconName = focused
+                      ? 'search-circle'
+                      : 'search-circle-outline';
+                  } else if (route.name === 'Favorites') {
+                    iconName = focused ? 'heart' : 'heart-outline';
+                  }
+                  return <Ionicons name={iconName} size={size} color={color} />;
+                },
+                headerShown: false,
+                tabBarStyle: { backgroundColor: '#94B49F' },
+                tabBarActiveTintColor: 'black',
+                tabBarInactiveTintColor: '#474747c0',
+              })}
+            >
+              <Tab.Screen name="Home" component={HomeStack} />
+              <Tab.Screen name="Search" component={SearchStack} />
+              <Tab.Screen name="Favorites" component={FavoritesStack} />
+            </Tab.Navigator>
+          )}
+        </Stack.Screen>
+      </Stack.Navigator>
     </NavigationContainer>
   );
-}
+};
