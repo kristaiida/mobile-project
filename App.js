@@ -98,6 +98,19 @@ const ProfileStack = () => {
         })}
       />
       <Stack.Screen
+        name="FavoritesScreen"
+        component={Favorites}
+        options={({ navigation, route }) => ({
+          header: () => (
+            <Header
+              navigation={navigation}
+              route={route}
+              title="Favorites"
+            />
+          ),
+        })}
+      />
+      <Stack.Screen
         name="ProfileRecipePageScreen"
         component={RecipePage}
         options={({ navigation, route }) => ({
@@ -113,6 +126,7 @@ const ProfileStack = () => {
     </Stack.Navigator>
   );
 };
+
 
 export default function App() {
   return (
