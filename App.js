@@ -2,6 +2,7 @@ import React from 'react';
 import Login from './screens/Login';
 import Register from './screens/Register';
 import Home from './screens/Home';
+import Profile from './screens/Profile';
 import Search from './screens/Search';
 import Favorites from './screens/Favorites';
 import RecipePage from './screens/RecipePage';
@@ -80,9 +81,22 @@ const SearchStack = () => {
   );
 };
 
-const FavoritesStack = () => {
+const ProfileStack = () => {
   return (
     <Stack.Navigator>
+      <Stack.Screen
+        name="ProfileScreen"
+        component={Profile}
+        options={({ navigation, route }) => ({
+          header: () => (
+            <Header
+              navigation={navigation}
+              route={route}
+              title="Profile"
+            />
+          ),
+        })}
+      />
       <Stack.Screen
         name="FavoritesScreen"
         component={Favorites}
@@ -97,7 +111,7 @@ const FavoritesStack = () => {
         })}
       />
       <Stack.Screen
-        name="FavoritesRecipePageScreen"
+        name="ProfileRecipePageScreen"
         component={RecipePage}
         options={({ navigation, route }) => ({
           header: () => (
@@ -112,6 +126,7 @@ const FavoritesStack = () => {
     </Stack.Navigator>
   );
 };
+
 
 export default function App() {
   return (
@@ -131,8 +146,8 @@ export default function App() {
                     iconName = focused
                       ? 'search-circle'
                       : 'search-circle-outline';
-                  } else if (route.name === 'Favorites') {
-                    iconName = focused ? 'heart' : 'heart-outline';
+                  } else if (route.name === 'Profile') {
+                    iconName = focused ? 'person-circle' : 'person-circle-outline';
                   }
                   return <Ionicons name={iconName} size={size} color={color} />;
                 },
@@ -144,7 +159,7 @@ export default function App() {
             >
               <Tab.Screen name="Home" component={HomeStack} />
               <Tab.Screen name="Search" component={SearchStack} />
-              <Tab.Screen name="Favorites" component={FavoritesStack} />
+              <Tab.Screen name="Profile" component={ProfileStack} />
             </Tab.Navigator>
           )}
         </Stack.Screen>

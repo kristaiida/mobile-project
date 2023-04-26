@@ -159,7 +159,8 @@ textContainer: {
 titleRC: {
   fontSize: 24,
   fontWeight: 'bold',
-  marginBottom: 10,
+  marginTop: 10,
+  marginBottom: 5,
 },
 descriptionRC: {
   fontSize: 16,
@@ -210,7 +211,7 @@ trashIcon: {
 
 //Favorite.js, more in favStyles.js as those can't be in this file
   deleteAllButton: {
-    backgroundColor: '#f44336',
+    backgroundColor: '#94B49F',
     padding: 10,
     borderRadius: 5,
     marginVertical: 10,
@@ -316,16 +317,101 @@ trashIcon: {
   greetingText: {
     fontWeight: "bold",
     textAlign: "center",
-
+    fontSize: 20,
+  },
+  greetingText2 : {
+    fontWeight: "bold",
+    textAlign: "center",
+    fontSize: 15,
   },
   loginContainer: {
     flex: 1,
+    backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+  },
+  loginLogo: {
+    height: 125,
+    width: 125,
+    marginBottom: 20
+  },
+  loginTitle: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    marginBottom: 24,
+  },
+  loginInputContainer: {
+    width: '80%',
+    marginBottom: 16,
+  },
+  loginInputLabel: {
+    fontWeight: 'bold',
+    marginBottom: 8,
+  },
+  loginInput: {
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 8,
+    padding: 8,
+    fontSize: 16,
+    height: 48,
+  },
+  loginButtonContainer: {
+    width: '80%',
+    marginTop: 16,
+  },
+  loginButton: {
+    backgroundColor: '#94B49F',
+    padding: 16,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  loginButtonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  loginRegisterContainer: {
+    flexDirection: 'row',
+    marginTop: 16,
+  },
+  loginRegisterText: {
+    fontSize: 16,
+  },
+  loginRegisterLink: {
+    color: '#94B49F',
+    fontWeight: 'bold',
+    fontSize: 16,
   },
   registerContainer: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
-  }
+  },
+  // Profile.js
+  profileContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  profileTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  profileImage: {
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+    marginBottom: 20,
+  },
+  profileButton: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#fff',
+    backgroundColor: '#94B49F',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 5,
+  },
 });

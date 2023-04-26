@@ -13,7 +13,8 @@ export default function Header({ navigation, route }) {
     if (
       route.name === 'HomeRecipePageScreen' ||
       route.name === 'SearchRecipePageScreen' ||
-      route.name === 'FavoritesRecipePageScreen'
+      route.name === 'FavoritesRecipePageScreen' ||
+      route.name === 'FavoritesScreen'
     ) {
       setIsRecipePage(true);
     } else {

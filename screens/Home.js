@@ -66,7 +66,7 @@ export default function Home() {
           <ScrollView>
             <View>
           <Text style={styles.greetingText}>{greeting}</Text>
-          <Text style={styles.greetingText}>Would you like to try some of these recepies?</Text>
+          <Text style={styles.greetingText2}>Would you like to try some of these recepies?</Text>
             </View>
             <Text style={styles.titletext}>Trending{'\u{1F525}'}</Text>
             {categories.map((category, index) => (
