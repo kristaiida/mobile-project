@@ -315,7 +315,12 @@ trashIcon: {
   greetingText: {
     fontWeight: "bold",
     textAlign: "center",
-
+    fontSize: 20,
+  },
+  greetingText2 : {
+    fontWeight: "bold",
+    textAlign: "center",
+    fontSize: 15,
   },
   loginContainer: {
     flex: 1,
