@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { child, push, ref, update, query, equalTo, off } from 'firebase/database';
-import { db, USERS_REF } from '../firebase/Config';
+import { db, USERS_REF } from '../firebase/Config.js';
 import styles from '../styles/styles';
 import { onValue } from 'firebase/database';
 import { useNavigation } from '@react-navigation/native';
