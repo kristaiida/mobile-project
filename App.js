@@ -2,6 +2,7 @@ import React from 'react';
 import Login from './screens/Login';
 import Register from './screens/Register';
 import Home from './screens/Home';
+import Profile from './screens/Profile';
 import Search from './screens/Search';
 import Favorites from './screens/Favorites';
 import RecipePage from './screens/RecipePage';
@@ -80,24 +81,24 @@ const SearchStack = () => {
   );
 };
 
-const FavoritesStack = () => {
+const ProfileStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="FavoritesScreen"
-        component={Favorites}
+        name="ProfileScreen"
+        component={Profile}
         options={({ navigation, route }) => ({
           header: () => (
             <Header
               navigation={navigation}
               route={route}
-              title="Favorites"
+              title="Profile"
             />
           ),
         })}
       />
       <Stack.Screen
-        name="FavoritesRecipePageScreen"
+        name="ProfileRecipePageScreen"
         component={RecipePage}
         options={({ navigation, route }) => ({
           header: () => (
@@ -144,7 +145,7 @@ export default function App() {
             >
               <Tab.Screen name="Home" component={HomeStack} />
               <Tab.Screen name="Search" component={SearchStack} />
-              <Tab.Screen name="Favorites" component={FavoritesStack} />
+              <Tab.Screen name="Profile" component={ProfileStack} />
             </Tab.Navigator>
           )}
         </Stack.Screen>
