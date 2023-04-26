@@ -15,6 +15,7 @@ const Search = () => {
   const [tags, setTags] = useState([]);
   const [showTagTypes, setShowTagTypes] = useState(false);
   const [showTags, setShowTags] = useState(false);
+  const [selectedTags, setSelectedTags] = useState([]);
 
   useEffect(() => {
     const options = {
@@ -49,7 +50,18 @@ const Search = () => {
   }, []);  
 
   useEffect(() => {
-    const criteria = 'https://tasty.p.rapidapi.com/recipes/list?from=0&size=50&q='
+    const criteria = 'https://tasty.p.rapidapi.com/recipes/list?from=0&size=30';
+    let queryString = '';
+  
+    if (searchPhrase) {
+      queryString += '&q=' + searchPhrase;
+    }
+  
+    if (selectedTags.length > 0) {
+      const tagNames = selectedTags.map(tag => tag.name).join(',');
+      queryString += '&tags=' + tagNames;
+    }
+  
     const options = {
       method: 'GET',
       headers: {
@@ -57,116 +69,157 @@ const Search = () => {
         'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
       }
     };
-    fetch(criteria + searchPhrase, options)
-      .then(response => response.json())
-      .then(
-        (result) => {
-          const filteredResults = [];
-          for (let i = 0; i < result.results.length; i++) {
-            if (!result.results[i].recipes) {
-              filteredResults.push(result.results[i]);
+  
+    const fetchData = () => {
+      fetch(criteria + queryString, options)
+        .then(response => response.json())
+        .then(
+          (result) => {
+            const filteredResults = [];
+            for (let i = 0; i < result.results.length; i++) {
+              if (!result.results[i].recipes) {
+                filteredResults.push(result.results[i]);
+              }
             }
+            setStillData(filteredResults);
+            console.log(selectedTags);
+            console.log(criteria + queryString);
+          },
+          (error) => {
+            console.log(error);
           }
-          setStillData(filteredResults);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    }, [searchPhrase]);
-
+        );
+    };
+  
+    const timer = setTimeout(() => {
+      fetchData();
+    }, 250);
+  
+    return () => clearTimeout(timer);
+  }, [searchPhrase, selectedTags]);
+  
     const handleShowTagTypes = () => {
       setShowTagTypes(!showTagTypes);
     };
     
     const handleShowTags = (type) => {
       setShowTags((prev) => {
-        const newState = {...prev};
+        const newState = Object.assign({}, prev);
         newState[type] = !newState[type];
         return newState;
-      })
+      })      
     };
 
+    const handleTagSelect = (tag) => {
+      setSelectedTags((prev) => [...prev, tag]);
+    }
+
     return (
-      <View>
-        <SafeAreaView style={styles.searchC}>
-          <View style={styles.searchContainer}>
-              <SearchBar
-                searchPhrase={searchPhrase}
-                setSearchPhrase={setSearchPhrase}
-                clicked={clicked}
-                setClicked={setClicked}
-              />
-              <Feather
-                name="filter"
-                size={24}
-                color="black"
-                onPress={handleShowTagTypes}
-              />
-          </View>
-          <Modal
-            visible={showTagTypes}
-            animationType="fade"
-            onRequestClose={() => setShowTagTypes(false)}
-            transparent={true}
-          >
-            <View style={styles.modalBackground}>
-              <View style={styles.modalContainer}>
-                <View style={styles.modalContent}>
-                  <View style={styles.filterTitle}>
-                    <Feather name="filter" size={20} color="black" />
-                    <Text style={styles.modalTitle}>Filters</Text>
-                  </View>
-                  <View style={styles.tagTypesContainer}>
-                    <ScrollView>
-                      {tagTypes.map((type) => (
-                        <View key={type}>
-                          <TouchableOpacity key={type} style={styles.tagTypeContainer} onPress={() => handleShowTags(type)}>
-                            <Text key={type} style={styles.tagType}>{type}</Text>
-                            <Feather name="chevron-down" size={24} color="black" />
-                          </TouchableOpacity>
-                          {showTags[type] && (
-                            <ScrollView>
-                              {tags
-                               .filter((tag) => tag.type === type.toLowerCase().replace(/\s+/g, '_'))
-                               .map((tag) => (
-                                <View key={tag.id} style={styles.tagContainer}>
-                                  <Text key={tag.id}>{tag.display_name}</Text>
-                                  <CheckBox
-                                    checked={false}
-                                    containerStyle={{ marginVertical: 0, paddingVertical: 0 }}
-                                  />
-                                </View>
-                               ))
-                              }
-                            </ScrollView>
-                          )}
-                        </View>
-                      ))}
-                    </ScrollView>
-                  </View>
-                  <TouchableOpacity
-                    style={styles.modalButton}
-                    onPress={() => setShowTagTypes(false)}
-                  >
-                    <Text style={styles.modalButtonText}>Close</Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-            </View>
-          </Modal>
+      <View style={styles.searchScreenContainer}>
+        <View style={styles.searchContainer}>
+          <SearchBar
+            searchPhrase={searchPhrase}
+            setSearchPhrase={setSearchPhrase}
+            clicked={clicked}
+            setClicked={setClicked}
+          />
+          <Feather
+            name="filter"
+            size={24}
+            color="black"
+            onPress={handleShowTagTypes}
+          />
+        </View>
+        <View style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-start', justifyContent: 'flex-start' }}>
+          {selectedTags.map((tag) => (
+            <CheckBox
+              key={tag.id}
+              title={tag.display_name}
+              checked={selectedTags.some((t) => t.id === tag.id)}
+              onPress={() => {
+                if (selectedTags.includes(tag)) {
+                  setSelectedTags(selectedTags.filter((t) => t.id !== tag.id));
+                } else {
+                  handleTagSelect(tag);
+                }
+              }}              
+            />
+          ))}
+        </View>
+        <View style={styles.listContainer}>
           { stillData.length === 0 ? (
             <ActivityIndicator size="large" color="#000" />
           ) : (
             <List
               searchPhrase={searchPhrase}
+              tags={selectedTags}
               data={stillData}
               setClicked={setClicked}
             />
           ) }
-        </SafeAreaView>
+        </View>
+        <Modal
+          visible={showTagTypes}
+          animationType="fade"
+          onRequestClose={() => setShowTagTypes(false)}
+          transparent={true}
+        >
+          <View style={styles.modalBackground}>
+            <View style={styles.modalContainer}>
+              <View style={styles.modalContent}>
+                <View style={styles.filterTitle}>
+                  <Feather name="filter" size={20} color="black" />
+                  <Text style={styles.modalTitle}>Filters</Text>
+                </View>
+                <View style={styles.tagTypesContainer}>
+                  <ScrollView>
+                    {tagTypes.map((type) => (
+                      <View key={type}>
+                        <TouchableOpacity key={type} style={styles.tagTypeContainer} onPress={() => handleShowTags(type)}>
+                          <Text key={type} style={styles.tagType}>{type}</Text>
+                          <Feather name="chevron-down" size={24} color="black" />
+                        </TouchableOpacity>
+                        <ScrollView>
+                          {showTags[type] && (
+                            <View>
+                              {tags
+                                .filter((tag) => tag.type === type.toLowerCase().replace(/\s+/g, '_'))
+                                .map((tag) => (
+                                  <View key={tag.id} style={styles.tagContainer}>
+                                    <CheckBox
+                                      key={tag.id}
+                                      title={tag.display_name}
+                                      checked={selectedTags.some((t) => t.id === tag.id)}
+                                      onPress={() => {
+                                        if (selectedTags.includes(tag)) {
+                                          setSelectedTags(selectedTags.filter((t) => t.id !== tag.id));
+                                        } else {
+                                          setSelectedTags([...selectedTags, tag]);
+                                        }
+                                      }}
+                                    />
+                                  </View>
+                                ))}
+                            </View>
+                          )}
+                        </ScrollView>
+                      </View>
+                    ))}
+                  </ScrollView>
+                </View>
+                <TouchableOpacity
+                  style={styles.modalButton}
+                  onPress={() => setShowTagTypes(false)}
+                >
+                  <Text style={styles.modalButtonText}>Close</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </Modal>
       </View>
     );
+    
 }
 
 export default Search;
