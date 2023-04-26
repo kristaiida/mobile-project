@@ -2,7 +2,6 @@ import React from 'react';
 import { Text, View, Image } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import styles from '../styles/styles';
-import Video from 'react-native-video';
 
 export default function RecipePage({ route }) {
   const { recipe } = route.params;
@@ -15,7 +14,9 @@ export default function RecipePage({ route }) {
           </View>
           <View style={styles.textContainer}>
             <Text style={styles.titleRC}>{recipe.name}</Text>
+            { recipe.description &&
             <Text style={styles.descriptionRC}>{recipe.description}</Text>
+            }
           </View>
           <View style={styles.lineRC} />
           <View>
@@ -34,13 +35,6 @@ export default function RecipePage({ route }) {
             {recipe.instructions.map((instruction) => (
               <Text key={instruction.id} style={styles.ingText}>{instruction.position + '. ' + instruction.display_text}</Text>
             ))}
-          </View>
-          <View>
-            <Video
-              source={{ uri: recipe.video_url }}
-              style={{ width: 320, height: 240 }}
-              controls={true}
-            />
           </View>
         </View>
     </ScrollView>
