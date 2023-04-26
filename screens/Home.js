@@ -59,7 +59,7 @@ export default function Home() {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <View style={styles.homeScreenContainer}>
       {loading && <ActivityIndicator size="large" color="#000" />}
       {!loading && (
         <Animated.View style={{ opacity: fadeAnim }}>

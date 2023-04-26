@@ -36,24 +36,23 @@ export default StyleSheet.create({
     zIndex: 1,
     paddingTop: Platform.OS === 'ios' ? 10 : 0
   },
-  container: {
-    borderRadius: 5,
-    flexDirection: 'row',
-    marginVertical: 8,
-    overflow: 'hidden',
-    margin: 15,
-    justifyContent: "center",
-    alignItems: "center",
-    width: "90%",
+  homeScreenContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: 20
   },
-
+  container: {
+    flexDirection: 'row',
+    overflow: 'hidden',
+    alignItems: "center",
+    marginLeft: 18,
+    marginBottom: 15,
+    marginTop: 5
+  },
 // Search
   listC: {
-    margin: 10,
     height: "90%",
     flexDirection: 'column',
-    marginVertical: 0,
-    width: '90%'
   },
   title: {
     fontSize: 20,
@@ -65,9 +64,9 @@ export default StyleSheet.create({
     marginLeft: "10%",
     paddingTop: 25,
   },
-  searchC: {
-    justifyContent: "center",
+  searchScreenContainer: {
     alignItems: "center",
+    marginTop: 10,
   },
   searchBar_unclicked: {
     padding: 10,
@@ -80,11 +79,11 @@ export default StyleSheet.create({
   searchBar_clicked: {
     padding: 10,
     flexDirection: "row",
-    width: "80%",
+    width: "75%",
     backgroundColor: "#d9dbda",
     borderRadius: 15,
     alignItems: "center",
-    justifyContent: "space-evenly",
+    justifyContent: 'space-evenly'
   },
   input: {
     fontSize: 20,
@@ -256,9 +255,8 @@ trashIcon: {
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    marginLeft: 15,
-    marginRight: 30
+    justifyContent: 'left',
+    marginRight: 18
   },
   modalBackground: {
     flex: 1,
