@@ -146,8 +146,8 @@ export default function App() {
                     iconName = focused
                       ? 'search-circle'
                       : 'search-circle-outline';
-                  } else if (route.name === 'Favorites') {
-                    iconName = focused ? 'heart' : 'heart-outline';
+                  } else if (route.name === 'Profile') {
+                    iconName = focused ? 'person-circle' : 'person-circle-outline';
                   }
                   return <Ionicons name={iconName} size={size} color={color} />;
                 },

@@ -382,5 +382,31 @@ trashIcon: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
-  }
+  },
+  // Profile.js
+  profileContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  profileTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  profileImage: {
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+    marginBottom: 20,
+  },
+  profileButton: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#fff',
+    backgroundColor: '#94B49F',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 5,
+  },
 });

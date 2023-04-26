@@ -50,13 +50,30 @@ export default function Favorites({ navigation }) {
 
   // Delete all favorite recipes
   const handleDeleteAll = async () => {
-    try {
-      await AsyncStorage.removeItem('favoriteRecipes');
-      setFavoriteRecipes([]);
-      Alert.alert('All recipes deleted from favorites');
-    } catch (e) {
-      console.log(e);
-    }
+    Alert.alert(
+      'Confirm',
+      'Are you sure you want to delete all favorite recipes?',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {
+          text: 'Yes',
+          onPress: async () => {
+            try {
+              await AsyncStorage.removeItem('favoriteRecipes');
+              setFavoriteRecipes([]);
+              Alert.alert('All recipes deleted from favorites');
+            } catch (e) {
+              console.log(e);
+            }
+          },
+        },
+      ],
+      { cancelable: false },
+    );
   };
 
   return (
