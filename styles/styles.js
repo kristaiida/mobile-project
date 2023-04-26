@@ -159,7 +159,7 @@ textContainer: {
 titleRC: {
   fontSize: 24,
   fontWeight: 'bold',
-  marginTop: 7,
+  marginTop: 10,
   marginBottom: 5,
 },
 descriptionRC: {
