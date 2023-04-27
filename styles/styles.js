@@ -255,7 +255,6 @@ trashIcon: {
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'left',
     marginRight: 18
   },
   modalBackground: {
