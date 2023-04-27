@@ -1,6 +1,7 @@
 import React from 'react';
+import Welcome from './screens/Welcome';
 import Login from './screens/Login';
-import Register from './screens/Register';
+import Signup from './screens/Signup';
 import Home from './screens/Home';
 import Profile from './screens/Profile';
 import Search from './screens/Search';
@@ -131,9 +132,10 @@ const ProfileStack = () => {
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
+      <Stack.Navigator initialRouteName="Welcome">
+        <Stack.Screen name="Welcome" component={Welcome} options={{headerShown: false}} />
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
-        <Stack.Screen name="Register" component={Register} options={{ headerShown: false }} />
+        <Stack.Screen name="Signup" component={Signup} options={{ headerShown: false }} />
         <Stack.Screen name="Main" options={{ headerShown: false }}>
           {() => (
             <Tab.Navigator
@@ -141,13 +143,17 @@ export default function App() {
                 tabBarIcon: ({ focused, color, size }) => {
                   let iconName;
                   if (route.name === 'Home') {
-                    iconName = focused ? 'home' : 'home-outline';
+                    iconName = focused
+                      ? 'home'
+                      : 'home-outline';
                   } else if (route.name === 'Search') {
                     iconName = focused
                       ? 'search-circle'
                       : 'search-circle-outline';
                   } else if (route.name === 'Profile') {
-                    iconName = focused ? 'person-circle' : 'person-circle-outline';
+                    iconName = focused
+                      ? 'person-circle'
+                      : 'person-circle-outline';
                   }
                   return <Ionicons name={iconName} size={size} color={color} />;
                 },

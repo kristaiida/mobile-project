@@ -1,45 +1,28 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Alert, Image } from 'react-native';
-import { ref, get } from 'firebase/database';
-import { db, USERS_REF } from '../firebase/Config';
+import { signIn } from '../components/Auth';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../firebase/Config';
 import styles from '../styles/styles';
 
 export default function Login({ navigation }) {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = async () => {
-    if (username.trim() === '' || password.trim() === '') {
-      Alert.alert('Error', 'Please enter a valid username and password');
-      return;
-    }
-
-    const usersRef = ref(db, USERS_REF);
-    const snapshot = await get(usersRef);
-
-    if (snapshot.exists()) {
-      const userData = snapshot.val();
-      const user = Object.keys(userData)
-        .map((key) => ({
-          id: key,
-          ...userData[key],
-        }))
-        .find((user) => user.username === username.trim() && user.password === password.trim());
-
-      if (user) {
-        // successful login
-        navigation.navigate('Main');
-      } else {
-        Alert.alert('Error', 'Invalid username or password');
-      }
+  const handlePress = () => {
+    if (!email) {
+        Alert.alert('Email is required.');
+    } else if (!password) {
+        Alert.alert('Password is required.');
     } else {
-      Alert.alert('Error', 'No users exist yet');
-    }
-  };
-
-  const handleRegisterPress = () => {
-    navigation.navigate('Register');
-  };
+        signIn(email, password);
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+              navigation.navigate('Main', { userUid: user.uid });
+            };
+        });
+    };
+};
 
   return (
     <View style={styles.loginContainer}>
@@ -47,24 +30,40 @@ export default function Login({ navigation }) {
         source={require('../assets/logo.png')}
         style={styles.loginLogo}
       />
-      <Text style={styles.loginTitle}>Log in</Text>
+      <Text style={styles.loginTitle}>Login</Text>
       <View style={styles.loginInputContainer}>
-        <Text style={styles.loginInputLabel}>Username</Text>
-        <TextInput style={styles.loginInput} placeholder='Username' value={username} onChangeText={setUsername} />
+        <Text style={styles.loginInputLabel}>Email*</Text>
+        <TextInput
+          style={styles.loginInput}
+          placeholder='Email*'
+          value={email}
+          onChangeText={(email) => setEmail(email.trim())}
+          keyboardType='email-address'
+          autoCapitalize='none'
+        />
       </View>
       <View style={styles.loginInputContainer}>
-        <Text style={styles.loginInputLabel}>Password</Text>
-        <TextInput style={styles.loginInput} placeholder='Password' value={password} onChangeText={setPassword} secureTextEntry={true} />
+        <Text style={styles.loginInputLabel}>Password*</Text>
+        <TextInput
+          style={styles.loginInput}
+          placeholder='Password*'
+          value={password}
+          onChangeText={(password) => setPassword(password)}
+          secureTextEntry={true}
+        />
       </View>
       <View style={styles.loginButtonContainer}>
-        <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+        <TouchableOpacity
+          style={styles.loginButton}
+          onPress={handlePress}
+        >
           <Text style={styles.loginButtonText}>Login</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.loginRegisterContainer}>
         <Text style={styles.loginRegisterText}>New to RecipePal? </Text>
-        <TouchableOpacity onPress={handleRegisterPress}>
-          <Text style={styles.loginRegisterLink}>Sign up</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
+          <Text style={styles.loginRegisterLink}>Signup</Text>
         </TouchableOpacity>
       </View>
     </View>
