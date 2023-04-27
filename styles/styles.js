@@ -389,6 +389,10 @@ trashIcon: {
   profileContainer: {
     flex: 1,
     alignItems: 'center',
+    justifyContent: 'space-evenly',
+  },
+  profileContent: {
+    alignItems: 'center',
     justifyContent: 'center',
   },
   profileTitle: {
@@ -410,5 +414,19 @@ trashIcon: {
     paddingHorizontal: 20,
     paddingVertical: 10,
     borderRadius: 5,
+    width: 200,
+    textAlign: 'center',
   },
+  profileLogout: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#555',
+    textAlign: 'center',
+  },
+  profileLogoutWrapper: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    marginBottom: 30,
+  },
+
 });
