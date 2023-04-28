@@ -27,7 +27,7 @@ export default function Signup({ navigation }) {
       signUp(username, email, password);
       onAuthStateChanged(auth, (user) => {
         if (user) {
-          navigation.navigate('Main', user.uid);
+          navigation.navigate('Main');
         };
       });
     };

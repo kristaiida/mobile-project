@@ -18,7 +18,7 @@ export default function Login({ navigation }) {
         signIn(email, password);
         onAuthStateChanged(auth, (user) => {
           if (user) {
-            navigation.navigate('Main', { userUid: user.uid });
+            navigation.navigate('Main');
           }
         });        
     };

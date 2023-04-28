@@ -1,8 +1,9 @@
 import { Alert } from "react-native";
-import { ref, set } from 'firebase/database';
+import { ref, set, query, get } from 'firebase/database';
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
+    getAuth,
     signOut,
     updatePassword
 } from 'firebase/auth';
@@ -31,6 +32,18 @@ export const signIn = async (email, password) => {
         Alert.alert('Login failed. ', error.message);
     };
 };
+
+export const getUserDetails = async () => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    const uid = user.uid;
+  
+    const userRef = query(ref(db, USERS_REF + uid));
+    const snapshot = await get(userRef);
+    const userDetails = snapshot.val() || {};
+  
+    return userDetails;
+};  
 
 export const logOut = async () => {
     try {

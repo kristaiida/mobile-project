@@ -1,27 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Image, Alert } from 'react-native';
-import { onValue, query, ref } from 'firebase/database';
-import { db, USERS_REF } from '../firebase/Config';
+
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { logOut } from '../components/Auth';
-
+import { getUserDetails, logOut } from '../components/Auth';
 import styles from '../styles/styles';
 
-export default function Profile({ route }) {
+export default function Profile() {
 
   const [username, setUsername] = useState('');
   const navigation = useNavigation();
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
 
-  /*useEffect(() => {
-    const userRef = query(ref(db, USERS_REF + userUid));
-    onValue(userRef, (snapshot) => {
-      snapshot.val()
-        ? setUsername(snapshot.val().username)
-        : setUsername('');
-    });
-  }, []);*/
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      const userDetails = await getUserDetails();
+      setUsername(userDetails.username);
+    };
+    fetchUserDetails();
+  }, []);
 
   useEffect(() => {
     const loadFavoriteRecipes = async () => {

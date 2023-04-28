@@ -1,15 +1,15 @@
 import { useEffect, useState, useRef } from 'react';
 import { ScrollView, Text, View, ActivityIndicator, Animated } from 'react-native';
 import { onValue, query, ref } from 'firebase/database';
+import { getUserDetails } from '../components/Auth';
 import { db, USERS_REF } from '../firebase/Config';
 import { API_KEY } from '../Api_Key';
 import styles from '../styles/styles';
 import RecipeCard from '../components/RecipeCard';
 import { UseGreeting } from '../components/Greeting';
 
-export default function Home(props) {
+export default function Home() {
 
-  const userUid = props.route.params;
   const [username, setUsername] = useState('');
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -17,12 +17,11 @@ export default function Home(props) {
   const greeting = UseGreeting();
 
   useEffect(() => {
-    const userRef = query(ref(db, USERS_REF + userUid));
-    onValue(userRef, (snapshot) => {
-      snapshot.val()
-        ? setUsername(snapshot.val().username)
-        : setUsername('');
-    });
+    const fetchUserDetails = async () => {
+      const userDetails = await getUserDetails();
+      setUsername(userDetails.username);
+    };
+    fetchUserDetails();
   }, []);
 
   useEffect(() => {
@@ -78,7 +77,7 @@ export default function Home(props) {
         <Animated.View style={{ opacity: fadeAnim }}>
           <ScrollView>
             <View>
-          <Text style={styles.greetingText}>{greeting}!</Text>
+          <Text style={styles.greetingText}>{greeting} {username}!</Text>
           <Text style={styles.greetingText2}>Would you like to try some of these recepies?</Text>
             </View>
             <Text style={styles.titletext}>Trending{'\u{1F525}'}</Text>
