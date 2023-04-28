@@ -7,6 +7,7 @@ import Profile from './screens/Profile';
 import Search from './screens/Search';
 import Favorites from './screens/Favorites';
 import RecipePage from './screens/RecipePage';
+import ChangePw from './screens/ChangePw';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
@@ -112,6 +113,19 @@ const ProfileStack = () => {
         })}
       />
       <Stack.Screen
+        name="ChangePwScreen"
+        component={ChangePw}
+        options={({ navigation, route }) => ({
+          header: () => (
+            <Header
+              navigation={navigation}
+              route={route}
+              title="ChangePw"
+            />
+          )
+        })}
+      />
+      <Stack.Screen
         name="ProfileRecipePageScreen"
         component={RecipePage}
         options={({ navigation, route }) => ({
@@ -127,7 +141,6 @@ const ProfileStack = () => {
     </Stack.Navigator>
   );
 };
-
 
 export default function App() {
   return (

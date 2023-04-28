@@ -14,7 +14,8 @@ export default function Header({ navigation, route }) {
       route.name === 'HomeRecipePageScreen' ||
       route.name === 'SearchRecipePageScreen' ||
       route.name === 'FavoritesRecipePageScreen' ||
-      route.name === 'FavoritesScreen'
+      route.name === 'FavoritesScreen' ||
+      route.name === 'ChangePwScreen'
     ) {
       setIsRecipePage(true);
     } else {

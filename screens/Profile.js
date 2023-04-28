@@ -15,7 +15,7 @@ export default function Profile({ route }) {
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
 
   /*useEffect(() => {
-    const userRef = query(ref(db, USERS_REF + route.params.userUid));
+    const userRef = query(ref(db, USERS_REF + userUid));
     onValue(userRef, (snapshot) => {
       snapshot.val()
         ? setUsername(snapshot.val().username)
@@ -73,13 +73,23 @@ export default function Profile({ route }) {
   return (
     <View style={styles.profileContainer}>
       <View style={styles.profileContent}>
-        <Text style={styles.profileTitle}>Profile</Text>
+        <Text style={styles.profileTitle}>{username}'s Profile</Text>
         <Image
           source={{ uri: 'https://via.placeholder.com/150' }}
           style={styles.profileImage}
         />
-        <TouchableOpacity onPress={handlePressFavorites}>
-          <Text style={styles.profileButton}>Your favorite recipes</Text>
+        <View style={styles.loginButtonContainer}>
+        <TouchableOpacity
+          style={styles.loginButton}
+          onPress={handlePressFavorites}
+        >
+          <Text style={styles.loginButtonText}>My Favorite Recipes</Text>
+        </TouchableOpacity>
+      </View>
+      </View>
+      <View>
+        <TouchableOpacity onPress={() => navigation.navigate('ChangePwScreen', {username: username})}>
+          <Text>Change password</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.profileLogoutWrapper}>

@@ -17,10 +17,10 @@ export default function Login({ navigation }) {
     } else {
         signIn(email, password);
         onAuthStateChanged(auth, (user) => {
-            if (user) {
-              navigation.navigate('Main', { userUid: user.uid });
-            };
-        });
+          if (user) {
+            navigation.navigate('Main', { userUid: user.uid });
+          }
+        });        
     };
 };
 

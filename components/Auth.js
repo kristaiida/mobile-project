@@ -3,7 +3,8 @@ import { ref, set } from 'firebase/database';
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
-    signOut
+    signOut,
+    updatePassword
 } from 'firebase/auth';
 import { auth, db, USERS_REF } from '../firebase/Config';
 
@@ -37,5 +38,21 @@ export const logOut = async () => {
     } catch (error) {
         console.log('Logout failed. ', error.message);
         Alert.alert('Logout failed. ', error.message);
+    };
+};
+
+export const changePassword = async (password) => {
+    try {
+        await updatePassword(auth.currentUser, password)
+        .then(() => {
+            Alert.alert('Password changed successfully.');
+        })
+        .catch ((error) => {
+            console.log('Password change error. ', error.message);
+            Alert.alert('Password change error. ', error.message);
+        })
+    } catch (error) {
+        console.log('Password change error. ', error.message);
+        Alert.alert('Password change error. ', error.message);
     };
 };
