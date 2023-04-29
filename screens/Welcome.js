@@ -1,8 +1,18 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import styles from "../styles/styles";
+import { useFonts } from 'expo-font';
 
 export default Welcome = ({ navigation }) => {
+
+    const [fontLoaded] = useFonts({
+        kaushanScript: require('../assets/fonts/KaushanScript-Regular.ttf'),
+      });
+    
+      if (!fontLoaded) {
+        return null;
+      }
+    
     return (
         <View style={styles.loginContainer}>
             <Image
