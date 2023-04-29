@@ -16,14 +16,16 @@ const customStyles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#555',
     textAlign: 'center',
-    marginHorizontal: 20,
+    marginLeft: 20,
+    marginRight: 20,
     marginBottom: 10,
   },
   noFavoritesTextSmall: {
     fontSize: 16,
     color: '#555',
     textAlign: 'center',
-    marginHorizontal: 20,
+    marginLeft: 20,
+    marginBottom: 20,
     marginTop: 10,
   },
   favoritesContainer: {

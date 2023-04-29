@@ -28,7 +28,8 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginHorizontal: 20
+    marginLeft: 20,
+    marginRight: 20
   },
   backButton: {
     position: 'absolute',
@@ -39,7 +40,6 @@ export default StyleSheet.create({
   homeScreenContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginLeft: 20
   },
   container: {
     flexDirection: 'row',
@@ -93,7 +93,7 @@ export default StyleSheet.create({
 
 // Recipe card
   image: {
-    height: 150,
+    height: 120,
     width: 120,
   },
   textContainer: {
@@ -112,13 +112,14 @@ export default StyleSheet.create({
     width: "45%",
   },
   recipeCardTextFrontPage: {
-    marginTop: 0,
-    verticalAlign: "middle",
-    marginBottom: 15,
-    fontWeight: "bold"
+    fontWeight: 'bold',
+    fontSize: 17,
+    marginLeft: 10,
+    width: 200
   },
   heartIcon : {
     color: "red",
+    marginBottom: 5
   },
 
 //Recipe Page
@@ -127,14 +128,14 @@ containerRC: {
   borderRadius: 0,
   elevation: 2,
   flexDirection: 'column',
-  marginVertical: 0,
+  marginTop: 0,
+  marginBottom: 0,
   overflow: 'hidden',
   width: '100%',
   height: '100%',
 },
 imageContainer: {
-  width: "100%",
-  height: 170
+  height: 150,
 },
 imageRC: {
   height: '100%',
@@ -179,28 +180,22 @@ ingText: {
 titletext: {
   fontSize: 26,
   fontWeight: 'bold',
-  marginVertical: 10,
+  marginLeft: 11,
+  marginRight: 11
 },
 categoryname: {
   fontSize: 20,
   fontWeight: 'bold',
-  marginVertical: 10,
+  marginTop: 20,
+  marginBottom: 10,
+  marginLeft: 11,
+  marginRight: 11
 },
 categoryline: {
   backgroundColor: '#94B49F',
   height: 5,
-  width: 500,
-  marginBottom: 10,
-},
-heartIcon: {
-  position: 'absolute',
-  bottom: 120,
-  left: 300,
-},
-shareIcon: {
-  position: 'absolute',
-  bottom: 80,
-  left: 300,
+  width: '100%',
+  marginTop: 12
 },
 trashIcon: {
   position: 'absolute',
@@ -213,7 +208,8 @@ trashIcon: {
     backgroundColor: '#94B49F',
     padding: 10,
     borderRadius: 5,
-    marginVertical: 10,
+    marginTop: 0,
+    marginBottom: 0,
     alignSelf: 'center',
   },
   deleteAllButtonText: {
@@ -241,7 +237,10 @@ trashIcon: {
   },
   recipeCardContainerF: {
     flexDirection: 'row',
-    margin: 10,
+    marginLeft: 11,
+    marginRight: 11,
+    marginTop: 8,
+    marginBottom: 8,
     backgroundColor: '#fff',
     borderRadius: 10,
     elevation: 2,
@@ -250,7 +249,10 @@ trashIcon: {
     shadowOpacity: 0.2,
     shadowRadius: 1,
     padding: 10,
-    width: '95%',
+    justifyContent: 'space-around'
+  },
+  iconContainer: {
+    flexDirection: 'column',
   },
   searchContainer: {
     flexDirection: 'row',
@@ -267,8 +269,10 @@ trashIcon: {
     width: "80%",
     backgroundColor: "white",
     borderRadius: 20,
-    paddingHorizontal: 25,
-    paddingVertical: 50,
+    paddingLeft: 25,
+    paddingRight: 25,
+    paddingTop: 50,
+    paddingBottom: 50,
     height: '80%'
   },
   modalContent: {
@@ -315,11 +319,15 @@ trashIcon: {
     fontWeight: "bold",
     textAlign: "center",
     fontSize: 20,
+    marginTop: 20,
+    marginBottom: 5
   },
   greetingText2 : {
     fontWeight: "bold",
     textAlign: "center",
     fontSize: 15,
+    marginTop: 5,
+    marginBottom: 20
   },
   loginContainer: {
     flex: 1,
@@ -355,13 +363,14 @@ trashIcon: {
   },
   loginButtonContainer: {
     width: '80%',
-    marginTop: 16,
+    marginTop: 15,
   },
   loginButton: {
     backgroundColor: '#94B49F',
-    padding: 16,
+    padding: 15,
     borderRadius: 8,
     alignItems: 'center',
+    flexDirection: 'row'
   },
   loginButtonText: {
     color: '#fff',
@@ -390,6 +399,7 @@ trashIcon: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'space-evenly',
+    marginTop: 20
   },
   profileContent: {
     alignItems: 'center',
@@ -398,21 +408,24 @@ trashIcon: {
   profileTitle: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 10,
+    marginBottom: 5
   },
   profileImage: {
     width: 150,
     height: 150,
     borderRadius: 75,
-    marginBottom: 20,
+    marginTop: 15,
+    marginBottom: 15
   },
   profileButton: {
     fontSize: 18,
     fontWeight: 'bold',
     color: '#fff',
     backgroundColor: '#94B49F',
-    paddingHorizontal: 20,
-    paddingVertical: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 10,
+    paddingBottom: 10,
     borderRadius: 5,
     width: 200,
     textAlign: 'center',

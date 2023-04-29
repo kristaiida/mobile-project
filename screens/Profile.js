@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Image, Alert } from 'react-native';
-
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getUserDetails, logOut } from '../components/Auth';
+import { Entypo } from '@expo/vector-icons';
 import styles from '../styles/styles';
 
 export default function Profile() {
@@ -76,12 +76,13 @@ export default function Profile() {
           style={styles.profileImage}
         />
         <View style={styles.loginButtonContainer}>
-        <TouchableOpacity
-          style={styles.loginButton}
-          onPress={handlePressFavorites}
-        >
-          <Text style={styles.loginButtonText}>My Favorite Recipes</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.loginButton}
+            onPress={handlePressFavorites}
+          >
+            <Entypo name="heart" size={24} color="white" />
+            <Text style={styles.loginButtonText}>My Favorites</Text>
+          </TouchableOpacity>
       </View>
       </View>
       <View>

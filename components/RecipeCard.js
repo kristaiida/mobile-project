@@ -73,7 +73,7 @@ export default function RecipeCard({ recipe, screen }) {
         }
       } else {
         favoriteRecipes.push(recipe);
-        Alert.alert('Recipe added to favorites');
+        Alert.alert('Recipe added to Favorites');
       }
       setIsFavorite(!isFavorite);
       await AsyncStorage.setItem(
@@ -88,9 +88,10 @@ export default function RecipeCard({ recipe, screen }) {
   return (
     <View>
       <TouchableOpacity onPress={openRecipePage}>
-        <View style={styles.recipeCardContainer}>
-          <View style={styles.imageContainer}>
-            <Image style={styles.image} source={{ uri: recipe.thumbnail_url }} />
+        <View style={styles.recipeCardContainerF}>
+          <Image style={styles.image} source={{ uri: recipe.thumbnail_url }} />
+          <Text style={styles.recipeCardTextFrontPage}>{recipe.name}</Text>
+          <View style={styles.iconContainer}>
             <TouchableOpacity onPress={handlePress}>
               <Icon
                 name={isFavorite ? 'heart' : 'heart-outline'}
@@ -108,9 +109,8 @@ export default function RecipeCard({ recipe, screen }) {
               />
             </TouchableOpacity>
           </View>
-          <Text style={styles.recipeCardTextFrontPage}>{recipe.name}</Text>
         </View>
       </TouchableOpacity>
     </View>
-  );
+  );  
 }
