@@ -80,14 +80,14 @@ export default function Profile() {
             style={styles.loginButton}
             onPress={handlePressFavorites}
           >
-            <Entypo name="heart" size={24} color="white" />
+            <Entypo name="heart" size={24} color="white" paddingRight={10}/>
             <Text style={styles.loginButtonText}>My Favorites</Text>
           </TouchableOpacity>
       </View>
       </View>
       <View>
         <TouchableOpacity onPress={() => navigation.navigate('ChangePwScreen', {username: username})}>
-          <Text>Change password</Text>
+          <Text style={styles.changePw}>Change password</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.profileLogoutWrapper}>

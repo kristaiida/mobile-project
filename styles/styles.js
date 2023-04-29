@@ -447,5 +447,11 @@ trashIcon: {
     justifyContent: 'flex-end',
     marginBottom: 30,
   },
+  changePw: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    paddingTop: 15
+  }
 
 });
