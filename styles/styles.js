@@ -51,7 +51,7 @@ export default StyleSheet.create({
   },
 // Search
   listC: {
-    height: "90%",
+    height: "100%",
     flexDirection: 'column',
   },
   title: {
@@ -115,7 +115,7 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 17,
     marginLeft: 10,
-    width: 150
+    width: 200
   },
   heartIcon : {
     color: "red",
@@ -135,7 +135,7 @@ containerRC: {
   height: '100%',
 },
 imageContainer: {
-  height: 200,
+  height: 150,
 },
 imageRC: {
   height: '100%',
@@ -205,7 +205,7 @@ trashIcon: {
 
 //Favorite.js, more in favStyles.js as those can't be in this file
   deleteAllButton: {
-    backgroundColor: '#ff0000',
+    backgroundColor: '#94B49F',
     padding: 10,
     borderRadius: 5,
     marginTop: 0,
@@ -447,11 +447,13 @@ trashIcon: {
     justifyContent: 'flex-end',
     marginBottom: 30,
   },
-  changePw: {
-    fontSize: 14,
+
+  changePWText : {
+    color: '#555',
     fontWeight: 'bold',
-    textAlign: 'center',
-    paddingTop: 15
-  }
+    fontSize: 18,
+    marginTop: 210,
+    textAlign: "center"
+  }, 
 
 });
