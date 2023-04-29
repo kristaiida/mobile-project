@@ -51,7 +51,7 @@ export default StyleSheet.create({
   },
 // Search
   listC: {
-    height: "90%",
+    height: "100%",
     flexDirection: 'column',
   },
   title: {
@@ -447,5 +447,13 @@ trashIcon: {
     justifyContent: 'flex-end',
     marginBottom: 30,
   },
+
+  changePWText : {
+    color: '#555',
+    fontWeight: 'bold',
+    fontSize: 18,
+    marginTop: 210,
+    textAlign: "center"
+  }, 
 
 });

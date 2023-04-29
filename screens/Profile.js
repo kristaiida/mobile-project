@@ -87,7 +87,7 @@ export default function Profile() {
       </View>
       <View>
         <TouchableOpacity onPress={() => navigation.navigate('ChangePwScreen', {username: username})}>
-          <Text>Change password</Text>
+          <Text style= {styles.changePWText}>Change password</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.profileLogoutWrapper}>
