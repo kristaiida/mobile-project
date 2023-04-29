@@ -115,7 +115,7 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 17,
     marginLeft: 10,
-    width: 200
+    width: 150
   },
   heartIcon : {
     color: "red",
@@ -135,7 +135,7 @@ containerRC: {
   height: '100%',
 },
 imageContainer: {
-  height: 150,
+  height: 200,
 },
 imageRC: {
   height: '100%',
@@ -199,13 +199,13 @@ categoryline: {
 },
 trashIcon: {
   position: 'absolute',
-  bottom: 60,
-  left: 300,
+  bottom: 55,
+  left: 315,
 },
 
 //Favorite.js, more in favStyles.js as those can't be in this file
   deleteAllButton: {
-    backgroundColor: '#94B49F',
+    backgroundColor: '#ff0000',
     padding: 10,
     borderRadius: 5,
     marginTop: 0,
