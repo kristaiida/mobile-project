@@ -381,7 +381,8 @@ trashIcon: {
   loginButtonText: {
     color: '#fff',
     fontWeight: 'bold',
-    fontSize: 16
+    fontSize: 16,
+    paddingLeft: 10
   },
   loginRegisterContainer: {
     flexDirection: 'row',
