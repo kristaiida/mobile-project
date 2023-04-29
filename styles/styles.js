@@ -343,7 +343,12 @@ trashIcon: {
   loginTitle: {
     fontSize: 32,
     fontWeight: 'bold',
-    marginBottom: 24,
+  },
+  loginFont: {
+    fontSize: 40,
+    width: 200,
+    height: 60,
+    paddingLeft: 12
   },
   loginInputContainer: {
     width: '80%',
@@ -362,7 +367,7 @@ trashIcon: {
     height: 48,
   },
   loginButtonContainer: {
-    width: '80%',
+    width: '70%',
     marginTop: 15,
   },
   loginButton: {
@@ -370,12 +375,13 @@ trashIcon: {
     padding: 15,
     borderRadius: 8,
     alignItems: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    justifyContent: 'center'
   },
   loginButtonText: {
     color: '#fff',
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: 16
   },
   loginRegisterContainer: {
     flexDirection: 'row',

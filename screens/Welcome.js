@@ -9,7 +9,10 @@ export default Welcome = ({ navigation }) => {
                 source={require('../assets/logo.png')}
                 style={styles.loginLogo}
             />
-            <Text style={styles.loginTitle}>Welcome to RecipePal!</Text>
+            <Text style={styles.loginTitle}>Welcome to </Text>
+            <Text style={[styles.loginFont,
+                        { fontFamily: 'kaushanScript' },
+                        ]}>RecipePal</Text>
             <View style={styles.loginButtonContainer}>
                 <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate('Login')}>
                     <Text style={styles.loginButtonText}>Login</Text>
