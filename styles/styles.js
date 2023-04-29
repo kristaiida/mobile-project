@@ -370,7 +370,8 @@ trashIcon: {
     padding: 15,
     borderRadius: 8,
     alignItems: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    justifyContent: 'center'
   },
   loginButtonText: {
     color: '#fff',
