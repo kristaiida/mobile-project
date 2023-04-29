@@ -200,7 +200,7 @@ categoryline: {
 trashIcon: {
   position: 'absolute',
   bottom: 55,
-  left: 315,
+  left: 315
 },
 
 //Favorite.js, more in favStyles.js as those can't be in this file
