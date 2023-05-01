@@ -53,7 +53,7 @@ export default function RecipeCard({ recipe, screen }) {
     } else if (screen === 'SearchScreen') {
       navigation.navigate('SearchRecipePageScreen', { recipe: recipe });
     } else if (screen === 'FavoritesScreen') {
-      navigation.navigate('FavoritesRecipePageScreen', { recipe: recipe });
+      navigation.navigate('ProfileRecipePageScreen', { recipe: recipe });
     }
   };
 
