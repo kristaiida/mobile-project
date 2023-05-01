@@ -11,10 +11,11 @@ import { UseGreeting } from '../components/Greeting';
 export default function Home() {
 
   const [username, setUsername] = useState('');
+  const [meals, setMeals] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const fadeAnim = useRef(new Animated.Value(0)).current;
-  const greeting = UseGreeting();
+  const { greeting, meal } = UseGreeting();
 
   useEffect(() => {
     const fetchUserDetails = async () => {
@@ -23,6 +24,42 @@ export default function Home() {
     };
     fetchUserDetails();
   }, []);
+
+  useEffect(() => {
+    if (meal !== '') { // add a condition to check if meal is not an empty string
+      const url = 'https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&tags=' + meal;
+      console.log(url);
+      const options = {
+        method: 'GET',
+        headers: {
+          'X-RapidAPI-Key': API_KEY,
+          'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
+        }
+      };
+      fetch(url, options)
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error('Network response was not ok');
+          };
+        })
+        .then(
+          (result) => {
+            const apiMeals = [];
+            for (let i = 0; i < result.results.length; i++) {
+              if (!result.results[i].recipes) {
+                apiMeals.push(result.results[i]);
+              };
+            };
+            setMeals(apiMeals);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+    }
+  }, [meal]);    
 
   useEffect(() => {
     const options = {
@@ -77,8 +114,14 @@ export default function Home() {
         <Animated.View style={{ opacity: fadeAnim }}>
           <ScrollView>
             <View>
-          <Text style={styles.greetingText}>{greeting} {username}!</Text>
-          <Text style={styles.greetingText2}>Would you like to try some of these recipes?</Text>
+              <Text style={styles.greetingText}>{greeting} {username}!</Text>
+              <Text style={styles.greetingText2}>Would you like to try some of these recipes?</Text>
+            </View>
+            <View>
+              <Text style={styles.categoryname}>{meal}</Text>
+              {meals.map((meal) => (
+                <RecipeCard key={meal.id} recipe={meal} screen={'HomeScreen'} />
+              ))}
             </View>
             <Text style={styles.titletext}>Trending{'\u{1F525}'}</Text>
             {categories.map((category, index) => (
