@@ -1,5 +1,5 @@
 import React from "react";
-import { TextInput, View, Keyboard, Button } from "react-native";
+import { TextInput, View, Keyboard, TouchableOpacity, Text } from "react-native";
 import { Feather, Entypo } from "@expo/vector-icons";
 import styles from "../styles/styles";
 
@@ -38,13 +38,14 @@ const SearchBar = (props) => {
       </View>
       {props.clicked && (
         <View>
-          <Button
-            title="Cancel"
+          <TouchableOpacity
             onPress={() => {
               Keyboard.dismiss();
               props.setClicked(false);
             }}
-          ></Button>
+          >
+            <Text>Cancel</Text>
+          </TouchableOpacity>
         </View>
       )}
     </View>

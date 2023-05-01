@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { View, SafeAreaView, ActivityIndicator, Text, Modal, TouchableOpacity, ScrollView } from "react-native";
 import { CheckBox } from "react-native-elements";
 import { Feather } from '@expo/vector-icons';
@@ -50,6 +50,14 @@ const Search = () => {
   }, []);  
 
   useEffect(() => {
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': API_KEY,
+        'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
+      }
+    };
+  
     const criteria = 'https://tasty.p.rapidapi.com/recipes/list?from=0&size=30';
     let queryString = '';
   
@@ -61,14 +69,6 @@ const Search = () => {
       const tagNames = selectedTags.map(tag => tag.name).join(',');
       queryString += '&tags=' + tagNames;
     }
-  
-    const options = {
-      method: 'GET',
-      headers: {
-        'X-RapidAPI-Key': API_KEY,
-        'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
-      }
-    };
   
     const fetchData = () => {
       fetch(criteria + queryString, options)
@@ -93,10 +93,11 @@ const Search = () => {
   
     const timer = setTimeout(() => {
       fetchData();
-    }, 250);
+    }, 1000);
   
     return () => clearTimeout(timer);
-  }, [searchPhrase, selectedTags]);
+  }, [searchPhrase, selectedTags]);  
+  
   
     const handleShowTagTypes = () => {
       setShowTagTypes(!showTagTypes);
@@ -110,9 +111,9 @@ const Search = () => {
       })      
     };
 
-    const handleTagSelect = (tag) => {
+    const handleTagSelect = useCallback((tag) => {
       setSelectedTags((prev) => [...prev, tag]);
-    }
+    }, []);
 
     return (
       <View style={styles.searchScreenContainer}>
@@ -130,7 +131,7 @@ const Search = () => {
             onPress={handleShowTagTypes}
           />
         </View>
-        <View style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-start', justifyContent: 'flex-start' }}>
+        <View style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
           {selectedTags.map((tag) => (
             <CheckBox
               key={tag.id}
@@ -194,7 +195,7 @@ const Search = () => {
                                         if (selectedTags.includes(tag)) {
                                           setSelectedTags(selectedTags.filter((t) => t.id !== tag.id));
                                         } else {
-                                          setSelectedTags([...selectedTags, tag]);
+                                          handleTagSelect(tag);
                                         }
                                       }}
                                     />
