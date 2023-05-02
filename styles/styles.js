@@ -189,7 +189,8 @@ categoryname: {
   marginTop: 20,
   marginBottom: 10,
   marginLeft: 11,
-  marginRight: 11
+  marginRight: 11,
+  textTransform: 'capitalize'
 },
 categoryline: {
   backgroundColor: '#94B49F',
@@ -324,8 +325,7 @@ trashIcon: {
     fontWeight: "bold",
     textAlign: "center",
     fontSize: 15,
-    marginTop: 5,
-    marginBottom: 20
+    marginTop: 5
   },
   loginContainer: {
     flex: 1,
