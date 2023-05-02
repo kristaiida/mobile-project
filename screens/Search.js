@@ -129,6 +129,7 @@ const Search = () => {
             size={24}
             color="black"
             onPress={handleShowTagTypes}
+            style={{alignSelf: 'center'}}
           />
         </View>
         <View style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
@@ -147,7 +148,7 @@ const Search = () => {
             />
           ))}
         </View>
-        <View style={styles.listContainer}>
+        <View>
           { stillData.length === 0 ? (
             <ActivityIndicator size="large" color="#000" />
           ) : (

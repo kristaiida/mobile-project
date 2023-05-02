@@ -79,7 +79,7 @@ export default StyleSheet.create({
   searchBar_clicked: {
     padding: 10,
     flexDirection: "row",
-    width: "75%",
+    width: "81%",
     backgroundColor: "#d9dbda",
     borderRadius: 15,
     alignItems: "center",
@@ -145,9 +145,9 @@ imageRC: {
 lineRC: {
   backgroundColor: '#94B49F',
   height: 5,
-  width: '93%',
-  marginBottom: 10,
-  marginTop: 10,
+  width: '97%',
+  marginBottom: 12,
+  marginTop: 12,
   alignSelf: 'center',
 },
 textContainer: {
@@ -160,28 +160,36 @@ titleRC: {
   fontSize: 24,
   fontWeight: 'bold',
   marginTop: 10,
-  marginBottom: 5,
+  marginBottom: 1,
+  textAlign: 'center'
 },
 descriptionRC: {
   fontSize: 16,
   fontStyle: 'italic',
+  marginTop: 12,
+  marginBottom: 5,
+  marginLeft: 5,
+  marginRight: 5
 },
 ingTitle: {
  fontSize: 20,
  fontWeight: 'bold',
  marginBottom: 10,
  marginLeft: 10,
+ marginRight: 10
 },
 ingText: {
   fontSize: 16,
   marginLeft: 10,
+  marginRight: 10,
   marginBottom: 10,
 },
 titletext: {
   fontSize: 26,
   fontWeight: 'bold',
   marginLeft: 11,
-  marginRight: 11
+  marginRight: 11,
+  marginTop: 10
 },
 categoryname: {
   fontSize: 20,
@@ -189,7 +197,8 @@ categoryname: {
   marginTop: 20,
   marginBottom: 10,
   marginLeft: 11,
-  marginRight: 11
+  marginRight: 11,
+  textTransform: 'capitalize'
 },
 categoryline: {
   backgroundColor: '#94B49F',
@@ -329,8 +338,7 @@ shareIcon: {
     fontWeight: "bold",
     textAlign: "center",
     fontSize: 15,
-    marginTop: 5,
-    marginBottom: 20
+    marginTop: 5
   },
   loginContainer: {
     flex: 1,

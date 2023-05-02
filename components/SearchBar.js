@@ -39,6 +39,7 @@ const SearchBar = (props) => {
       {props.clicked && (
         <View>
           <TouchableOpacity
+            style={{marginLeft: 5}}
             onPress={() => {
               Keyboard.dismiss();
               props.setClicked(false);

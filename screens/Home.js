@@ -27,7 +27,7 @@ export default function Home() {
 
   useEffect(() => {
     if (meal !== '') { // add a condition to check if meal is not an empty string
-      const url = 'https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&tags=' + meal;
+      const url = 'https://tasty.p.rapidapi.com/recipes/list?from=0&size=10&tags=' + meal;
       console.log(url);
       const options = {
         method: 'GET',
@@ -115,7 +115,7 @@ export default function Home() {
           <ScrollView>
             <View>
               <Text style={styles.greetingText}>{greeting} {username}!</Text>
-              <Text style={styles.greetingText2}>Would you like to try some of these recipes?</Text>
+              <Text style={styles.greetingText2}>It's about time for {meal}. {"\n"} Would you like to try some of these recipes?</Text>
             </View>
             <View>
               <Text style={styles.categoryname}>{meal}</Text>
