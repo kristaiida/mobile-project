@@ -79,7 +79,7 @@ export default StyleSheet.create({
   searchBar_clicked: {
     padding: 10,
     flexDirection: "row",
-    width: "75%",
+    width: "81%",
     backgroundColor: "#d9dbda",
     borderRadius: 15,
     alignItems: "center",
@@ -188,7 +188,8 @@ titletext: {
   fontSize: 26,
   fontWeight: 'bold',
   marginLeft: 11,
-  marginRight: 11
+  marginRight: 11,
+  marginTop: 10
 },
 categoryname: {
   fontSize: 20,

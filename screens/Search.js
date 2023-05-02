@@ -129,6 +129,7 @@ const Search = () => {
             size={24}
             color="black"
             onPress={handleShowTagTypes}
+            style={{alignSelf: 'center'}}
           />
         </View>
         <View style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>

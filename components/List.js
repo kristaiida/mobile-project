@@ -19,6 +19,8 @@ const List = ({ searchPhrase, tags, setClicked, data }) => {
     return matchesSearchPhrase && hasSelectedTags;
   });
 
+  console.log(filteredData); // Add this line to log filteredData
+
   const renderItem = ({ item }) => {
     const itemName = item.name?.trim();
     const itemDetails = item.details?.trim();
