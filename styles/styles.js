@@ -198,8 +198,6 @@ categoryline: {
   marginTop: 12
 },
 trashIcon: {
-  position: 'absolute',
-  bottom: 55,
   left: 315
 },
 
