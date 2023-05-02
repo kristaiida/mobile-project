@@ -109,7 +109,7 @@ export default StyleSheet.create({
   },
   recipeCardContainer: {
     flexDirection: "row",
-    width: "45%",
+    width: "45%"
   },
   recipeCardTextFrontPage: {
     fontWeight: 'bold',
@@ -119,7 +119,7 @@ export default StyleSheet.create({
   },
   heartIcon : {
     color: "red",
-    marginBottom: 5
+    marginTop: 4
   },
 
 //Recipe Page
@@ -198,7 +198,12 @@ categoryline: {
   marginTop: 12
 },
 trashIcon: {
-  left: 315
+  left: "87%",
+  bottom: 43
+},
+shareIcon: {
+  marginTop: 20,
+  color: "#04967d"
 },
 
 //Favorite.js, more in favStyles.js as those can't be in this file
@@ -225,7 +230,7 @@ trashIcon: {
   },
   recipeTextContainer: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   recipeImage: {
     width: 100,
@@ -247,8 +252,8 @@ trashIcon: {
     shadowOpacity: 0.2,
     shadowRadius: 1,
     padding: 10,
-    justifyContent: 'space-around'
-  },
+    justifyContent: 'space-around',
+    },
   iconContainer: {
     flexDirection: 'column',
   },
