@@ -147,7 +147,7 @@ const Search = () => {
             />
           ))}
         </View>
-        <View style={styles.listContainer}>
+        <View>
           { stillData.length === 0 ? (
             <ActivityIndicator size="large" color="#000" />
           ) : (

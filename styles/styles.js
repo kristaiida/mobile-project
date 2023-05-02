@@ -145,9 +145,9 @@ imageRC: {
 lineRC: {
   backgroundColor: '#94B49F',
   height: 5,
-  width: '93%',
-  marginBottom: 10,
-  marginTop: 10,
+  width: '97%',
+  marginBottom: 12,
+  marginTop: 12,
   alignSelf: 'center',
 },
 textContainer: {
@@ -160,21 +160,28 @@ titleRC: {
   fontSize: 24,
   fontWeight: 'bold',
   marginTop: 10,
-  marginBottom: 5,
+  marginBottom: 1,
+  textAlign: 'center'
 },
 descriptionRC: {
   fontSize: 16,
   fontStyle: 'italic',
+  marginTop: 12,
+  marginBottom: 5,
+  marginLeft: 5,
+  marginRight: 5
 },
 ingTitle: {
  fontSize: 20,
  fontWeight: 'bold',
  marginBottom: 10,
  marginLeft: 10,
+ marginRight: 10
 },
 ingText: {
   fontSize: 16,
   marginLeft: 10,
+  marginRight: 10,
   marginBottom: 10,
 },
 titletext: {
