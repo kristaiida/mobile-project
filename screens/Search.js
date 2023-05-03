@@ -5,6 +5,7 @@ import { Feather } from '@expo/vector-icons';
 import { API_KEY } from '../Api_Key';
 import List from "../components/List";
 import SearchBar from "../components/SearchBar";
+import { debounce } from 'lodash';
 import styles from "../styles/styles";
 
 const Search = () => {
@@ -16,6 +17,8 @@ const Search = () => {
   const [showTagTypes, setShowTagTypes] = useState(false);
   const [showTags, setShowTags] = useState(false);
   const [selectedTags, setSelectedTags] = useState([]);
+  const [showActivityIndicator, setShowActivityIndicator] = useState(false);
+  const [noResults, setNoResults] = useState(false);
 
   useEffect(() => {
     const options = {
@@ -47,30 +50,28 @@ const Search = () => {
       .catch(error => {
         console.log(error);
       });
-  }, []);  
+  }, []);
 
-  useEffect(() => {
-    const options = {
-      method: 'GET',
-      headers: {
-        'X-RapidAPI-Key': API_KEY,
-        'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
-      }
-    };
-  
-    const criteria = 'https://tasty.p.rapidapi.com/recipes/list?from=0&size=30';
-    let queryString = '';
-  
-    if (searchPhrase) {
-      queryString += '&q=' + searchPhrase;
-    }
-  
-    if (selectedTags.length > 0) {
-      const tagNames = selectedTags.map(tag => tag.name).join(',');
-      queryString += '&tags=' + tagNames;
-    }
-  
-    const fetchData = () => {
+  const handleSearchDebounced = useCallback(
+    debounce((searchPhrase, selectedTags) => {
+      setNoResults(false);
+      setShowActivityIndicator(true);
+      const options = {
+        method: 'GET',
+        headers: {
+          'X-RapidAPI-Key': API_KEY,
+          'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
+        }
+      };
+      const criteria = 'https://tasty.p.rapidapi.com/recipes/list?from=0&size=50';
+      let queryString = '';
+      if (searchPhrase) {
+        queryString += '&q=' + searchPhrase;
+      };
+      if (selectedTags.length > 0) {
+        const tagNames = selectedTags.map(tag => tag.name).join(',');
+        queryString += '&tags=' + tagNames;
+      };
       fetch(criteria + queryString, options)
         .then(response => response.json())
         .then(
@@ -82,38 +83,40 @@ const Search = () => {
               }
             }
             setStillData(filteredResults);
+            if (filteredResults.length === 0) {
+              setNoResults(true);
+            };
             console.log(selectedTags);
             console.log(criteria + queryString);
           },
           (error) => {
             console.log(error);
           }
-        );
-    };
-  
-    const timer = setTimeout(() => {
-      fetchData();
-    }, 1000);
-  
-    return () => clearTimeout(timer);
-  }, [searchPhrase, selectedTags]);  
-  
-  
-    const handleShowTagTypes = () => {
-      setShowTagTypes(!showTagTypes);
-    };
-    
-    const handleShowTags = (type) => {
-      setShowTags((prev) => {
-        const newState = Object.assign({}, prev);
-        newState[type] = !newState[type];
-        return newState;
-      })      
-    };
+        )
+        .finally(() => setShowActivityIndicator(false));
+    }, 500),
+    []
+  );  
 
-    const handleTagSelect = useCallback((tag) => {
-      setSelectedTags((prev) => [...prev, tag]);
-    }, []);
+  useEffect(() => {
+    handleSearchDebounced(searchPhrase, selectedTags);
+  }, [searchPhrase, selectedTags, handleSearchDebounced]);   
+  
+  const handleShowTagTypes = () => {
+    setShowTagTypes(!showTagTypes);
+  };
+    
+  const handleShowTags = (type) => {
+    setShowTags((prev) => {
+      const newState = { ...prev };
+      newState[type] = !newState[type];
+      return newState;
+    });
+  };     
+
+  const handleTagSelect = useCallback((tag) => {
+    setSelectedTags((prev) => [...prev, tag]);
+  }, []);
 
     return (
       <View style={styles.searchScreenContainer}>
@@ -132,7 +135,7 @@ const Search = () => {
             style={{alignSelf: 'center'}}
           />
         </View>
-        <View style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
+        <View style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-start', marginleft: 5, marginRight: 5}}>
           {selectedTags.map((tag) => (
             <CheckBox
               key={tag.id}
@@ -148,17 +151,23 @@ const Search = () => {
             />
           ))}
         </View>
-        <View>
-          { stillData.length === 0 ? (
+        <View contentContainerStyle={{ padding: 0, margin: 0 }}>
+        {showActivityIndicator ? (
+          <View style={{justifyContent: 'center', alignItems: 'center', margin: 20}}>
             <ActivityIndicator size="large" color="#000" />
-          ) : (
-            <List
-              searchPhrase={searchPhrase}
-              tags={selectedTags}
-              data={stillData}
-              setClicked={setClicked}
-            />
-          ) }
+          </View>
+        ) : noResults ? (
+          <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 20}}>
+            <Text style={{fontSize: 20, fontWeight: 'bold'}}>No results</Text>
+          </View>
+        ) : (
+          <List
+            searchPhrase={searchPhrase}
+            tags={selectedTags}
+            data={stillData}
+            setClicked={setClicked}
+          />
+        )}
         </View>
         <Modal
           visible={showTagTypes}
@@ -179,7 +188,7 @@ const Search = () => {
                       <View key={type}>
                         <TouchableOpacity key={type} style={styles.tagTypeContainer} onPress={() => handleShowTags(type)}>
                           <Text key={type} style={styles.tagType}>{type}</Text>
-                          <Feather name="chevron-down" size={24} color="black" />
+                          <Feather name={showTags[type] ? "chevron-left" : "chevron-down"} size={20} color="black" />
                         </TouchableOpacity>
                         <ScrollView>
                           {showTags[type] && (

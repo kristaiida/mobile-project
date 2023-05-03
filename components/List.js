@@ -22,7 +22,7 @@ const List = ({ searchPhrase, tags, setClicked, data }) => {
   };
 
   return (
-    <SafeAreaView style={styles.listC}>
+    <View style={styles.listC}>
       <View
         onStartShouldSetResponder={() => {
           setClicked(false);
@@ -35,7 +35,7 @@ const List = ({ searchPhrase, tags, setClicked, data }) => {
             extraData={[searchPhrase, tags]}
           />
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
