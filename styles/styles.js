@@ -399,6 +399,7 @@ shareIcon: {
   loginRegisterContainer: {
     flexDirection: 'row',
     marginTop: 16,
+    marginBottom: 20
   },
   loginRegisterText: {
     fontSize: 16,

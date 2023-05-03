@@ -54,6 +54,7 @@ export default function Signup({ navigation }) {
         onPress={() => {
           const nextIndex = (profilePictureIndex + 1) % profilePictures.length;
           setProfilePictureIndex(nextIndex);
+          pickProfilePicture();
         }}
       >
         <Text style={styles.loginInputLabel}>Profile Picture</Text>

@@ -8,6 +8,7 @@ import {
     updatePassword
 } from 'firebase/auth';
 import { auth, db, USERS_REF } from '../firebase/Config';
+import { getDownloadURL, ref as storageRef } from 'firebase/storage';
 
 export const signUp = async (username, email, password, profilePicture) => {
     try {
@@ -34,6 +35,7 @@ export const signIn = async (email, password) => {
     };
 };
 
+
 export const getUserDetails = async () => {
     const auth = getAuth();
     const user = auth.currentUser;
@@ -43,8 +45,18 @@ export const getUserDetails = async () => {
     const snapshot = await get(userRef);
     const userDetails = snapshot.val() || {};
   
+    // Get the profile picture download URL if it exists
+    if (userDetails.profilePicture) {
+      try {
+        const downloadURL = await getDownloadURL(storageRef(db, userDetails.profilePicture));
+        userDetails.profilePictureURL = downloadURL;
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  
     return userDetails;
-};  
+  }; 
 
 export const logOut = async () => {
     try {
