@@ -1,8 +1,6 @@
-import { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { ScrollView, Text, View, ActivityIndicator, Animated } from 'react-native';
-import { onValue, query, ref } from 'firebase/database';
 import { getUserDetails } from '../components/Auth';
-import { db, USERS_REF } from '../firebase/Config';
 import { API_KEY } from '../Api_Key';
 import styles from '../styles/styles';
 import RecipeCard from '../components/RecipeCard';
@@ -27,7 +25,7 @@ export default function Home() {
 
   useEffect(() => {
     if (meal !== '') { // add a condition to check if meal is not an empty string
-      const url = 'https://tasty.p.rapidapi.com/recipes/list?from=0&size=10&tags=' + meal;
+      const url = 'https://tasty.p.rapidapi.com/recipes/list?from=0&size=30&tags=' + meal;
       console.log(url);
       const options = {
         method: 'GET',
@@ -109,7 +107,11 @@ export default function Home() {
 
   return (
     <View style={styles.homeScreenContainer}>
-      {loading && <ActivityIndicator size="large" color="#000" />}
+      {loading &&
+        <View style={{justifyContent: 'center', alignItems: 'center', margin: 20}}>
+          <ActivityIndicator size="large" color="#000" />
+        </View>
+      }
       {!loading && (
         <Animated.View style={{ opacity: fadeAnim }}>
           <ScrollView>
