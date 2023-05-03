@@ -437,6 +437,13 @@ shareIcon: {
     marginTop: 15,
     marginBottom: 15
   },
+  profilePicture: {
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+    marginTop: 15,
+    marginBottom: 15
+  },
   profileButton: {
     fontSize: 18,
     fontWeight: 'bold',
