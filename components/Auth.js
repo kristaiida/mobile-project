@@ -9,13 +9,14 @@ import {
 } from 'firebase/auth';
 import { auth, db, USERS_REF } from '../firebase/Config';
 
-export const signUp = async (username, email, password) => {
+export const signUp = async (username, email, password, profilePicture) => {
     try {
         await createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             set(ref(db, USERS_REF + userCredential.user.uid), {
                 username: username,
-                email: userCredential.user.email
+                email: userCredential.user.email,
+                profilePicture: profilePicture
             });
         });
     } catch (error) {
@@ -69,3 +70,19 @@ export const changePassword = async (password) => {
         Alert.alert('Password change error. ', error.message);
     };
 };
+
+export const pickProfilePicture = async () => {
+    try {
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+      });
+      if (!result.cancelled) {
+        setProfilePicture(result.uri);
+      }
+    } catch (error) {
+      console.log('Error picking profile picture: ', error);
+    }
+  };

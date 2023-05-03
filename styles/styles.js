@@ -349,7 +349,8 @@ shareIcon: {
   loginLogo: {
     height: 125,
     width: 125,
-    marginBottom: 20
+    marginBottom: 20,
+    marginTop: 70
   },
   loginTitle: {
     fontSize: 32,

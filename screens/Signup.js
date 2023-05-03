@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert, Image } from 'react-native';
+import { ScrollView, View, Text, TextInput, TouchableOpacity, Alert, Image } from 'react-native';
 import { signUp } from '../components/Auth';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../firebase/Config';
+import { pickProfilePicture } from '../components/Auth';
 import styles from '../styles/styles';
 
 export default function Signup({ navigation }) {
+  const [profilePictureIndex, setProfilePictureIndex] = useState(0);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -33,13 +35,33 @@ export default function Signup({ navigation }) {
     };
   };
 
+  const profilePictures = [
+    require('../assets/chef1.png'),
+    require('../assets/chef2.png'),
+    require('../assets/chef3.png'),
+  ];
+
   return (
+    <ScrollView>
     <View style={styles.loginContainer}>
       <Image
         source={require('../assets/logo.png')}
         style={styles.loginLogo}
       />
       <Text style={styles.loginTitle}>Signup</Text>
+      <TouchableOpacity
+        style={styles.loginInputContainer}
+        onPress={() => {
+          const nextIndex = (profilePictureIndex + 1) % profilePictures.length;
+          setProfilePictureIndex(nextIndex);
+        }}
+      >
+        <Text style={styles.loginInputLabel}>Profile Picture</Text>
+        <Image
+          source={profilePictures[profilePictureIndex]}
+          style={styles.profilePicture}
+        />
+      </TouchableOpacity>
       <View style={styles.loginInputContainer}>
         <Text style={styles.loginInputLabel}>Username*</Text>
         <TextInput
@@ -95,5 +117,6 @@ export default function Signup({ navigation }) {
         </TouchableOpacity>
       </View>
     </View>
+    </ScrollView>
   );
 }
