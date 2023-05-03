@@ -1,13 +1,46 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, Image, TouchableOpacity, Alert, Share } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { db, FAVORITES_REF } from '../firebase/Config';
+import { ref, push, child, update, onValue } from 'firebase/database';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { FontAwesome } from '@expo/vector-icons';
 import styles from '../styles/styles';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getAuth } from 'firebase/auth';
 
 export default function RecipeCard({ recipe, screen }) {
   const navigation = useNavigation();
-  const [isFavorite, setIsFavorite] = useState(false);
+  const [isInFavorites, setIsInFavorites] = useState(false);
+
+  useEffect(() => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    const userUid = user.uid;
+    const favoriteRef = ref(db, FAVORITES_REF + userUid);
+    const checkFavoriteRecipe = async () => {
+      try {
+        const snapshot = onValue(favoriteRef, (snapshot) => {
+          const favoriteRecipes = snapshot.val();
+          if (favoriteRecipes) {
+            const isFavorite = Object.values(favoriteRecipes).some(
+              (favoriteRecipe) => favoriteRecipe.recipeId === recipe.id
+            );
+            setIsInFavorites(isFavorite);
+          } else {
+            setIsInFavorites(false);
+          }
+        });
+      } catch (error) {
+        console.log('Checking if recipe is a favorite failed. ', error.message);
+        Alert.alert('Checking if recipe is a favorite failed. ', error.message);
+      }
+    };    
+    checkFavoriteRecipe();
+  }, [recipe]);
+
+  useEffect(() => {
+    console.log("isInFavorites changed to:", isInFavorites);
+  }, [isInFavorites]);  
 
   const onShare = async (recipe) => {
     try {
@@ -29,24 +62,6 @@ export default function RecipeCard({ recipe, screen }) {
     }
   };
 
-  useEffect(() => {
-    const checkFavorite = async () => {
-      try {
-        const storedFavorites = await AsyncStorage.getItem('favoriteRecipes');
-        if (storedFavorites !== null) {
-          const parsedFavorites = JSON.parse(storedFavorites);
-          const found = parsedFavorites.some(
-            (favRecipe) => favRecipe.id === recipe.id
-          );
-          setIsFavorite(found);
-        }
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    checkFavorite();
-  }, [recipe.id]);
-
   const openRecipePage = () => {
     if (screen === 'HomeScreen') {
       navigation.navigate('HomeRecipePageScreen', { recipe: recipe });
@@ -58,33 +73,62 @@ export default function RecipeCard({ recipe, screen }) {
   };
 
   const handlePress = async () => {
-    try {
-      const storedFavorites = await AsyncStorage.getItem('favoriteRecipes');
-      let favoriteRecipes = [];
-      if (storedFavorites !== null) {
-        favoriteRecipes = JSON.parse(storedFavorites);
-      }
-      if (isFavorite) {
-        const index = favoriteRecipes.findIndex(
-          (favRecipe) => favRecipe.id === recipe.id
-        );
-        if (index > -1) {
-          favoriteRecipes.splice(index, 1);
-        }
-      } else {
-        favoriteRecipes.push(recipe);
-        Alert.alert('Recipe added to Favorites');
-      }
-      setIsFavorite(!isFavorite);
-      await AsyncStorage.setItem(
-        'favoriteRecipes',
-        JSON.stringify(favoriteRecipes)
-      );
-    } catch (e) {
-      console.log(e);
+    if (!isInFavorites) {
+      addToFavorites();
+    } else {
+      removeFromFavorites();
     }
-  };
+  };   
 
+  const addToFavorites = async () => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    const userUid = user.uid;
+    try {
+      const newFavoriteRecipe = {
+        recipeId: recipe.id
+      };
+      const newFavoriteRecipeKey = push(child(ref(db), FAVORITES_REF + userUid)).key;
+      const updates = {};
+      updates[FAVORITES_REF + userUid + '/' + newFavoriteRecipeKey] = newFavoriteRecipe;
+      await update(ref(db), updates);
+      setIsInFavorites(true); // add this line
+    } catch (error) {
+      console.log('Adding recipe to Favorites failed. ', error.message);
+      Alert.alert('Adding recipe to Favorites failed. ', error.message);
+    }
+  };  
+
+  const removeFromFavorites = async () => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    const userUid = user.uid;
+    try {
+      const favoriteRef = ref(db, FAVORITES_REF + userUid);
+      const snapshot = await onValue(favoriteRef, (snapshot) => {
+        const favoriteRecipes = snapshot.val();
+        if (!favoriteRecipes) {
+          // If favoriteRecipes is empty, return early
+          return;
+        }
+        const favoriteRecipeKey = Object.keys(favoriteRecipes).find(
+          (key) => favoriteRecipes[key].recipeId === recipe.id
+        );
+        if (favoriteRecipeKey) {
+          const updates = {};
+          updates[FAVORITES_REF + userUid + '/' + favoriteRecipeKey] = null;
+          return update(ref(db), updates);
+        }
+      });
+      setIsInFavorites(false);
+      console.log(isInFavorites);
+      return snapshot;
+    } catch (error) {
+      console.log('Removing recipe from Favorites failed. ', error.message);
+      Alert.alert('Removing recipe from Favorites failed. ', error.message);
+    }
+  };  
+    
   return (
     <View>
       <TouchableOpacity onPress={openRecipePage}>
@@ -93,12 +137,12 @@ export default function RecipeCard({ recipe, screen }) {
           <Text style={styles.recipeCardTextFrontPage}>{recipe.name}</Text>
           <View style={styles.iconContainer}>
             <TouchableOpacity onPress={handlePress}>
-              <Icon
-                name={isFavorite ? 'heart' : 'heart-outline'}
-                size={24}
-                color={isFavorite ? 'red' : 'black'}
-                style={styles.heartIcon}
-              />
+            <FontAwesome
+              name={screen === 'FavoritesScreen' ? 'trash' : (isInFavorites ? 'heart' : 'heart-o')}
+              size={24}
+              color={screen === 'FavoritesScreen' ? 'black' : 'red'}
+              style={styles.heartIcon}
+            />
             </TouchableOpacity>
             <TouchableOpacity onPress={() => onShare(recipe)}>
               <Icon

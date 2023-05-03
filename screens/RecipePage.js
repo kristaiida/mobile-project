@@ -21,7 +21,7 @@ export default function RecipePage({ route }) {
         </View>
         <View style={{flexDirection: 'row', alignItems:'center', justifyContent: 'center', marginBottom: 5}}>
           {recipe.prep_time_minutes && (
-            <View style={{flexDirection: 'row', marginRight: 5}}>
+            <View style={{flexDirection: 'row', marginRight: 10}}>
               <MaterialIcons name="access-time" size={24} color="black" style={{marginRight: 2}} />
               <Text style={{textAlign: 'center', alignSelf: 'center', fontWeight: 'bold'}}>
                 Prep time:{" "}
@@ -32,7 +32,7 @@ export default function RecipePage({ route }) {
             </View>
           )}
           {recipe.cook_time_minutes &&
-            <View style={{flexDirection: 'row', marginLeft: 5}}>
+            <View style={{flexDirection: 'row', marginLeft: 10}}>
               <MaterialIcons name="microwave" size={24} color="black" style={{marginRight: 2}} />
               <Text style={{textAlign: 'center', alignSelf: 'center', fontWeight: 'bold'}}>
                 Cook time:{" "}
