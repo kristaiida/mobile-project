@@ -1,5 +1,14 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert, Image } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Alert,
+  Image,
+  KeyboardAvoidingView,
+  Platform,
+} from 'react-native';
 import { signIn } from '../components/Auth';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../firebase/Config';
@@ -11,52 +20,51 @@ export default function Login({ navigation }) {
 
   const handlePress = () => {
     if (!email) {
-        Alert.alert('Email is required.');
+      Alert.alert('Email is required.');
     } else if (!password) {
-        Alert.alert('Password is required.');
+      Alert.alert('Password is required.');
     } else {
-        signIn(email, password);
-        onAuthStateChanged(auth, (user) => {
-          if (user) {
-            navigation.navigate('Main');
-          }
-        });        
-    };
-};
+      signIn(email, password);
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          navigation.navigate('Main');
+        }
+      });
+    }
+  };
 
   return (
-    <View style={styles.loginContainer}>
-      <Image
-        source={require('../assets/logo.png')}
-        style={styles.loginLogo}
-      />
-      <Text style={styles.loginTitle}>Login</Text>
+    <KeyboardAvoidingView
+      style={styles.loginContainer}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
+      <View style={styles.loginLogoAndTextContainer}>
+        <Image source={require('../assets/logo.png')} style={styles.loginLogo} />
+        <Text style={styles.loginTitle}>Login</Text>
+      </View>
       <View style={styles.loginInputContainer}>
         <Text style={styles.loginInputLabel}>Email*</Text>
         <TextInput
           style={styles.loginInput}
-          placeholder='Email*'
+          placeholder="Email*"
           value={email}
           onChangeText={(email) => setEmail(email.trim())}
-          keyboardType='email-address'
-          autoCapitalize='none'
+          keyboardType="email-address"
+          autoCapitalize="none"
         />
       </View>
       <View style={styles.loginInputContainer}>
         <Text style={styles.loginInputLabel}>Password*</Text>
         <TextInput
           style={styles.loginInput}
-          placeholder='Password*'
+          placeholder="Password*"
           value={password}
           onChangeText={(password) => setPassword(password)}
           secureTextEntry={true}
         />
       </View>
       <View style={styles.loginButtonContainer}>
-        <TouchableOpacity
-          style={styles.loginButton}
-          onPress={handlePress}
-        >
+        <TouchableOpacity style={styles.loginButton} onPress={handlePress}>
           <Text style={styles.loginButtonText}>Login</Text>
         </TouchableOpacity>
       </View>
@@ -66,6 +74,6 @@ export default function Login({ navigation }) {
           <Text style={styles.loginRegisterLink}>Signup</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
-};
+}

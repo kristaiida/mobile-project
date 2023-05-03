@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Alert, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TextInput, Alert, TouchableOpacity, Image, KeyboardAvoidingView } from 'react-native';
 import { changePassword } from '../components/Auth';
 import styles from '../styles/styles';
 
@@ -22,27 +22,32 @@ export default ChahngePw = ({ navigation, route }) => {
     };
 
     return (
-        <View style={styles.loginContainer}>
-        <Image
-          source={require('../assets/logo.png')}
-          style={styles.loginLogo}
-        />
-        <Text style={styles.loginTitle}>Change password</Text>
+      <KeyboardAvoidingView
+        style={styles.loginContainer}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      >
+        <View style={styles.loginLogoAndTextContainer}>
+          <Image
+            source={require('../assets/logo.png')}
+            style={styles.loginLogo}
+          />
+          <Text style={styles.loginTitle}>Change password</Text>
+        </View>
         <View style={styles.loginInputContainer}>
-          <Text style={styles.loginInputLabel}>Password*</Text>
+          <Text style={styles.loginInputLabel}>Password *</Text>
           <TextInput
             style={styles.loginInput}
-            placeholder='Password*'
+            placeholder='Password *'
             value={password}
             onChangeText={(pw) => setPassword(pw)}
             secureTextEntry={true}
           />
         </View>
         <View style={styles.loginInputContainer}>
-          <Text style={styles.loginInputLabel}>Confirm password*</Text>
+          <Text style={styles.loginInputLabel}>Confirm password *</Text>
           <TextInput
             style={styles.loginInput}
-            placeholder='Confirm password*'
+            placeholder='Confirm password *'
             value={confirmPassword}
             onChangeText={(cpw) => setConfirmPassword(cpw)}
             secureTextEntry={true}
@@ -61,6 +66,6 @@ export default ChahngePw = ({ navigation, route }) => {
             <Text style={styles.loginRegisterLink}>Cancel</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     );
 };

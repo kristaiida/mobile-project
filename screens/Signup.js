@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert, Image } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Alert, Image, KeyboardAvoidingView } from 'react-native';
 import { signUp } from '../components/Auth';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../firebase/Config';
@@ -34,26 +34,31 @@ export default function Signup({ navigation }) {
   };
 
   return (
-    <View style={styles.loginContainer}>
-      <Image
-        source={require('../assets/logo.png')}
-        style={styles.loginLogo}
-      />
-      <Text style={styles.loginTitle}>Signup</Text>
+    <KeyboardAvoidingView
+      style={styles.loginContainer}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
+      <View style={styles.loginLogoAndTextContainer}>
+        <Image
+          source={require('../assets/logo.png')}
+          style={styles.loginLogo}
+        />
+        <Text style={styles.loginTitle}>Signup</Text>
+      </View>
       <View style={styles.loginInputContainer}>
-        <Text style={styles.loginInputLabel}>Username*</Text>
+        <Text style={styles.loginInputLabel}>Username *</Text>
         <TextInput
           style={styles.loginInput}
-          placeholder='Username*'
+          placeholder='Username *'
           value={username}
           onChangeText={(uname) => setUsername(uname.trim())}
         />
       </View>
       <View style={styles.loginInputContainer}>
-        <Text style={styles.loginInputLabel}>Email*</Text>
+        <Text style={styles.loginInputLabel}>Email *</Text>
         <TextInput
           style={styles.loginInput}
-          placeholder='Email*'
+          placeholder='Email *'
           value={email}
           onChangeText={(email) => setEmail(email.trim())}
           keyboardType='email-address'
@@ -61,10 +66,10 @@ export default function Signup({ navigation }) {
         />
       </View>
       <View style={styles.loginInputContainer}>
-        <Text style={styles.loginInputLabel}>Password*</Text>
+        <Text style={styles.loginInputLabel}>Password *</Text>
         <TextInput
           style={styles.loginInput}
-          placeholder='Password*'
+          placeholder='Password *'
           value={password}
           onChangeText={(pw) => setPassword(pw)}
           secureTextEntry={true}
@@ -74,7 +79,7 @@ export default function Signup({ navigation }) {
         <Text style={styles.loginInputLabel}>Confirm password*</Text>
         <TextInput
           style={styles.loginInput}
-          placeholder='Confirm password*'
+          placeholder='Confirm password *'
           value={confirmPassword}
           onChangeText={(cpw) => setConfirmPassword(cpw)}
           secureTextEntry={true}
@@ -94,6 +99,6 @@ export default function Signup({ navigation }) {
           <Text style={styles.loginRegisterLink}>Login</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
