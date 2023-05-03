@@ -53,6 +53,11 @@ export default StyleSheet.create({
   listC: {
     height: "100%",
     flexDirection: 'column',
+    width: '100%',
+    marginLeft: 0,
+    marginRight: 0,
+    paddingLeft: 0,
+    paddingRight: 0
   },
   title: {
     fontSize: 20,
@@ -79,7 +84,7 @@ export default StyleSheet.create({
   searchBar_clicked: {
     padding: 10,
     flexDirection: "row",
-    width: "81%",
+    width: "80%",
     backgroundColor: "#d9dbda",
     borderRadius: 15,
     alignItems: "center",
@@ -118,10 +123,12 @@ export default StyleSheet.create({
     width: 150
   },
   heartIcon : {
-    color: "red",
-    marginTop: 4
+    marginTop: 4,
+    marginLeft: 3
   },
-
+  trashIcon: {
+    marginTop: 10
+  },
 //Recipe Page
 containerRC: {
   backgroundColor: '#fff',
@@ -166,6 +173,7 @@ titleRC: {
 descriptionRC: {
   fontSize: 16,
   fontStyle: 'italic',
+  textAlign: 'center',
   marginTop: 12,
   marginBottom: 5,
   marginLeft: 5,
@@ -220,14 +228,24 @@ shareIcon: {
     backgroundColor: '#ff0000',
     padding: 10,
     borderRadius: 5,
-    marginTop: 0,
-    marginBottom: 0,
-    alignSelf: 'center',
+    width: 100
   },
   deleteAllButtonText: {
     color: '#fff',
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  favoritesText: {
+    fontWeight: 'bold',
+    fontSize: 22
+  },
+  textAndButtonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginLeft: 16,
+    marginRight: 16,
+    marginBottom: 16
   },
   recipeDescription: {
     fontSize: 14,
@@ -294,7 +312,8 @@ shareIcon: {
     fontSize: 20,
     fontWeight: "bold",
     marginBottom: 10,
-    marginLeft: 5
+    marginLeft: 5,
+    alignSelf: 'center'
   },
   modalButton: {
     backgroundColor: "red",
@@ -307,7 +326,9 @@ shareIcon: {
     textAlign: "center"
   },
   tagType: {
-    padding: 5
+    padding: 5,
+    fontWeight: 'bold',
+    fontSize: 15
   },
   tagTypesContainer: {
     marginTop: 15,
@@ -359,11 +380,17 @@ shareIcon: {
     fontSize: 40,
     width: 200,
     height: 60,
-    paddingLeft: 12
+    paddingLeft: 12,
+    marginBottom: 10
   },
   loginInputContainer: {
     width: '80%',
     marginBottom: 16,
+  },
+  loginLogoAndTextContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 10
   },
   loginInputLabel: {
     fontWeight: 'bold',
@@ -417,7 +444,8 @@ shareIcon: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'space-evenly',
-    marginTop: 20
+    marginTop: 30,
+    marginBottom: 10
   },
   profileContent: {
     alignItems: 'center',
