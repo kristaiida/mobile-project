@@ -7,8 +7,8 @@ import { Entypo } from '@expo/vector-icons';
 import styles from '../styles/styles';
 
 export default function Profile() {
-
   const [username, setUsername] = useState('');
+  const [profilePicUrl, setProfilePicUrl] = useState('');
   const navigation = useNavigation();
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
 
@@ -16,6 +16,7 @@ export default function Profile() {
     const fetchUserDetails = async () => {
       const userDetails = await getUserDetails();
       setUsername(userDetails.username);
+      setProfilePicUrl(userDetails.profilePicUrl);
     };
     fetchUserDetails();
   }, []);
@@ -72,7 +73,7 @@ export default function Profile() {
       <View style={styles.profileContent}>
         <Text style={styles.profileTitle}>{username}'s Profile</Text>
         <Image
-          source={{ uri: 'https://via.placeholder.com/150' }}
+          source={{ uri: profilePicUrl }}
           style={styles.profileImage}
         />
         <View style={styles.loginButtonContainer}>

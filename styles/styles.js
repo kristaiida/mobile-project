@@ -370,7 +370,8 @@ shareIcon: {
   loginLogo: {
     height: 125,
     width: 125,
-    marginBottom: 20
+    marginBottom: 20,
+    marginTop: 70
   },
   loginTitle: {
     fontSize: 32,
@@ -425,6 +426,7 @@ shareIcon: {
   loginRegisterContainer: {
     flexDirection: 'row',
     marginTop: 16,
+    marginBottom: 20
   },
   loginRegisterText: {
     fontSize: 16,
@@ -457,6 +459,13 @@ shareIcon: {
     marginBottom: 5
   },
   profileImage: {
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+    marginTop: 15,
+    marginBottom: 15
+  },
+  profilePicture: {
     width: 150,
     height: 150,
     borderRadius: 75,
