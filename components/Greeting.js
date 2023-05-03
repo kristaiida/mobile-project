@@ -31,11 +31,12 @@ export function UseGreeting() {
       if (hours >= 17 && hours < 18) {
         setGreeting('😎 Good Afternoon');
       } else {
-        setGreeting('🥂 Good Evening');
+        setGreeting('😊 Good Evening');
       }
       setMeal('dinner');
-    } else { // set greeting to 'Go back to sleep' for other times
-      setGreeting('😴 Go Back to Sleep');
+    } else {
+      setGreeting('🥂 Up at this hour,');
+      setMeal('drinks');
     }
   }, []); 
 
