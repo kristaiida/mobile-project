@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useLayoutEffect, useRef } from "react";
 import { View, SafeAreaView, ActivityIndicator, Text, Modal, TouchableOpacity, ScrollView } from "react-native";
 import { CheckBox } from "react-native-elements";
 import { Feather } from '@expo/vector-icons';
@@ -19,6 +19,15 @@ const Search = () => {
   const [selectedTags, setSelectedTags] = useState([]);
   const [showActivityIndicator, setShowActivityIndicator] = useState(false);
   const [noResults, setNoResults] = useState(false);
+  const [tabBarHeight, setTabBarHeight] = useState(0);
+
+  const tabBarRef = useRef(null);
+
+  useLayoutEffect(() => {
+    if (tabBarRef.current) {
+      setTabBarHeight(tabBarRef.current.clientHeight);
+    }
+  }, [tabBarRef]);
 
   useEffect(() => {
     const options = {
