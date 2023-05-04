@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert, Image, KeyboardAvoidingView, ScrollView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Alert, Image, KeyboardAvoidingView, ScrollView, Dimensions } from 'react-native';
 import { signUp } from '../components/Auth';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../firebase/Config';
-import { pickProfilePicture } from '../components/Auth';
+import chef1 from '../assets/chef1.png';
+import chef2 from '../assets/chef2.png';
+import chef3 from '../assets/chef3.png';
 import styles from '../styles/styles';
 
 export default function Signup({ navigation }) {
-  const [profilePictureIndex, setProfilePictureIndex] = useState(0);
+  const [selectedPictureIndex, setSelectedPictureIndex] = useState(-1);
+  const [profilePicture, setProfilePicture] = useState(null);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [pictureRefs, setPictureRefs] = useState([null, null, null]); // add this line
+  const chefImages = [chef1, chef2, chef3];
+  const screenWidth = Dimensions.get('window').width;
 
   const handlePress = () => {
     if (!username) {
@@ -26,7 +32,7 @@ export default function Signup({ navigation }) {
     } else if (password !== confirmPassword) {
       Alert.alert('Passwords do not match.');
     } else {
-      signUp(username, email, password);
+      signUp(username, email, password, profilePicture);
       onAuthStateChanged(auth, (user) => {
         if (user) {
           navigation.navigate('Main');
@@ -35,92 +41,116 @@ export default function Signup({ navigation }) {
     };
   };
 
-  const profilePictures = [
-    require('../assets/chef1.png'),
-    require('../assets/chef2.png'),
-    require('../assets/chef3.png'),
-  ];
+  const handleProfilePicturePress = (index) => {
+    if (index === selectedPictureIndex) {
+      setProfilePicture(null);
+      setSelectedPictureIndex(-1);
+      let pictureRefs = [chef1Ref, chef2Ref, chef3Ref];
+      pictureRefs[index].setNativeProps({
+        style: styles.profilePicture2
+      });
+    } else {
+      setProfilePicture(chefImages[index]);
+      setSelectedPictureIndex(index);
+      if (selectedPictureIndex !== -1) {
+        let pictureRefs = [chef1Ref, chef2Ref, chef3Ref];
+        pictureRefs[selectedPictureIndex].setNativeProps({
+          style: styles.profilePicture2
+        });
+      }
+      let pictureRefs = [chef1Ref, chef2Ref, chef3Ref];
+      pictureRefs[index].setNativeProps({
+        style: styles.profilePictureSelected
+      });
+    }
+  };
 
   return (
-    <ScrollView>
-      <KeyboardAvoidingView
-        style={styles.loginContainer}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      >
-        <Image
-          source={require('../assets/logo.png')}
-          style={styles.loginLogo}
-        />
-        <Text style={styles.loginTitle}>Signup</Text>
-        <TouchableOpacity
-          style={styles.loginInputContainer}
-          onPress={() => {
-            const nextIndex = (profilePictureIndex + 1) % profilePictures.length;
-            setProfilePictureIndex(nextIndex);
-            pickProfilePicture();
-          }}
-        >
-          <Text style={styles.loginInputLabel}>Profile Picture</Text>
+    <KeyboardAvoidingView
+      style={styles.signUpContainer}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
+      <ScrollView contentContainerStyle={{ width: screenWidth, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={styles.loginLogoAndTextContainer}>
           <Image
-            source={profilePictures[profilePictureIndex]}
-            style={styles.profilePicture}
+            source={require('../assets/logo.png')}
+            style={styles.loginLogo}
           />
-        </TouchableOpacity>
-        <View style={styles.loginInputContainer}>
-          <Text style={styles.loginInputLabel}>Username *</Text>
-          <TextInput
-            style={styles.loginInput}
-            placeholder='Username *'
-            value={username}
-            onChangeText={(uname) => setUsername(uname.trim())}
-          />
+          <Text style={styles.signUpTitle}>Signup</Text>
         </View>
-        <View style={styles.loginInputContainer}>
+          <View style={styles.signUpInputContainer}>
+            <Text style={styles.loginInputLabel}>Profile Picture</Text>
+            <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+            {[chef1, chef2, chef3].map((chef, index) => (
+              <TouchableOpacity key={index} onPress={() => handleProfilePicturePress(index)}>
+                <Image 
+                  ref={(ref) => {
+                    pictureRefs[index] = ref;
+                    if (index === 0) {
+                      chef1Ref = ref;
+                    } else if (index === 1) {
+                      chef2Ref = ref;
+                    } else {
+                      chef3Ref = ref;
+                    }
+                  }}
+                  source={chef} 
+                  style={index === selectedPictureIndex ? styles.profilePictureSelected : styles.profilePicture2} 
+                />
+              </TouchableOpacity>
+            ))}
+            </View>
+          </View>
+          <View style={styles.signUpInputContainer}>
+            <Text style={styles.loginInputLabel}>Username *</Text>
+            <TextInput
+              style={styles.loginInput}
+              placeholder='Username'
+              onChangeText={(username) => setUsername(username)}
+              value={username}
+            />
+        </View>
+        <View style={styles.signUpInputContainer}>
           <Text style={styles.loginInputLabel}>Email *</Text>
           <TextInput
             style={styles.loginInput}
-            placeholder='Email *'
+            placeholder='Email'
+            onChangeText={(email) => setEmail(email)}
             value={email}
-            onChangeText={(email) => setEmail(email.trim())}
-            keyboardType='email-address'
-            autoCapitalize='none'
           />
         </View>
-        <View style={styles.loginInputContainer}>
+        <View style={styles.signUpInputContainer}>
           <Text style={styles.loginInputLabel}>Password *</Text>
           <TextInput
             style={styles.loginInput}
-            placeholder='Password *'
-            value={password}
-            onChangeText={(pw) => setPassword(pw)}
+            placeholder='Password'
             secureTextEntry={true}
+            onChangeText={(password) => setPassword(password)}
+            value={password}
           />
         </View>
-        <View style={styles.loginInputContainer}>
-          <Text style={styles.loginInputLabel}>Confirm password*</Text>
+        <View style={styles.signUpInputContainer}>
+          <Text style={styles.loginInputLabel}>Confirm Password *</Text>
           <TextInput
             style={styles.loginInput}
-            placeholder='Confirm password *'
-            value={confirmPassword}
-            onChangeText={(cpw) => setConfirmPassword(cpw)}
+            placeholder='Confirm Password'
             secureTextEntry={true}
+            onChangeText={(confirmPassword) => setConfirmPassword(confirmPassword)}
+            value={confirmPassword}
           />
         </View>
         <View style={styles.loginButtonContainer}>
-          <TouchableOpacity
-            style={styles.loginButton}
-            onPress={handlePress}
-          >
+          <TouchableOpacity style={styles.loginButton} onPress={handlePress}>
             <Text style={styles.loginButtonText}>Signup</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.loginRegisterContainer}>
-          <Text style={styles.loginRegisterText}>Already familiar with RecipePal? </Text>
+          <Text style={styles.loginRegisterText}>Already have an account? </Text>
           <TouchableOpacity onPress={() => navigation.navigate('Login')}>
             <Text style={styles.loginRegisterLink}>Login</Text>
           </TouchableOpacity>
         </View>
-      </KeyboardAvoidingView>
-    </ScrollView>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }

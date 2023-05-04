@@ -12,19 +12,24 @@ import { getDownloadURL, ref as storageRef } from 'firebase/storage';
 
 export const signUp = async (username, email, password, profilePicture) => {
     try {
-        await createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            set(ref(db, USERS_REF + userCredential.user.uid), {
-                username: username,
-                email: userCredential.user.email,
-                profilePicture: profilePicture
-            });
-        });
+      await createUserWithEmailAndPassword(auth, email, password).then(
+        (userCredential) => {
+          const userRef = ref(db, USERS_REF + userCredential.user.uid);
+          const userData = {
+            username: username,
+            email: userCredential.user.email,
+          };
+          if (profilePicture) {
+            userData.profilePicture = profilePicture;
+          }
+          set(userRef, userData);
+        }
+      );
     } catch (error) {
-        console.log('Signup failed. ', error.message);
-        Alert.alert('Signup failed. ', error.message);
-    };
-};
+      console.log("Signup failed. ", error.message);
+      Alert.alert("Signup failed. ", error.message);
+    }
+};  
 
 export const signIn = async (email, password) => {
     try {

@@ -1,38 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Image, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getUserDetails, logOut } from '../components/Auth';
 import { Entypo } from '@expo/vector-icons';
 import styles from '../styles/styles';
 
 export default function Profile() {
   const [username, setUsername] = useState('');
-  const [profilePicUrl, setProfilePicUrl] = useState('');
+  const [profilePic, setProfilePic] = useState('');
   const navigation = useNavigation();
-  const [favoriteRecipes, setFavoriteRecipes] = useState([]);
 
   useEffect(() => {
     const fetchUserDetails = async () => {
       const userDetails = await getUserDetails();
       setUsername(userDetails.username);
-      setProfilePicUrl(userDetails.profilePicUrl);
+      if (userDetails.profilePicture === 1) {
+        setProfilePic(require('../assets/chef1.png'));
+      } else if (userDetails.profilePicture === 2) {
+        setProfilePic(require('../assets/chef2.png'));
+      } else if (userDetails.profilePicture === 3) {
+        setProfilePic(require('../assets/chef3.png'));
+      } else {
+        setProfilePic(require('../assets/logo.png'));
+      };
     };
     fetchUserDetails();
-  }, []);
-
-  useEffect(() => {
-    const loadFavoriteRecipes = async () => {
-      try {
-        const recipes = await AsyncStorage.getItem('favoriteRecipes');
-        if (recipes !== null) {
-          setFavoriteRecipes(JSON.parse(recipes));
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    loadFavoriteRecipes();
   }, []);
 
   const handlePressFavorites = () => {
@@ -53,9 +45,6 @@ export default function Profile() {
           text: 'Yes',
           onPress: async () => {
             try {
-              await AsyncStorage.removeItem('favoriteRecipes');
-              await AsyncStorage.removeItem('userToken');
-              setFavoriteRecipes([]);
               await logOut();
               navigation.replace('Welcome');
             } catch (error) {
@@ -73,7 +62,7 @@ export default function Profile() {
       <View style={styles.profileContent}>
         <Text style={styles.profileTitle}>{username}'s Profile</Text>
         <Image
-          source={{ uri: profilePicUrl }}
+          source={profilePic}
           style={styles.profileImage}
         />
         <View style={styles.loginButtonContainer}>
@@ -84,12 +73,16 @@ export default function Profile() {
             <Entypo name="heart" size={24} color="white" />
             <Text style={styles.loginButtonText}>My Favorites</Text>
           </TouchableOpacity>
-      </View>
-      </View>
-      <View>
-        <TouchableOpacity onPress={() => navigation.navigate('ChangePwScreen', {username: username})}>
-          <Text style= {styles.changePWText}>Change password</Text>
-        </TouchableOpacity>
+        </View>
+        <View style={styles.loginButtonContainer}>
+          <TouchableOpacity
+            style={styles.loginButton}
+            onPress={() => navigation.navigate('ChangePwScreen', {username: username})}
+          >
+            <Entypo name="cog" size={24} color="white" />
+            <Text style={styles.loginButtonText}>Change password</Text>
+          </TouchableOpacity>
+        </View>
       </View>
       <View style={styles.profileLogoutWrapper}>
         <TouchableOpacity onPress={handlePressLogout}>

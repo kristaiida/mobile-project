@@ -39,7 +39,7 @@ export default StyleSheet.create({
   },
   homeScreenContainer: {
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   container: {
     flexDirection: 'row',
@@ -51,7 +51,7 @@ export default StyleSheet.create({
   },
 // Search
   listC: {
-    height: "100%",
+    marginBottom: 126,
     flexDirection: 'column',
     width: '100%',
     marginLeft: 0,
@@ -153,8 +153,16 @@ lineRC: {
   backgroundColor: '#94B49F',
   height: 5,
   width: '97%',
-  marginBottom: 12,
-  marginTop: 12,
+  marginBottom: 9,
+  marginTop: 16,
+  alignSelf: 'center',
+},
+lineRC2: {
+  backgroundColor: '#94B49F',
+  height: 3,
+  width: '95%',
+  marginBottom: 10,
+  marginTop: 16,
   alignSelf: 'center',
 },
 textContainer: {
@@ -167,52 +175,65 @@ titleRC: {
   fontSize: 24,
   fontWeight: 'bold',
   marginTop: 10,
-  marginBottom: 1,
   textAlign: 'center'
 },
 descriptionRC: {
-  fontSize: 16,
+  fontSize: 17,
   fontStyle: 'italic',
   textAlign: 'center',
-  marginTop: 12,
+  marginTop: 13,
   marginBottom: 5,
   marginLeft: 5,
   marginRight: 5
 },
 ingTitle: {
- fontSize: 20,
+ fontSize: 21,
  fontWeight: 'bold',
  marginBottom: 10,
  marginLeft: 10,
  marginRight: 10
 },
 ingText: {
-  fontSize: 16,
+  fontSize: 18,
   marginLeft: 10,
   marginRight: 10,
   marginBottom: 10,
 },
 titletext: {
-  fontSize: 26,
+  fontSize: 22,
   fontWeight: 'bold',
-  marginLeft: 11,
-  marginRight: 11,
-  marginTop: 10
+  marginLeft: 15,
+  marginRight: 15,
+  marginTop: 15,
+  textTransform: 'capitalize',
+  marginBottom: 8
+},
+titletext2: {
+  fontSize: 18,
+  fontWeight: 'bold',
+  marginLeft: 15,
+  marginRight: 15,
+  marginTop: 10,
+  textTransform: 'capitalize',
+  marginBottom: 8,
 },
 categoryname: {
-  fontSize: 20,
+  fontSize: 18,
   fontWeight: 'bold',
   marginTop: 20,
   marginBottom: 10,
-  marginLeft: 11,
-  marginRight: 11,
-  textTransform: 'capitalize'
+  marginLeft: 3,
+  marginRight: 3,
+  textTransform: 'capitalize',
+  alignSelf: 'center'
 },
 categoryline: {
   backgroundColor: '#94B49F',
   height: 5,
-  width: '100%',
-  marginTop: 12
+  width: '97%',
+  marginTop: 10,
+  marginBottom: 12,
+  alignSelf: 'center'
 },
 trashIcon: {
   left: "87%",
@@ -237,11 +258,11 @@ shareIcon: {
   },
   favoritesText: {
     fontWeight: 'bold',
-    fontSize: 22
+    fontSize: 22,
+    marginLeft: 7
   },
   textAndButtonContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
     marginLeft: 16,
     marginRight: 16,
@@ -267,8 +288,8 @@ shareIcon: {
   },
   recipeCardContainerF: {
     flexDirection: 'row',
-    marginLeft: 11,
-    marginRight: 11,
+    marginLeft: 15,
+    marginRight: 15,
     marginTop: 8,
     marginBottom: 8,
     backgroundColor: '#fff',
@@ -350,22 +371,30 @@ shareIcon: {
   // Greeting
   greetingText: {
     fontWeight: "bold",
-    textAlign: "center",
-    fontSize: 20,
-    marginTop: 20,
-    marginBottom: 5
+    fontSize: 27,
+    marginTop: 18,
+    marginLeft: 15,
+    marginRight: 15
   },
   greetingText2 : {
-    fontWeight: "bold",
-    textAlign: "center",
-    fontSize: 15,
-    marginTop: 5
+    fontWeight: '500',
+    fontSize: 19,
+    marginTop: 7,
+    marginLeft: 15,
+    marginRight: 15
   },
   loginContainer: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  signUpContainer: {
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: 20,
+    paddingBottom: 40
   },
   loginLogo: {
     height: 125,
@@ -376,6 +405,10 @@ shareIcon: {
   loginTitle: {
     fontSize: 32,
     fontWeight: 'bold',
+  },
+  signUpTitle: {
+    fontSize: 32,
+    fontWeight: 'bold'
   },
   loginFont: {
     fontSize: 40,
@@ -388,10 +421,14 @@ shareIcon: {
     width: '80%',
     marginBottom: 16,
   },
+  signUpInputContainer: {
+    width: '85%',
+    marginBottom: 16
+  },
   loginLogoAndTextContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 10
+    marginBottom: 30
   },
   loginInputLabel: {
     fontWeight: 'bold',
@@ -471,6 +508,28 @@ shareIcon: {
     borderRadius: 75,
     marginTop: 15,
     marginBottom: 15
+  },
+  profilePicture2: {
+    width: 90,
+    height: 90,
+    borderRadius: 75,
+    marginTop: 5,
+    marginBottom: 5,
+    marginLeft: 5,
+    marginRight: 5,
+    borderColor: 'black',
+    borderWidth: 1
+  },
+  profilePictureSelected: {
+    width: 90,
+    height: 90,
+    borderRadius: 75,
+    marginTop: 5,
+    marginBottom: 5,
+    marginLeft: 5,
+    marginRight: 5,
+    borderColor: '#94B49F',
+    borderWidth: 4
   },
   profileButton: {
     fontSize: 18,
