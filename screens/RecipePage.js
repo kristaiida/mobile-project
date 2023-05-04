@@ -25,9 +25,11 @@ export default function RecipePage({ route }) {
               <MaterialIcons name="access-time" size={24} color="black" style={{marginRight: 2}} />
               <Text style={{textAlign: 'center', alignSelf: 'center', fontWeight: 'bold'}}>
                 Prep time:{" "}
-                {recipe.prep_time_minutes > 59
-                  ? `${Math.floor(recipe.prep_time_minutes / 60)}h ${recipe.prep_time_minutes % 60}min`
-                  : `${recipe.prep_time_minutes}min`}
+                {recipe.prep_time_minutes > 59 && recipe.prep_time_minutes % 60 === 0
+                  ? `${Math.floor(recipe.prep_time_minutes / 60)}h`
+                  : recipe.prep_time_minutes > 59
+                    ? `${Math.floor(recipe.prep_time_minutes / 60)}h ${recipe.prep_time_minutes % 60}min`
+                    : `${recipe.prep_time_minutes}min`}
               </Text>
             </View>
           )}
@@ -36,14 +38,17 @@ export default function RecipePage({ route }) {
               <MaterialIcons name="microwave" size={24} color="black" style={{marginRight: 2}} />
               <Text style={{textAlign: 'center', alignSelf: 'center', fontWeight: 'bold'}}>
                 Cook time:{" "}
-                {recipe.cook_time_minutes > 59
+                {recipe.cook_time_minutes > 59 && recipe.cook_time_minutes % 60 !== 0
                   ? `${Math.floor(recipe.cook_time_minutes / 60)}h ${recipe.cook_time_minutes % 60}min`
-                  : `${recipe.cook_time_minutes}min`}
+                  : recipe.cook_time_minutes > 59
+                    ? `${Math.floor(recipe.cook_time_minutes / 60)}h`
+                    : `${recipe.cook_time_minutes}min`}
+
               </Text>
             </View>          
           }
         </View>
-        <View style={styles.lineRC} />
+        <View style={styles.categoryline} />
         <View>
           <Text style={styles.ingTitle}>Ingredients</Text>
           {recipe.sections.map((section) => (
@@ -54,7 +59,7 @@ export default function RecipePage({ route }) {
             ))
           ))}
         </View>
-        <View style={styles.lineRC} />
+        <View style={styles.categoryline} />
           <View style={styles.instructionRC}>
             <Text style={styles.ingTitle}>Instructions</Text>
             {recipe.instructions.map((instruction) => (
