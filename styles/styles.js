@@ -379,7 +379,7 @@ shareIcon: {
   greetingText2 : {
     fontWeight: '500',
     fontSize: 19,
-    marginTop: 7,
+    marginTop: 8,
     marginLeft: 15,
     marginRight: 15
   },
