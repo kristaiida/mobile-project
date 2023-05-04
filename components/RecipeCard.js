@@ -38,10 +38,6 @@ export default function RecipeCard({ recipe, screen }) {
     checkFavoriteRecipe();
   }, [recipe]);
 
-  useEffect(() => {
-    console.log("isInFavorites changed to:", isInFavorites);
-  }, [isInFavorites]);  
-
   const onShare = async (recipe) => {
     try {
       const result = await Share.share({
