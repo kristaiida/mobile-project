@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { ScrollView, Text, View, ActivityIndicator, Animated } from 'react-native';
+import { ScrollView, Text, View, ActivityIndicator, Animated, TouchableOpacity } from 'react-native';
 import { getUserDetails } from '../components/Auth';
 import { API_KEY } from '../Api_Key';
 import styles from '../styles/styles';
 import RecipeCard from '../components/RecipeCard';
 import { UseGreeting } from '../components/Greeting';
+import { Feather } from '@expo/vector-icons';
 
 export default function Home() {
 
@@ -13,7 +14,7 @@ export default function Home() {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const fadeAnim = useRef(new Animated.Value(0)).current;
-  const { greeting, meal } = UseGreeting();
+  const { greeting, meal, emoji } = UseGreeting();
 
   useEffect(() => {
     const fetchUserDetails = async () => {
@@ -115,24 +116,33 @@ export default function Home() {
       {!loading && (
         <Animated.View style={{ opacity: fadeAnim }}>
           <ScrollView>
-            <View>
-              <Text style={styles.greetingText}>{greeting} {username}!</Text>
-              <Text style={styles.greetingText2}>It's about time for {meal}. {"\n"} Would you like to try some of these recipes?</Text>
+            <View style={{marginVertical: 10}}>
+              <View style={{marginTop: 5, marginBottom: 12}}>
+                <Text style={styles.greetingText}>{greeting} <Text style={{color: '#4c7b5d'}}>{username}</Text>!</Text>
+                <Text style={styles.greetingText2}>Time for <Text style={{fontWeight: '700'}}>{meal}</Text> {emoji}</Text>
+              </View>
+              <View>
+                <ScrollView horizontal={true}>
+                  {meals.map((meal) => (
+                    <RecipeCard key={meal.id} recipe={meal} screen={'HomeScreen'} />
+                  ))}
+                </ScrollView>
+              </View>
             </View>
-            <View>
-              <Text style={styles.categoryname}>{meal}</Text>
-              {meals.map((meal) => (
-                <RecipeCard key={meal.id} recipe={meal} screen={'HomeScreen'} />
-              ))}
+            <View style={{marginBottom: 10}}>
+              <Text style={styles.greetingText}>Trending recipes {'\u{1F525}'}</Text>
             </View>
-            <Text style={styles.titletext}>Trending{'\u{1F525}'}</Text>
             {categories.map((category, index) => (
               <View key={category.id}>
-                {index > 0 && <View style={styles.categoryline}></View>}
-                <Text style={styles.categoryname}>{category.name}</Text>
-                {category.recipes.map((recipe) => (
-                  <RecipeCard key={recipe.id} recipe={recipe} screen={'HomeScreen'} />
-                ))}
+                {index > 0 && <View style={styles.lineRC2}></View>}
+                <View>
+                  <Text style={styles.titletext2}>{category.name}</Text>
+                </View>
+                <ScrollView horizontal={true}>
+                  {category.recipes.map((recipe) => (
+                    <RecipeCard key={recipe.id} recipe={recipe} screen={'HomeScreen'} />
+                  ))}
+                </ScrollView>
               </View>
             ))}
           </ScrollView>
