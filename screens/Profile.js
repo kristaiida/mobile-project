@@ -14,18 +14,10 @@ export default function Profile() {
     const fetchUserDetails = async () => {
       const userDetails = await getUserDetails();
       setUsername(userDetails.username);
-      if (userDetails.profilePicture === 1) {
-        setProfilePic(require('../assets/chef1.png'));
-      } else if (userDetails.profilePicture === 2) {
-        setProfilePic(require('../assets/chef2.png'));
-      } else if (userDetails.profilePicture === 3) {
-        setProfilePic(require('../assets/chef3.png'));
-      } else {
-        setProfilePic(require('../assets/logo.png'));
-      };
-    };
+      setProfilePic(userDetails.profilePicture);
+    };    
     fetchUserDetails();
-  }, []);
+  }, []);  
 
   const handlePressFavorites = () => {
     navigation.navigate('FavoritesScreen');
@@ -62,7 +54,20 @@ export default function Profile() {
       <View style={styles.profileContent}>
         <Text style={styles.profileTitle}>{username}'s Profile</Text>
         <Image
-          source={profilePic}
+          source={
+            (() => {
+              switch (profilePic) {
+                case 1:
+                  return require('../assets/chef1.png');
+                case 2:
+                  return require('../assets/chef2.png');
+                case 3:
+                  return require('../assets/chef3.png');
+                default:
+                  return require('../assets/logo.png');
+              }
+            })()
+          }
           style={styles.profileImage}
         />
         <View style={styles.loginButtonContainer}>
