@@ -25,6 +25,7 @@ export default ChahngePw = ({ navigation, route }) => {
       <KeyboardAvoidingView
         style={styles.loginContainer}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        keyboardVerticalOffset={'100'}
       >
         <View style={styles.loginLogoAndTextContainer}>
           <Image
