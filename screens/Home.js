@@ -118,7 +118,7 @@ export default function Home() {
           <ScrollView>
             <View style={{marginVertical: 10}}>
               <View style={{marginTop: 5, marginBottom: 12}}>
-                <Text style={styles.greetingText}>{greeting} <Text style={{color: '#4c7b5d'}}>{username}</Text>!</Text>
+                <Text style={styles.greetingText}>{greeting} {username}!</Text>
                 <Text style={styles.greetingText2}>Time for <Text style={{fontWeight: '700'}}>{meal}</Text> {emoji}</Text>
               </View>
               <View>
