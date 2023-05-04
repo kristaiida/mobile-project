@@ -7,6 +7,7 @@ import styles from '../styles/styles';
 import customStyles from '../styles/favStyles';
 import logo from '../assets/logo.png';
 import { getAuth } from 'firebase/auth';
+import { Entypo } from '@expo/vector-icons';
 import { API_KEY } from '../Api_Key';
 import { child, onValue, push, ref, update, query } from 'firebase/database';
 
@@ -91,21 +92,18 @@ export default function Favorites({ navigation }) {
         <Text>Loading...</Text>
       ) : (
         <>
-          <View style={styles.textAndButtonContainer}>
-            <Text style={styles.favoritesText}>My Favorites</Text>
-            <TouchableOpacity
-                style={styles.deleteAllButton}
-                onPress={() => handleDeleteAll()}
-              >
-                <Text style={styles.deleteAllButtonText}>Delete All</Text>
-              </TouchableOpacity>
-          </View>
           {favoriteRecipes && favoriteRecipes.length > 0 ? (
-            <ScrollView>
-              {favoriteRecipes.map((recipe) => (
-                <RecipeCard key={recipe.id} recipe={recipe} screen={'FavoritesScreen'} />
-              ))}
-            </ScrollView>
+            <>
+              <View style={styles.textAndButtonContainer}>
+                <Entypo name="heart" size={24} color="black" />
+                <Text style={styles.favoritesText}>My Favorites</Text>
+              </View>
+              <ScrollView>
+                {favoriteRecipes.map((recipe) => (
+                  <RecipeCard key={recipe.id} recipe={recipe} screen={'FavoritesScreen'} />
+                ))}
+              </ScrollView>
+            </>
           ) : (
             <View style={customStyles.noFavoritesContainer}>
               <View>
